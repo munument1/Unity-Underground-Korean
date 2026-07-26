@@ -1,0 +1,5 @@
+# 이 파일을 google_ai_studio_key.txt로 복사한 뒤 등호 오른쪽에 API 키를 입력하세요.
+GOOGLE_AI_STUDIO_API_KEY=
+GAME_DIR=D:\Unity undergrounds
+GEMMA_MODEL_HINT=gemma 4 31b
+GEMINI_MODEL_HINT=gemini 3.5 flash lite
