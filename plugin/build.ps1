@@ -8,7 +8,8 @@ $game = (Resolve-Path -LiteralPath $GameDir).Path
 $managed = Join-Path $game 'UnityUnderground_Data\Managed'
 $bepInEx = Join-Path $game 'BepInEx\core'
 $source = Join-Path $PSScriptRoot 'UnityUndergroundKorean.cs'
-$output = Join-Path $PSScriptRoot 'UnityUndergroundKorean.dll'
+$outputDir = Join-Path (Split-Path -Parent $PSScriptRoot) 'BepInEx\plugins'
+$output = Join-Path $outputDir 'UnityUndergroundKorean.dll'
 $dotnet = (Get-Command dotnet -ErrorAction Stop).Source
 $sdkVersion = (& $dotnet --version).Trim()
 $dotnetRoot = Split-Path -Parent $dotnet
@@ -40,6 +41,8 @@ foreach ($reference in $references) {
         throw "필수 참조 파일이 없습니다: $reference"
     }
 }
+
+New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
 
 $arguments = @(
     $compiler,

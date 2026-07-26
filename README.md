@@ -13,20 +13,12 @@ Ultima Underworld의 Unity 포팅 프로젝트인 **Unity Underground**용 비�
 
 ## 설치
 
-### 자동 설치
-
-PowerShell에서 다음 명령을 실행합니다.
-
-```powershell
-.\Install.ps1 -GameDir "D:\Unity undergrounds"
-```
-
-### 수동 설치
-
 1. BepInEx 5.4.23.5를 Unity Underground에 설치합니다.
-2. `plugin/UnityUndergroundKorean.dll`을 게임의 `BepInEx/plugins` 폴더에 복사합니다.
-3. 이 저장소의 `translations` 폴더를 게임 루트에 복사합니다.
-4. 게임을 완전히 종료한 뒤 다시 실행합니다.
+2. [Releases](https://github.com/munument1/Unity-Underground-Korean/releases)에서 최신 ZIP을 받습니다.
+3. ZIP 안의 `BepInEx`와 `translations` 폴더를 Unity Underground 게임 폴더에 그대로 붙여넣습니다.
+4. 같은 이름의 파일을 덮어쓴 뒤 게임을 실행합니다.
+
+별도의 설치 프로그램이나 PowerShell 실행은 필요하지 않습니다. 저장소를 직접 내려받았다면 저장소 루트의 `BepInEx`와 `translations` 폴더를 동일하게 복사하면 됩니다.
 
 기본 한글 폰트는 Windows의 `Malgun Gothic`을 사용합니다. Unity IMGUI에서 일부 동적 폰트가 글자를 반복 출력하는 문제가 있어 책·상태창과 캐릭터 생성 화면도 안전한 기본 폰트를 사용합니다.
 
@@ -38,7 +30,7 @@ PowerShell에서 다음 명령을 실행합니다.
 .\plugin\build.ps1 -GameDir "D:\Unity undergrounds"
 ```
 
-빌드 결과는 `plugin/UnityUndergroundKorean.dll`로 생성됩니다.
+빌드 결과는 게임 폴더에 그대로 복사할 수 있는 `BepInEx/plugins/UnityUndergroundKorean.dll`로 생성됩니다.
 
 ## AI 번역 파이프라인
 
