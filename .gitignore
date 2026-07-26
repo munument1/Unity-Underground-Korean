@@ -1,5 +1,6 @@
 tools/google_ai_studio_key.txt
 tools/output/
+dist/
 *.bak
 *.log
 obj/
