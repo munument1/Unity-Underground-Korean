@@ -184,6 +184,13 @@ namespace UnityUndergroundKorean
                     return itemName + GetObjectParticle(itemName) + " 껐습니다.";
             }
 
+            // Food taste messages are assembled without a separator:
+            // "That " + translated item name + translated taste sentence.
+            // Rebuild them in Korean word order, including the topic particle.
+            string foodMessage = TranslateFoodTasteMessage(result);
+            if (foodMessage != result)
+                return foodMessage;
+
             const string lockedSuffix = " is locked.";
             if (result.StartsWith("The ", StringComparison.OrdinalIgnoreCase) &&
                 result.EndsWith(lockedSuffix, StringComparison.OrdinalIgnoreCase))
@@ -267,6 +274,57 @@ namespace UnityUndergroundKorean
                 changed = true;
             }
             return changed ? String.Join("\n", lines) : value;
+        }
+
+        private static string TranslateFoodTasteMessage(string value)
+        {
+            if (String.IsNullOrEmpty(value))
+                return value;
+
+            int prefixLength;
+            if (value.StartsWith("That ", StringComparison.OrdinalIgnoreCase))
+                prefixLength = 5;
+            else if (value.StartsWith("그것 ", StringComparison.Ordinal))
+                prefixLength = 3;
+            else
+                return value;
+
+            string remainder = value.Substring(prefixLength).TrimStart();
+            string[] koreanTasteSuffixes = {
+                "맛이 썩 좋지 않았다.",
+                "맛이 약간 상해 있었다.",
+                "맛이 밋밋했다.",
+                "맛이 꽤 괜찮았다.",
+                "맛이 아주 훌륭했다."
+            };
+            string[] englishTasteSuffixes = {
+                "tasted putrid.",
+                "tasted a little rancid.",
+                "tasted kind of bland.",
+                "tasted pretty good.",
+                "tasted great."
+            };
+
+            for (int i = 0; i < koreanTasteSuffixes.Length; i++)
+            {
+                string matchedSuffix = null;
+                if (remainder.EndsWith(koreanTasteSuffixes[i], StringComparison.Ordinal))
+                    matchedSuffix = koreanTasteSuffixes[i];
+                else if (remainder.EndsWith(
+                    englishTasteSuffixes[i], StringComparison.OrdinalIgnoreCase))
+                    matchedSuffix = englishTasteSuffixes[i];
+
+                if (matchedSuffix == null)
+                    continue;
+
+                string foodName = remainder.Substring(
+                    0, remainder.Length - matchedSuffix.Length).Trim();
+                if (ContainsKorean(foodName))
+                    return foodName + GetTopicParticle(foodName) + " " +
+                        koreanTasteSuffixes[i];
+            }
+
+            return value;
         }
 
         private static string StripLeadingEnglishArticle(string value)
@@ -571,6 +629,17 @@ namespace UnityUndergroundKorean
                     return ((c - '\uac00') % 28) == 0 ? "가" : "이";
             }
             return "이(가)";
+        }
+
+        private static string GetTopicParticle(string value)
+        {
+            for (int i = value.Length - 1; i >= 0; i--)
+            {
+                char c = value[i];
+                if (c >= '\uac00' && c <= '\ud7a3')
+                    return ((c - '\uac00') % 28) == 0 ? "는" : "은";
+            }
+            return "은(는)";
         }
 
         public static void TranslateShortGuiLabel(ref string __2, GUIStyle __3)
