@@ -154,11 +154,34 @@ namespace UnityUndergroundKorean
             const string translatedLookPrefix = "당신은 봅니다:";
             if (result.StartsWith(translatedLookPrefix, StringComparison.Ordinal))
             {
-                string objectName = result.Substring(translatedLookPrefix.Length).Trim();
+                string objectName = StripLeadingEnglishArticle(
+                    result.Substring(translatedLookPrefix.Length).Trim());
                 if (objectName.EndsWith(".", StringComparison.Ordinal))
                     objectName = objectName.Substring(0, objectName.Length - 1).TrimEnd();
                 if (ContainsKorean(objectName))
                     return "당신은 " + objectName + GetObjectParticle(objectName) + " 봅니다.";
+            }
+
+            const string extinguishPrefix = "You extinguish your ";
+            if (result.StartsWith(extinguishPrefix, StringComparison.OrdinalIgnoreCase))
+            {
+                string itemName = StripLeadingEnglishArticle(
+                    result.Substring(extinguishPrefix.Length).Trim());
+                if (itemName.EndsWith(".", StringComparison.Ordinal))
+                    itemName = itemName.Substring(0, itemName.Length - 1).TrimEnd();
+                if (ContainsKorean(itemName))
+                    return itemName + GetObjectParticle(itemName) + " 껐습니다.";
+            }
+
+            const string translatedExtinguishPrefix = "당신은 다음을 껐습니다:";
+            if (result.StartsWith(translatedExtinguishPrefix, StringComparison.Ordinal))
+            {
+                string itemName = StripLeadingEnglishArticle(
+                    result.Substring(translatedExtinguishPrefix.Length).Trim());
+                if (itemName.EndsWith(".", StringComparison.Ordinal))
+                    itemName = itemName.Substring(0, itemName.Length - 1).TrimEnd();
+                if (ContainsKorean(itemName))
+                    return itemName + GetObjectParticle(itemName) + " 껐습니다.";
             }
 
             const string lockedSuffix = " is locked.";
@@ -244,6 +267,22 @@ namespace UnityUndergroundKorean
                 changed = true;
             }
             return changed ? String.Join("\n", lines) : value;
+        }
+
+        private static string StripLeadingEnglishArticle(string value)
+        {
+            if (String.IsNullOrEmpty(value))
+                return value;
+
+            if (value.StartsWith("an ", StringComparison.OrdinalIgnoreCase))
+                return value.Substring(3).TrimStart();
+            if (value.StartsWith("a ", StringComparison.OrdinalIgnoreCase))
+                return value.Substring(2).TrimStart();
+            if (value.StartsWith("an:", StringComparison.OrdinalIgnoreCase))
+                return value.Substring(3).TrimStart();
+            if (value.StartsWith("a:", StringComparison.OrdinalIgnoreCase))
+                return value.Substring(2).TrimStart();
+            return value;
         }
 
         private static void CreateKoreanFonts()
@@ -359,8 +398,20 @@ namespace UnityUndergroundKorean
 
             PatchCreateCharacterGui(harmony);
             PatchTutorialGui(harmony);
+            PatchCutsceneGui(harmony);
             PatchGameMessages(harmony);
             PatchActionTextGetters(harmony);
+        }
+
+        private static void PatchCutsceneGui(Harmony harmony)
+        {
+            Type type = AccessTools.TypeByName("CutscenePlayer");
+            if (type == null)
+                return;
+
+            MethodInfo onGui = AccessTools.Method(type, "OnGUI");
+            TryPatch(harmony, onGui,
+                new HarmonyMethod(typeof(KoreanPlugin), "PrepareCutsceneGui"));
         }
 
         private static void PatchActionTextGetters(Harmony harmony)
@@ -491,6 +542,7 @@ namespace UnityUndergroundKorean
                 return;
 
             string objectName = __0.Substring(lookPrefix.Length).Trim();
+            objectName = StripLeadingEnglishArticle(objectName);
             if (objectName.EndsWith(".", StringComparison.Ordinal))
                 objectName = objectName.Substring(0, objectName.Length - 1).TrimEnd();
             if (!ContainsKorean(objectName))
@@ -566,6 +618,30 @@ namespace UnityUndergroundKorean
             GUIStyle style = field == null ? null : field.GetValue(__instance) as GUIStyle;
             if (style != null)
                 style.font = defaultUiFont;
+        }
+
+        public static void PrepareCutsceneGui(object __instance)
+        {
+            if (__instance == null)
+                return;
+
+            Type type = __instance.GetType();
+            FieldInfo subtitlesField = AccessTools.Field(type, "voiceSubs");
+            string[] subtitles = subtitlesField == null
+                ? null
+                : subtitlesField.GetValue(__instance) as string[];
+            if (subtitles != null)
+            {
+                for (int i = 0; i < subtitles.Length; i++)
+                    subtitles[i] = Translate(subtitles[i]);
+            }
+
+            if (defaultUiFont == null)
+                return;
+
+            FieldInfo fontField = AccessTools.Field(type, "font");
+            if (fontField != null)
+                fontField.SetValue(__instance, defaultUiFont);
         }
 
         private static void ApplyCharacterGuiFont(GUIStyle style, string value)
