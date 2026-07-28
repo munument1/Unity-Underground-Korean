@@ -12,7 +12,7 @@ using UnityEngine.UI;
 
 namespace UnityUndergroundKorean
 {
-    [BepInPlugin("kr.ultima-underworld.korean", "Unity Underground Korean", "1.0.0")]
+    [BepInPlugin("kr.ultima-underworld.korean", "Unity Underground Korean", "1.0.1")]
     public sealed class KoreanPlugin : BaseUnityPlugin
     {
         private static ManualLogSource Log;
