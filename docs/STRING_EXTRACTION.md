@@ -10,6 +10,16 @@ Unity Underground는 번역 원문을 Unity 자산에 저장하지 않고 원작
 <Ultima Underworld 설치 폴더>/data/strings.pak
 ```
 
+GOG 설치본에서는 게임 파일이 `game.gog` ISO 안에 들어 있을 수 있습니다. 이 경우 먼저 다음 명령으로 UW1 원문 파일만 추출합니다.
+
+```bash
+python tools/extract_strings_from_gog_iso.py \
+  "D:/GOG Games/Ultima Underworld/game.gog" \
+  tools/output/strings.pak
+```
+
+기본 ISO 내부 경로는 `UW/DATA/STRINGS.PAK`입니다. 같은 이미지에 들어 있는 `UW2/DATA/STRINGS.PAK`는 Ultima Underworld 2용이므로 이 프로젝트에 사용하지 않습니다.
+
 Unity Underground 실행 빌드 ZIP에는 저작권이 있는 원작 데이터가 포함되지 않으므로, `UUBuild...zip`만으로는 원문 블록을 추출할 수 없습니다.
 
 ## 추출 방법
@@ -59,21 +69,6 @@ tools/output/english_source/
 
 빈 문자열도 삭제하지 않습니다. 배열 위치가 곧 게임의 문자열 ID이므로 빈 항목을 제거하거나 순서를 정렬하면 안 됩니다.
 
-## 현재 번역과 결합
-
-원문 추출이 끝나면 블록 위치를 보존한 재번역 코퍼스를 생성합니다.
-
-```bash
-python tools/build_block_retranslation_corpus.py
-```
-
-기본 출력은 다음 두 파일입니다.
-
-- `tools/output/block_retranslation_corpus.json`: `blockId`, `stringId`, 영문, 현재 한국어를 한 항목에 보존
-- `tools/output/block_source_comparison.json`: 누락 원문, 전역 맵에만 있는 키, 여러 위치에서 반복되는 동일 영문 보고서
-
-기존 `global_text_map.json`은 영어 문장을 키로 사용하므로 동일한 영어가 여러 NPC에게 쓰이면 하나의 한국어로 합쳐집니다. 블록 코퍼스는 모든 위치를 별도 항목으로 유지해 화자별 말투를 다르게 번역할 수 있게 합니다.
-
 ## 옵션
 
 파일을 쓰지 않고 구조만 검증합니다.
@@ -108,12 +103,22 @@ python tools/extract_strings_pak.py data/strings.pak tools/output/english_raw --
 
 추출기는 비정상 노드 수, 중복 블록 ID, 파일 범위를 벗어난 오프셋, 끝나지 않는 문자열을 오류로 처리합니다.
 
+## 실제 GOG 원본 검증 결과
+
+- 원본 파일 크기: 227,230바이트
+- SHA-256: `e8c9848a14c49620095ae180bdccbe9c6bf2942e3ad8def4a38a8a7d23004b0d`
+- Huffman 노드: 181개
+- 블록: 122개
+- 전체 문자열 슬롯: 10,984개
+- 비어 있지 않은 문자열: 7,091개
+
+자세한 결과는 `docs/UW1_ORIGINAL_EXTRACTION_REPORT.md`를 참고합니다.
+
 ## 검증 상태
 
 - Python 구문 검사 통과
 - 합성 `strings.pak`으로 Huffman 해제, 블록 분리, 빈 문자열 보존 검증
-- 표준 라이브러리 `unittest` 3개 통과
-- 블록 코퍼스 생성기의 위치 보존·전역 맵 대조를 합성 자료로 검증
+- GOG `game.gog` ISO에서 `UW/DATA/STRINGS.PAK` 직접 추출 검증
+- 독립 추출 파일의 SHA-256과 바이트 단위 일치 확인
+- 실제 원본 122개 블록 전부 해제 완료
 - `Stream.ReadUpperBit`, `StringLoader.LoadStrings`, `GetStringBlock`, `DecompressString`, `FixUpQuotesAndErrors`의 IL 동작과 동일하게 구현
-
-실제 원본 `strings.pak`가 확보되면 `manifest.json`의 블록 수·문자열 수와 기존 `global_text_map.json`의 5,181개 영문 키를 대조해 누락·중복 보고서를 생성합니다.
