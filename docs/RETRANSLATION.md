@@ -34,6 +34,18 @@
 
 ## 작업 흐름
 
+### 0. 영문 원문을 블록별로 추출
+
+원작 설치 폴더의 `data/strings.pak`를 사용합니다. Unity Underground 빌드 ZIP에는 이 원작 데이터가 포함되지 않습니다.
+
+```bash
+python tools/extract_strings_pak.py \
+  "D:/Ultima Underworld/data/strings.pak" \
+  tools/output/english_source
+```
+
+추출 결과는 블록 ID와 문자열 ID를 그대로 보존합니다. 자세한 구조와 옵션은 [`STRING_EXTRACTION.md`](STRING_EXTRACTION.md)를 참고합니다.
+
 ### 1. 현재 번역 감사
 
 ```bash
@@ -59,6 +71,8 @@ node tools/build_retranslation_batches.js
 node tools/build_retranslation_batches.js --from-id 1 --to-id 500
 ```
 
+원본 블록 추출이 완료된 뒤에는 전역 키 배열보다 블록별 파일을 우선 문맥으로 사용합니다. 특히 `block_3xxx` 대화는 한 블록 전체를 번역 단위로 취급합니다.
+
 ### 3. 결과 적용 전 검증
 
 재번역 결과를 `global_text_map.json`에 합친 뒤 기존 검증과 새 감사를 모두 실행합니다.
@@ -72,10 +86,11 @@ node tools/audit_retranslation.js
 
 ## 권장 진행 순서
 
-1. UI, 시스템 메시지, 상태 표현
-2. 아이템, 기술, 주문, 마법부여 단계
-3. 책, 표지판, 묘비, 컷신
-4. NPC 대화와 플레이어 선택지
-5. 게임 내 출력 확인과 동적 문장 보정
+1. 영문 원문 블록 추출 및 기존 전역 맵 대조
+2. UI, 시스템 메시지, 상태 표현
+3. 아이템, 기술, 주문, 마법부여 단계
+4. 책, 표지판, 묘비, 컷신
+5. NPC 대화와 플레이어 선택지
+6. 게임 내 출력 확인과 동적 문장 보정
 
 현재 한국어는 재번역의 참고 자료일 뿐 정답으로 취급하지 않습니다.
