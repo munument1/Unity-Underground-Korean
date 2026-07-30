@@ -59,6 +59,21 @@ tools/output/english_source/
 
 빈 문자열도 삭제하지 않습니다. 배열 위치가 곧 게임의 문자열 ID이므로 빈 항목을 제거하거나 순서를 정렬하면 안 됩니다.
 
+## 현재 번역과 결합
+
+원문 추출이 끝나면 블록 위치를 보존한 재번역 코퍼스를 생성합니다.
+
+```bash
+python tools/build_block_retranslation_corpus.py
+```
+
+기본 출력은 다음 두 파일입니다.
+
+- `tools/output/block_retranslation_corpus.json`: `blockId`, `stringId`, 영문, 현재 한국어를 한 항목에 보존
+- `tools/output/block_source_comparison.json`: 누락 원문, 전역 맵에만 있는 키, 여러 위치에서 반복되는 동일 영문 보고서
+
+기존 `global_text_map.json`은 영어 문장을 키로 사용하므로 동일한 영어가 여러 NPC에게 쓰이면 하나의 한국어로 합쳐집니다. 블록 코퍼스는 모든 위치를 별도 항목으로 유지해 화자별 말투를 다르게 번역할 수 있게 합니다.
+
 ## 옵션
 
 파일을 쓰지 않고 구조만 검증합니다.
@@ -97,6 +112,8 @@ python tools/extract_strings_pak.py data/strings.pak tools/output/english_raw --
 
 - Python 구문 검사 통과
 - 합성 `strings.pak`으로 Huffman 해제, 블록 분리, 빈 문자열 보존 검증
+- 표준 라이브러리 `unittest` 3개 통과
+- 블록 코퍼스 생성기의 위치 보존·전역 맵 대조를 합성 자료로 검증
 - `Stream.ReadUpperBit`, `StringLoader.LoadStrings`, `GetStringBlock`, `DecompressString`, `FixUpQuotesAndErrors`의 IL 동작과 동일하게 구현
 
 실제 원본 `strings.pak`가 확보되면 `manifest.json`의 블록 수·문자열 수와 기존 `global_text_map.json`의 5,181개 영문 키를 대조해 누락·중복 보고서를 생성합니다.
