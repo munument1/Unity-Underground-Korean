@@ -9,6 +9,14 @@ on:
       - retranslation/completed/**
       - translations/**
       - .github/workflows/retranslation-apply-audit.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - tools/apply_completed_retranslations.py
+      - retranslation/completed/**
+      - translations/**
+      - .github/workflows/retranslation-apply-audit.yml
 
 permissions:
   contents: read
