@@ -1,0 +1,69 @@
+name: Publish v1.1.0
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    if: ${{ contains(github.event.head_commit.message, '[release-v1.1.0]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate and package
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import zipfile
+          from pathlib import Path
+
+          paths = sorted(Path('translations').glob('*.json'))
+          if len(paths) != 124:
+              raise SystemExit(f'Expected 124 JSON files, found {len(paths)}')
+          for path in paths:
+              json.loads(path.read_text(encoding='utf-8'))
+          report = json.loads(Path('retranslation/APPLY_REPORT.json').read_text(encoding='utf-8'))
+          if report.get('reviewedLocationCount') != 7092:
+              raise SystemExit('Reviewed location count is not 7092')
+          if report.get('unresolvedCount') != 0 or report.get('validationIssueCount') != 0:
+              raise SystemExit('Retranslation report is not clean')
+
+          output = Path('Unity-Underground-Korean-v1.1.0.zip')
+          files = [Path('BepInEx/plugins/UnityUndergroundKorean.dll'), *paths]
+          with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
+              for path in files:
+                  archive.write(path, path.as_posix())
+          with zipfile.ZipFile(output) as archive:
+              bad = archive.testzip()
+              if bad is not None:
+                  raise SystemExit(f'Corrupt ZIP member: {bad}')
+              if len(archive.namelist()) != 125:
+                  raise SystemExit('Unexpected ZIP member count')
+          digest = hashlib.sha256(output.read_bytes()).hexdigest()
+          checksum = Path(str(output) + '.sha256')
+          checksum.write_text(f'{digest}  {output.name}\n', encoding='utf-8')
+          print(f'{output}: {output.stat().st_size} bytes, SHA-256 {digest}')
+          PY
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view v1.1.0 >/dev/null 2>&1; then
+            echo 'Release v1.1.0 already exists.'
+            exit 0
+          fi
+          gh release create v1.1.0 \
+            Unity-Underground-Korean-v1.1.0.zip \
+            Unity-Underground-Korean-v1.1.0.zip.sha256 \
+            --target "$GITHUB_SHA" \
+            --title 'Unity Underground 한국어 번역 v1.1.0' \
+            --notes-file RELEASE_NOTES_v1.1.0.md \
+            --latest

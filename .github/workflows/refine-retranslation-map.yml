@@ -1,0 +1,97 @@
+name: Refine Retranslation Global Map
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/refine-retranslation-map.yml
+
+permissions:
+  contents: write
+
+jobs:
+  refine:
+    if: ${{ github.head_ref == 'agent/apply-retranslation-v1.1.0' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out application branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/apply-retranslation-v1.1.0
+          fetch-depth: 0
+
+      - name: Download location-aware English source list
+        run: |
+          mkdir -p tools/output
+          curl --fail --location --retry 3 \
+            https://raw.githubusercontent.com/hankmorgan/UnderworldExporter/master/uw1_stringsclean.txt \
+            --output tools/output/uw1_stringsclean.txt
+
+      - name: Narrow dynamic-source detection
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('tools/apply_completed_retranslations.py')
+          text = path.read_text(encoding='utf-8')
+          old = '''    return (
+        source in DYNAMIC_SOURCES
+        or "%s" in source
+        or "{0}" in source
+        or source != source.strip()
+    )
+'''
+          new = '''    return (
+        source in DYNAMIC_SOURCES
+        or "%s" in source
+        or "{0}" in source
+    )
+'''
+          if old not in text:
+              if new in text:
+                  print('Dynamic-source detection is already refined.')
+              else:
+                  raise SystemExit('Dynamic-source detection pattern not found')
+          else:
+              path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+          python -m py_compile tools/apply_completed_retranslations.py
+
+      - name: Reapply reviewed translations
+        run: |
+          python tools/apply_completed_retranslations.py \
+            --source-list tools/output/uw1_stringsclean.txt \
+            --report retranslation/APPLY_REPORT.json \
+            --max-unresolved 0
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('retranslation/APPLY_REPORT.json').read_text(encoding='utf-8'))
+          if report['reviewedLocationCount'] != 7092:
+              raise SystemExit('Reviewed location count mismatch')
+          if report['unresolvedCount'] or report['validationIssueCount']:
+              raise SystemExit('Refined application report is not clean')
+          print(json.dumps({
+              key: report[key]
+              for key in (
+                  'reviewedLocationCount', 'changedBlockFileCount',
+                  'changedBlockEntryCount', 'resolvedGlobalKeyCount',
+                  'changedGlobalEntryCount', 'dynamicSkipCount',
+                  'unresolvedCount', 'duplicateSourceConflictCount',
+                  'validationIssueCount'
+              )
+          }, ensure_ascii=False, indent=2))
+          PY
+          git diff --check
+
+      - name: Commit refined global map
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/apply_completed_retranslations.py retranslation/APPLY_REPORT.json translations
+          if git diff --cached --quiet; then
+            echo 'No global-map refinement changes to commit.'
+            exit 0
+          fi
+          git commit -m '동적 문장 제외 범위 정밀화 [global-map-refined]'
+          git push origin HEAD:agent/apply-retranslation-v1.1.0
