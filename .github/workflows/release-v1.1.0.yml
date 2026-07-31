@@ -4,19 +4,50 @@ on:
   push:
     branches:
       - main
+    paths:
+      - BepInEx/plugins/UnityUndergroundKorean.dll
+      - plugin/UnityUndergroundKorean.cs
+      - translations/**
+      - .github/workflows/release-v1.1.0.yml
 
 permissions:
   contents: write
 
 jobs:
   release:
-    if: ${{ contains(github.event.head_commit.message, '[release-v1.1.0]') }}
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Check out release commit
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Validate and package
+      - name: Validate release inputs
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path('retranslation/APPLY_REPORT.json').read_text(encoding='utf-8'))
+          assert report['reviewedLocationCount'] == 7092
+          assert report['unresolvedCount'] == 0
+          assert report['validationIssueCount'] == 0
+          assert report['dynamicSkipCount'] == 48
+
+          translations = sorted(Path('translations').glob('*.json'))
+          assert len(translations) == 124, len(translations)
+          for path in translations:
+              json.loads(path.read_text(encoding='utf-8'))
+
+          source = Path('plugin/UnityUndergroundKorean.cs').read_text(encoding='utf-8')
+          marker = '[BepInPlugin("kr.ultima-underworld.korean", "Unity Underground Korean", "1.1.0")]'
+          assert marker in source
+
+          dll = Path('BepInEx/plugins/UnityUndergroundKorean.dll')
+          assert dll.is_file() and dll.stat().st_size > 0
+          PY
+
+      - name: Build deterministic installation archive
         run: |
           python - <<'PY'
           import hashlib
@@ -24,32 +55,58 @@ jobs:
           import zipfile
           from pathlib import Path
 
-          paths = sorted(Path('translations').glob('*.json'))
-          if len(paths) != 124:
-              raise SystemExit(f'Expected 124 JSON files, found {len(paths)}')
-          for path in paths:
-              json.loads(path.read_text(encoding='utf-8'))
-          report = json.loads(Path('retranslation/APPLY_REPORT.json').read_text(encoding='utf-8'))
-          if report.get('reviewedLocationCount') != 7092:
-              raise SystemExit('Reviewed location count is not 7092')
-          if report.get('unresolvedCount') != 0 or report.get('validationIssueCount') != 0:
-              raise SystemExit('Retranslation report is not clean')
+          dist = Path('dist')
+          dist.mkdir(exist_ok=True)
+          archive = dist / 'Unity-Underground-Korean-v1.1.0.zip'
+          fixed_time = (2026, 7, 31, 0, 0, 0)
 
-          output = Path('Unity-Underground-Korean-v1.1.0.zip')
-          files = [Path('BepInEx/plugins/UnityUndergroundKorean.dll'), *paths]
-          with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
-              for path in files:
-                  archive.write(path, path.as_posix())
-          with zipfile.ZipFile(output) as archive:
-              bad = archive.testzip()
-              if bad is not None:
-                  raise SystemExit(f'Corrupt ZIP member: {bad}')
-              if len(archive.namelist()) != 125:
-                  raise SystemExit('Unexpected ZIP member count')
-          digest = hashlib.sha256(output.read_bytes()).hexdigest()
-          checksum = Path(str(output) + '.sha256')
-          checksum.write_text(f'{digest}  {output.name}\n', encoding='utf-8')
-          print(f'{output}: {output.stat().st_size} bytes, SHA-256 {digest}')
+          files = [
+              (Path('BepInEx/plugins/UnityUndergroundKorean.dll'),
+               'BepInEx/plugins/UnityUndergroundKorean.dll')
+          ]
+          files.extend(
+              (path, 'translations/' + path.name)
+              for path in sorted(Path('translations').glob('*.json'))
+          )
+          assert len(files) == 125
+
+          with zipfile.ZipFile(
+              archive, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9
+          ) as zf:
+              for source, target in files:
+                  info = zipfile.ZipInfo(target, fixed_time)
+                  info.compress_type = zipfile.ZIP_DEFLATED
+                  info.external_attr = 0o100644 << 16
+                  zf.writestr(
+                      info,
+                      source.read_bytes(),
+                      compress_type=zipfile.ZIP_DEFLATED,
+                      compresslevel=9,
+                  )
+
+          with zipfile.ZipFile(archive) as zf:
+              names = zf.namelist()
+              assert len(names) == 125
+              assert len(set(names)) == 125
+              assert zf.testzip() is None
+
+          digest = hashlib.sha256(archive.read_bytes()).hexdigest()
+          checksum = dist / 'Unity-Underground-Korean-v1.1.0.zip.sha256'
+          checksum.write_text(f'{digest}  {archive.name}\n', encoding='ascii')
+
+          summary = {
+              'archive': archive.name,
+              'fileCount': 125,
+              'translationJsonCount': 124,
+              'pluginBytes': Path('BepInEx/plugins/UnityUndergroundKorean.dll').stat().st_size,
+              'archiveBytes': archive.stat().st_size,
+              'sha256': digest,
+          }
+          (dist / 'release-verification.json').write_text(
+              json.dumps(summary, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8',
+          )
+          print(json.dumps(summary, ensure_ascii=False, indent=2))
           PY
 
       - name: Publish GitHub release
@@ -57,13 +114,32 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           if gh release view v1.1.0 >/dev/null 2>&1; then
-            echo 'Release v1.1.0 already exists.'
-            exit 0
+            gh release upload v1.1.0 \
+              dist/Unity-Underground-Korean-v1.1.0.zip \
+              dist/Unity-Underground-Korean-v1.1.0.zip.sha256 \
+              --clobber
+            gh release edit v1.1.0 \
+              --title 'Unity Underground 한국어 완전 재번역 v1.1.0' \
+              --notes-file RELEASE_NOTES_v1.1.0.md \
+              --draft=false \
+              --prerelease=false \
+              --latest
+          else
+            gh release create v1.1.0 \
+              dist/Unity-Underground-Korean-v1.1.0.zip \
+              dist/Unity-Underground-Korean-v1.1.0.zip.sha256 \
+              --target "$GITHUB_SHA" \
+              --title 'Unity Underground 한국어 완전 재번역 v1.1.0' \
+              --notes-file RELEASE_NOTES_v1.1.0.md \
+              --latest
           fi
-          gh release create v1.1.0 \
-            Unity-Underground-Korean-v1.1.0.zip \
-            Unity-Underground-Korean-v1.1.0.zip.sha256 \
-            --target "$GITHUB_SHA" \
-            --title 'Unity Underground 한국어 번역 v1.1.0' \
-            --notes-file RELEASE_NOTES_v1.1.0.md \
-            --latest
+          gh release view v1.1.0 --json tagName,name,isDraft,isPrerelease,assets,url
+
+      - name: Upload verification record
+        uses: actions/upload-artifact@v4
+        with:
+          name: v1.1.0-release-verification
+          path: |
+            dist/release-verification.json
+            dist/Unity-Underground-Korean-v1.1.0.zip.sha256
+          if-no-files-found: error
