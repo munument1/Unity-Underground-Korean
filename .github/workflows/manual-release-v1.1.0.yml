@@ -1,11 +1,6 @@
 name: Publish v1.1.0
 
 'on':
-  push:
-    branches:
-      - main
-    paths:
-      - .github/workflows/manual-release-v1.1.0.yml
   workflow_dispatch: {}
 
 permissions:
@@ -34,7 +29,6 @@ jobs:
             | base64 --decode > package/BepInEx/plugins/UnityUndergroundKorean.dll
 
           echo 'eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20  package/BepInEx/plugins/UnityUndergroundKorean.dll' | sha256sum --check
-
           cp translations/*.json package/translations/
           test "$(find package/translations -maxdepth 1 -type f -name '*.json' | wc -l)" -eq 124
 
@@ -42,7 +36,7 @@ jobs:
           test "$(unzip -Z1 dist/Unity-Underground-Korean-v1.1.0.zip | grep -v '/$' | wc -l)" -eq 125
           (cd dist && sha256sum Unity-Underground-Korean-v1.1.0.zip > Unity-Underground-Korean-v1.1.0.zip.sha256)
 
-      - name: Create or update GitHub release
+      - name: Publish GitHub release
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
@@ -53,29 +47,11 @@ jobs:
               dist/Unity-Underground-Korean-v1.1.0.zip \
               dist/Unity-Underground-Korean-v1.1.0.zip.sha256 \
               --clobber
-          elif test -f RELEASE_NOTES_v1.1.0.md; then
-            gh release create v1.1.0 \
-              dist/Unity-Underground-Korean-v1.1.0.zip \
-              dist/Unity-Underground-Korean-v1.1.0.zip.sha256 \
-              --target main \
-              --title 'Unity Underground 한국어 완전 재번역 v1.1.0' \
-              --notes-file RELEASE_NOTES_v1.1.0.md
           else
             gh release create v1.1.0 \
               dist/Unity-Underground-Korean-v1.1.0.zip \
               dist/Unity-Underground-Korean-v1.1.0.zip.sha256 \
               --target main \
               --title 'Unity Underground 한국어 완전 재번역 v1.1.0' \
-              --generate-notes
+              --notes-file RELEASE_NOTES_v1.1.0.md
           fi
-
-      - name: Record successful release
-        shell: bash
-        run: |
-          set -euxo pipefail
-          printf 'v1.1.0 published successfully\n' > .release-v1.1.0-published
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add .release-v1.1.0-published
-          git commit -m 'v1.1.0 릴리스 게시 완료'
-          git push
