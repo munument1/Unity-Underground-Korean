@@ -1,4 +1,4 @@
-name: Finalize v1.1.0 Runtime
+name: Validate v1.1.0 Game-Reference Build
 
 on:
   push:
@@ -6,13 +6,17 @@ on:
       - agent/finalize-v1.1.0-runtime
     paths:
       - .github/workflows/validate-v1.1.0-release.yml
-      - tools/finalize_v1_1_runtime.py
+      - plugin/.game-refs/**
 
 permissions:
   contents: write
 
+concurrency:
+  group: validate-v1.1.0-game-refs
+  cancel-in-progress: true
+
 jobs:
-  finalize:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out finalization branch
@@ -21,133 +25,181 @@ jobs:
           ref: agent/finalize-v1.1.0-runtime
           fetch-depth: 0
 
-      - name: Prepare source and translations
-        id: prepare
-        continue-on-error: true
+      - name: Check uploaded reference parts
+        id: refs
+        shell: bash
         run: |
-          set -o pipefail
-          exec > >(tee retranslation/RUNTIME_BUILD_LOG.txt) 2>&1
-          python -m py_compile tools/finalize_v1_1_runtime.py
-          python tools/finalize_v1_1_runtime.py
-          python - <<'PY'
-          from pathlib import Path
-          path = Path('tools/apply_completed_retranslations.py')
-          text = path.read_text(encoding='utf-8')
-          old = '    "Your Rune of Warding has been set off ", "You see ",\n}'
-          new = '    "Your Rune of Warding has been set off ", "You see ",\n    "Restoring Game ", "Saving Game ",\n}'
-          if old in text:
-              path.write_text(text.replace(old, new, 1), encoding='utf-8')
-          elif '"Restoring Game ", "Saving Game ",' not in text:
-              raise SystemExit('save/restore dynamic source insertion point not found')
-          PY
-          python -m py_compile tools/apply_completed_retranslations.py
-          mkdir -p tools/output
-          curl --fail --location --retry 3 \
-            https://raw.githubusercontent.com/hankmorgan/UnderworldExporter/master/uw1_stringsclean.txt \
-            --output tools/output/uw1_stringsclean.txt
-          python tools/prepare_retranslation_application.py
-          python tools/apply_completed_retranslations.py \
-            --source-list tools/output/uw1_stringsclean.txt \
-            --report retranslation/APPLY_REPORT.json \
-            --max-unresolved 0
+          set -euo pipefail
+          ready=true
+          for part in 00 01 02 03; do
+            if [ ! -s "plugin/.game-refs/refs.b64.part${part}" ]; then
+              echo "Missing refs.b64.part${part}"
+              ready=false
+            fi
+          done
+          echo "ready=$ready" >> "$GITHUB_OUTPUT"
 
-      - name: Build plugin
-        id: build
-        continue-on-error: true
+      - name: Reconstruct actual game references
+        if: steps.refs.outputs.ready == 'true'
+        shell: bash
         run: |
-          set -o pipefail
-          exec >> >(tee -a retranslation/RUNTIME_BUILD_LOG.txt) 2>&1
-          dotnet nuget add source https://nuget.bepinex.dev/v3/index.json \
-            --name BepInEx
-          rm -f BepInEx/plugins/UnityUndergroundKorean.dll
-          cat > plugin/UnityUndergroundKorean.csproj <<'EOF'
-          <Project Sdk="Microsoft.NET.Sdk">
-            <PropertyGroup>
-              <TargetFramework>netstandard2.0</TargetFramework>
-              <LangVersion>7.3</LangVersion>
-              <AssemblyName>UnityUndergroundKorean</AssemblyName>
-              <RootNamespace>UnityUndergroundKorean</RootNamespace>
-              <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-              <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-              <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-              <OutputPath>../BepInEx/plugins/</OutputPath>
-            </PropertyGroup>
-            <ItemGroup>
-              <Compile Include="UnityUndergroundKorean.cs" />
-              <PackageReference Include="BepInEx.Core" Version="5.4.21" PrivateAssets="all" />
-              <PackageReference Include="HarmonyX" Version="2.9.0" PrivateAssets="all" />
-              <PackageReference Include="Newtonsoft.Json" Version="13.0.2" PrivateAssets="all" />
-              <PackageReference Include="UnityEngine.Modules" Version="2021.3.33" PrivateAssets="all" />
-              <PackageReference Include="Exiled.Dev.References" Version="1.0.4" PrivateAssets="all" />
-            </ItemGroup>
-          </Project>
-          EOF
-          dotnet build plugin/UnityUndergroundKorean.csproj -c Release
-          test -s BepInEx/plugins/UnityUndergroundKorean.dll
+          set -euo pipefail
+          mkdir -p /tmp/game-refs
+          cat plugin/.game-refs/refs.b64.part* | base64 --decode > /tmp/game-refs.tar.xz
+          echo "d19bb07c428fab26ef03b071db54efd0e73742d482c5c00ab20342545df646a2  /tmp/game-refs.tar.xz" | sha256sum --check
+          tar -xJf /tmp/game-refs.tar.xz -C /tmp/game-refs
+          test -s /tmp/game-refs/core/BepInEx.dll
+          test -s /tmp/game-refs/core/0Harmony.dll
+          test -s /tmp/game-refs/Managed/mscorlib.dll
+          test -s /tmp/game-refs/Managed/netstandard.dll
+          test -s /tmp/game-refs/Managed/UnityEngine.CoreModule.dll
 
-      - name: Validate output
-        id: validate
-        continue-on-error: true
+      - name: Compile directly against the game assemblies
+        if: steps.refs.outputs.ready == 'true'
+        shell: bash
         run: |
-          set -o pipefail
-          exec >> >(tee -a retranslation/RUNTIME_BUILD_LOG.txt) 2>&1
+          set -euo pipefail
+          cp BepInEx/plugins/UnityUndergroundKorean.dll /tmp/UnityUndergroundKorean.old.dll
+          dotnet_bin="$(readlink -f "$(command -v dotnet)")"
+          dotnet_root="$(dirname "$dotnet_bin")"
+          sdk_version="$(dotnet --version)"
+          compiler="$dotnet_root/sdk/$sdk_version/Roslyn/bincore/csc.dll"
+          test -s "$compiler"
+
+          refs=(
+            /tmp/game-refs/Managed/mscorlib.dll
+            /tmp/game-refs/Managed/System.Core.dll
+            /tmp/game-refs/Managed/netstandard.dll
+            /tmp/game-refs/core/BepInEx.dll
+            /tmp/game-refs/core/0Harmony.dll
+            /tmp/game-refs/Managed/Newtonsoft.Json.dll
+            /tmp/game-refs/Managed/UnityEngine.dll
+            /tmp/game-refs/Managed/UnityEngine.CoreModule.dll
+            /tmp/game-refs/Managed/UnityEngine.UI.dll
+            /tmp/game-refs/Managed/Unity.TextMeshPro.dll
+            /tmp/game-refs/Managed/UnityEngine.TextRenderingModule.dll
+            /tmp/game-refs/Managed/UnityEngine.IMGUIModule.dll
+          )
+          args=(
+            "$compiler"
+            /nologo
+            /noconfig
+            /nostdlib+
+            /target:library
+            /langversion:7.3
+            /optimize+
+            /deterministic+
+            /out:/tmp/UnityUndergroundKorean.new.dll
+          )
+          for reference in "${refs[@]}"; do
+            test -s "$reference"
+            args+=("/reference:$reference")
+          done
+          args+=(plugin/UnityUndergroundKorean.cs)
+          dotnet "${args[@]}"
+          test -s /tmp/UnityUndergroundKorean.new.dll
+          cp /tmp/UnityUndergroundKorean.new.dll BepInEx/plugins/UnityUndergroundKorean.dll
+
+      - name: Validate translation data and build release candidate
+        if: steps.refs.outputs.ready == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
           python - <<'PY'
+          import hashlib
           import json
+          import struct
           from pathlib import Path
+
           report = json.loads(Path('retranslation/APPLY_REPORT.json').read_text(encoding='utf-8'))
           assert report['reviewedLocationCount'] == 7092
           assert report['unresolvedCount'] == 0
           assert report['validationIssueCount'] == 0
           assert report['dynamicSkipCount'] == 48
-          paths = sorted(Path('translations').glob('*.json'))
-          assert len(paths) == 124
-          for path in paths:
+
+          translations = sorted(Path('translations').glob('*.json'))
+          assert len(translations) == 124, len(translations)
+          for path in translations:
               json.loads(path.read_text(encoding='utf-8'))
+
           source = Path('plugin/UnityUndergroundKorean.cs').read_text(encoding='utf-8')
-          assert '"1.1.0"' in source
-          assert 'TranslateAssembledGameText' in source
-          dll = Path('BepInEx/plugins/UnityUndergroundKorean.dll')
-          assert dll.is_file() and dll.stat().st_size > 0
-          print(json.dumps({
-              'dynamicSkipCount': report['dynamicSkipCount'],
-              'changedGlobalEntryCount': report['changedGlobalEntryCount'],
+          assert '[BepInPlugin("kr.ultima-underworld.korean", "Unity Underground Korean", "1.1.0")]' in source
+          for required in (
+              'TranslateAssembledGameText', 'Restoring Game ', 'Saving Game ',
+              'You think it will be ', 'Your Rune of Warding has been set off '
+          ):
+              assert required in source, required
+
+          def sha256(path):
+              return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+          audit = {
+              'version': '1.1.0',
+              'reviewedLocationCount': report['reviewedLocationCount'],
               'unresolvedCount': report['unresolvedCount'],
-              'translationJsonCount': len(paths),
-              'pluginBytes': dll.stat().st_size,
-          }, ensure_ascii=False, indent=2))
+              'validationIssueCount': report['validationIssueCount'],
+              'dynamicSkipCount': report['dynamicSkipCount'],
+              'translationJsonCount': len(translations),
+              'oldPluginBytes': Path('/tmp/UnityUndergroundKorean.old.dll').stat().st_size,
+              'newPluginBytes': Path('BepInEx/plugins/UnityUndergroundKorean.dll').stat().st_size,
+              'oldPluginSha256': sha256('/tmp/UnityUndergroundKorean.old.dll'),
+              'newPluginSha256': sha256('BepInEx/plugins/UnityUndergroundKorean.dll'),
+              'referenceAssemblies': {
+                  'BepInEx': '5.4.23.5',
+                  '0Harmony': '2.9.0.0',
+                  'Newtonsoft.Json': '13.0.0.0',
+                  'mscorlib': '4.0.0.0',
+                  'netstandard': '2.1.0.0',
+              },
+              'buildMode': 'Roslyn csc.dll with /nostdlib+ and uploaded game assemblies',
+          }
+          Path('/tmp/BUILD_AUDIT.json').write_text(
+              json.dumps(audit, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print(json.dumps(audit, ensure_ascii=False, indent=2))
           PY
+
+          rm -rf /tmp/Unity-Underground-Korean-v1.1.0
+          mkdir -p /tmp/Unity-Underground-Korean-v1.1.0/BepInEx/plugins
+          mkdir -p /tmp/Unity-Underground-Korean-v1.1.0/translations
+          cp BepInEx/plugins/UnityUndergroundKorean.dll /tmp/Unity-Underground-Korean-v1.1.0/BepInEx/plugins/
+          cp translations/*.json /tmp/Unity-Underground-Korean-v1.1.0/translations/
+          (
+            cd /tmp/Unity-Underground-Korean-v1.1.0
+            find . -type f -printf '%P\n' | LC_ALL=C sort > /tmp/release-files.txt
+            test "$(wc -l < /tmp/release-files.txt)" -eq 125
+            zip -9 -X /tmp/Unity-Underground-Korean-v1.1.0.zip -@ < /tmp/release-files.txt
+          )
+          unzip -t /tmp/Unity-Underground-Korean-v1.1.0.zip
+          test "$(unzip -Z1 /tmp/Unity-Underground-Korean-v1.1.0.zip | wc -l)" -eq 125
+          (
+            cd /tmp
+            sha256sum Unity-Underground-Korean-v1.1.0.zip > Unity-Underground-Korean-v1.1.0.zip.sha256
+          )
           git diff --check
 
-      - name: Record result and commit
-        if: always()
+      - name: Upload release candidate
+        if: steps.refs.outputs.ready == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: Unity-Underground-Korean-v1.1.0-candidate
+          if-no-files-found: error
+          retention-days: 7
+          path: |
+            /tmp/Unity-Underground-Korean-v1.1.0.zip
+            /tmp/Unity-Underground-Korean-v1.1.0.zip.sha256
+            /tmp/BUILD_AUDIT.json
+
+      - name: Commit rebuilt plugin
+        if: steps.refs.outputs.ready == 'true'
+        shell: bash
         run: |
-          rm -f plugin/UnityUndergroundKorean.csproj
-          {
-            echo
-            echo "prepare=${{ steps.prepare.outcome }}"
-            echo "build=${{ steps.build.outcome }}"
-            echo "validate=${{ steps.validate.outcome }}"
-          } >> retranslation/RUNTIME_BUILD_LOG.txt
+          set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add retranslation/RUNTIME_BUILD_LOG.txt
-          if [ "${{ steps.prepare.outcome }}" = "success" ]; then
-            git add plugin/UnityUndergroundKorean.cs tools/apply_completed_retranslations.py \
-              retranslation/APPLY_REPORT.json translations/global_text_map.json
-          fi
-          if [ "${{ steps.build.outcome }}" = "success" ]; then
-            git add BepInEx/plugins/UnityUndergroundKorean.dll
-          fi
+          git add BepInEx/plugins/UnityUndergroundKorean.dll
           if git diff --cached --quiet; then
-            echo 'No result changes to commit.'
-          else
-            git commit -m "v1.1.0 런타임 빌드 결과 기록 [runtime-build]"
-            git push origin HEAD:agent/finalize-v1.1.0-runtime
+            echo 'The rebuilt DLL is byte-identical to the current DLL.'
+            exit 0
           fi
-
-      - name: Fail when finalization failed
-        if: always()
-        run: |
-          test "${{ steps.prepare.outcome }}" = "success"
-          test "${{ steps.build.outcome }}" = "success"
-          test "${{ steps.validate.outcome }}" = "success"
+          git commit -m '실제 게임 DLL 참조로 v1.1.0 플러그인 재빌드'
+          git push origin HEAD:agent/finalize-v1.1.0-runtime
