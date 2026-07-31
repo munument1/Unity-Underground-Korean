@@ -68,3 +68,14 @@ jobs:
               --title 'Unity Underground 한국어 완전 재번역 v1.1.0' \
               --generate-notes
           fi
+
+      - name: Record successful release
+        shell: bash
+        run: |
+          set -euxo pipefail
+          printf 'v1.1.0 published successfully\n' > .release-v1.1.0-published
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .release-v1.1.0-published
+          git commit -m 'v1.1.0 릴리스 게시 완료'
+          git push
