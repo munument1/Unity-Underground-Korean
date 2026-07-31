@@ -1,7 +1,7 @@
-name: Export v1.1.0 Build Kit
+name: Export current v1.1.0 source
 
 on:
-  pull_request:
+  push:
     branches:
       - main
     paths:
@@ -12,49 +12,28 @@ permissions:
 
 jobs:
   export:
-    if: ${{ github.event.pull_request.head.ref == 'agent/finalize-v1.1.0-runtime' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Check out finalization branch
+      - name: Check out current main
         uses: actions/checkout@v4
-        with:
-          ref: agent/finalize-v1.1.0-runtime
 
-      - name: Package portable Roslyn and release inputs
+      - name: Package current release inputs
         run: |
           set -euo pipefail
-          sdk_version="$(dotnet --version)"
-          dotnet_root="$(dirname "$(readlink -f "$(command -v dotnet)")")"
-          runtime_version="$(dotnet --list-runtimes | awk '/Microsoft.NETCore.App/ {print $2}' | tail -n 1)"
-
-          root=/tmp/v1.1.0-build-kit
+          root=/tmp/v1.1.0-current
           rm -rf "$root"
-          mkdir -p "$root/host" "$root/shared/Microsoft.NETCore.App" "$root/sdk/$sdk_version/Roslyn" "$root/workspace/plugin" "$root/workspace/BepInEx/plugins" "$root/workspace/retranslation"
+          mkdir -p "$root/plugin" "$root/BepInEx/plugins" "$root/retranslation"
+          cp plugin/UnityUndergroundKorean.cs "$root/plugin/"
+          cp BepInEx/plugins/UnityUndergroundKorean.dll "$root/BepInEx/plugins/UnityUndergroundKorean.previous.dll"
+          cp -a translations "$root/"
+          cp retranslation/APPLY_REPORT.json "$root/retranslation/"
+          tar -czf /tmp/Unity-Underground-Korean-v1.1.0-current.tar.gz -C /tmp v1.1.0-current
+          sha256sum /tmp/Unity-Underground-Korean-v1.1.0-current.tar.gz
 
-          cp "$dotnet_root/dotnet" "$root/dotnet"
-          cp -a "$dotnet_root/host/fxr" "$root/host/"
-          cp -a "$dotnet_root/shared/Microsoft.NETCore.App/$runtime_version" "$root/shared/Microsoft.NETCore.App/"
-          cp -a "$dotnet_root/sdk/$sdk_version/Roslyn/bincore" "$root/sdk/$sdk_version/Roslyn/"
-
-          cp plugin/UnityUndergroundKorean.cs "$root/workspace/plugin/"
-          cp BepInEx/plugins/UnityUndergroundKorean.dll "$root/workspace/BepInEx/plugins/UnityUndergroundKorean.previous.dll"
-          cp -a translations "$root/workspace/"
-          cp retranslation/APPLY_REPORT.json "$root/workspace/retranslation/"
-
-          cat > "$root/BUILD_KIT_INFO.txt" <<EOF
-          sdk_version=$sdk_version
-          runtime_version=$runtime_version
-          dotnet_root=$dotnet_root
-          EOF
-
-          tar -czf /tmp/Unity-Underground-Korean-v1.1.0-build-kit.tar.gz -C /tmp v1.1.0-build-kit
-          sha256sum /tmp/Unity-Underground-Korean-v1.1.0-build-kit.tar.gz
-          du -h /tmp/Unity-Underground-Korean-v1.1.0-build-kit.tar.gz
-
-      - name: Upload build kit
+      - name: Upload current inputs
         uses: actions/upload-artifact@v4
         with:
-          name: Unity-Underground-Korean-v1.1.0-build-kit
-          path: /tmp/Unity-Underground-Korean-v1.1.0-build-kit.tar.gz
+          name: Unity-Underground-Korean-v1.1.0-current
+          path: /tmp/Unity-Underground-Korean-v1.1.0-current.tar.gz
           if-no-files-found: error
           retention-days: 1
