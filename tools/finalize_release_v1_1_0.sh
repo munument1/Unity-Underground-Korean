@@ -1,15 +1,37 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -Eeuo pipefail
+trap 'status=$?; echo "ERROR line ${LINENO}: ${BASH_COMMAND}" >&2; exit "$status"' ERR
 
 DLL='BepInEx/plugins/UnityUndergroundKorean.dll'
 ARCHIVE='dist/Unity-Underground-Korean-v1.1.0.zip'
 CHECKSUM='dist/Unity-Underground-Korean-v1.1.0.zip.sha256'
 DLL_SHA='eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20'
+ZIP_SHA='7ab034e4072dd466bcbda65d5ed4d1116ec8e318ae6fff619b8c3ad37e9c71cd'
+PARTS=(
+  retranslation/.final_dll.b64.00
+  retranslation/.final_dll.b64.01
+  retranslation/.final_dll.b64.015
+  retranslation/.final_dll.b64.02
+  retranslation/.final_dll.b64.03
+)
+
+: "${GH_TOKEN:?GH_TOKEN is required}"
+: "${GITHUB_REPOSITORY:?GITHUB_REPOSITORY is required}"
+
+for part in "${PARTS[@]}"; do
+  test -s "$part" || { echo "Missing DLL part: $part" >&2; exit 1; }
+done
 
 mkdir -p "$(dirname "$DLL")" dist
-cat retranslation/.final_dll.b64.* | base64 --decode > "$DLL"
-test "$(stat -c %s "$DLL")" = '24576'
+cat "${PARTS[@]}" | base64 --decode > "$DLL"
+actual_size="$(stat -c %s "$DLL")"
+test "$actual_size" = '24576' || {
+  echo "Unexpected DLL size: $actual_size" >&2
+  exit 1
+}
 echo "$DLL_SHA  $DLL" | sha256sum --check
+
+echo 'DLL restoration verified.'
 
 python - <<'PY'
 from pathlib import Path
@@ -40,6 +62,9 @@ import json
 import zipfile
 from pathlib import Path
 
+DLL_SHA = 'eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20'
+ZIP_SHA = '7ab034e4072dd466bcbda65d5ed4d1116ec8e318ae6fff619b8c3ad37e9c71cd'
+
 translations = sorted(Path('translations').glob('*.json'))
 assert len(translations) == 124, len(translations)
 for path in translations:
@@ -48,6 +73,7 @@ for path in translations:
 source = Path('plugin/UnityUndergroundKorean.cs').read_text(encoding='utf-8')
 assert '[BepInPlugin("kr.ultima-underworld.korean", "Unity Underground Korean", "1.1.0")]' in source
 assert 'return "시도했지만 " + item + "에는 아무런 효과가 없습니다.";' in source
+assert 'TryTranslateObjectPrefix(value, "Your attempt has no effect on the "' not in source
 
 build = Path('plugin/build.ps1').read_text(encoding='utf-8')
 assert "'/nostdlib+'" in build
@@ -56,7 +82,7 @@ assert 'Exiled.Dev.References' not in build
 
 dll = Path('BepInEx/plugins/UnityUndergroundKorean.dll')
 assert dll.stat().st_size == 24576
-assert hashlib.sha256(dll.read_bytes()).hexdigest() == 'eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20'
+assert hashlib.sha256(dll.read_bytes()).hexdigest() == DLL_SHA
 
 archive = Path('dist/Unity-Underground-Korean-v1.1.0.zip')
 checksum = Path('dist/Unity-Underground-Korean-v1.1.0.zip.sha256')
@@ -70,16 +96,25 @@ with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
         info = zipfile.ZipInfo(target, fixed_time)
         info.compress_type = zipfile.ZIP_DEFLATED
         info.external_attr = 0o100644 << 16
-        zf.writestr(info, source_path.read_bytes(), compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
+        zf.writestr(
+            info,
+            source_path.read_bytes(),
+            compress_type=zipfile.ZIP_DEFLATED,
+            compresslevel=9,
+        )
 
 with zipfile.ZipFile(archive) as zf:
     names = zf.namelist()
     assert len(names) == 125
     assert len(set(names)) == 125
     assert zf.testzip() is None
-    assert hashlib.sha256(zf.read('BepInEx/plugins/UnityUndergroundKorean.dll')).hexdigest() == 'eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20'
+    assert hashlib.sha256(
+        zf.read('BepInEx/plugins/UnityUndergroundKorean.dll')
+    ).hexdigest() == DLL_SHA
 
 archive_hash = hashlib.sha256(archive.read_bytes()).hexdigest()
+assert archive.stat().st_size == 456460, archive.stat().st_size
+assert archive_hash == ZIP_SHA, archive_hash
 checksum.write_text(f'{archive_hash}  {archive.name}\n', encoding='ascii')
 print(f'archive_size={archive.stat().st_size}')
 print(f'archive_sha256={archive_hash}')
@@ -87,19 +122,25 @@ PY
 
 git diff --check
 
-# 저장소에는 최종 DLL과 소스 수정만 반영한다. 워크플로 파일 정리는 성공 확인 후 별도로 처리한다.
+echo 'Repository and archive validation passed.'
+
 rm -f retranslation/.final_dll.b64.*
 rm -f retranslation/RUNTIME_BUILD_LOG.txt
 rm -f tools/finalize_v1_1_runtime.py
 
 git config user.name 'github-actions[bot]'
 git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-git add "$DLL" plugin/UnityUndergroundKorean.cs retranslation tools/finalize_v1_1_runtime.py 2>/dev/null || true
+git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+git add -A -- "$DLL" plugin/UnityUndergroundKorean.cs retranslation
+if git ls-files --error-unmatch tools/finalize_v1_1_runtime.py >/dev/null 2>&1; then
+  git add -A -- tools/finalize_v1_1_runtime.py
+fi
 git reset -- dist tools/finalize_release_v1_1_0.sh || true
+
 if ! git diff --cached --quiet; then
-    git commit -m 'v1.1.0 실제 게임 참조 DLL 최종 확정'
-    git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-    git push origin HEAD:main
+  git commit -m 'v1.1.0 실제 게임 참조 DLL 최종 확정'
+  git push origin HEAD:main
 fi
 
 final_sha="$(git rev-parse HEAD)"
@@ -107,10 +148,12 @@ git tag -f v1.1.0 "$final_sha"
 git push origin refs/tags/v1.1.0 --force
 
 if gh release view v1.1.0 >/dev/null 2>&1; then
-    gh release upload v1.1.0 "$ARCHIVE" "$CHECKSUM" --clobber
+  gh release upload v1.1.0 "$ARCHIVE" "$CHECKSUM" --clobber
 else
-    gh release create v1.1.0 "$ARCHIVE" "$CHECKSUM" \
-        --target "$final_sha" \
-        --title 'Unity Underground 한국어 완전 재번역 v1.1.0' \
-        --notes-file RELEASE_NOTES_v1.1.0.md
+  gh release create v1.1.0 "$ARCHIVE" "$CHECKSUM" \
+    --target "$final_sha" \
+    --title 'Unity Underground 한국어 완전 재번역 v1.1.0' \
+    --notes-file RELEASE_NOTES_v1.1.0.md
 fi
+
+echo "Release v1.1.0 published at $final_sha."
