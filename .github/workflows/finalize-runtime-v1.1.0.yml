@@ -1,14 +1,7 @@
 name: Finalize and release v1.1.0
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - .github/workflows/finalize-runtime-v1.1.0.yml
-      - retranslation/.final_dll.b64.*
-      - plugin/build.ps1
-      - retranslation/RUNTIME_FINALIZATION.md
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -19,7 +12,6 @@ concurrency:
 
 jobs:
   finalize:
-    if: ${{ contains(github.event.head_commit.message, '[run-final-release]') }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out main
@@ -35,9 +27,8 @@ jobs:
           test "$(stat -c %s BepInEx/plugins/UnityUndergroundKorean.dll)" = "24576"
           echo 'eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20  BepInEx/plugins/UnityUndergroundKorean.dll' | sha256sum --check
 
-      - name: Correct no-effect sentence assembly
+      - name: Correct dynamic sentence assembly
         run: |
-          set -euo pipefail
           python - <<'PY'
           from pathlib import Path
 
@@ -57,13 +48,12 @@ jobs:
           if old in text:
               text = text.replace(old, new, 1)
           elif new not in text:
-              raise SystemExit('no-effect sentence assembly pattern not found')
+              raise SystemExit('no-effect sentence pattern not found')
           path.write_text(text, encoding='utf-8')
           PY
 
-      - name: Validate and create deterministic release archive
+      - name: Validate data and build deterministic archive
         run: |
-          set -euo pipefail
           python - <<'PY'
           import hashlib
           import json
@@ -95,23 +85,28 @@ jobs:
           assert dll.stat().st_size == 24576
           assert hashlib.sha256(dll.read_bytes()).hexdigest() == 'eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20'
 
-          archive = Path('/tmp/Unity-Underground-Korean-v1.1.0.zip')
-          checksum = Path('/tmp/Unity-Underground-Korean-v1.1.0.zip.sha256')
+          dist = Path('dist')
+          dist.mkdir(exist_ok=True)
+          archive = dist / 'Unity-Underground-Korean-v1.1.0.zip'
+          checksum = dist / 'Unity-Underground-Korean-v1.1.0.zip.sha256'
           fixed_time = (2026, 7, 31, 0, 0, 0)
           files = [(dll, 'BepInEx/plugins/UnityUndergroundKorean.dll')]
           files.extend((path, 'translations/' + path.name) for path in translations)
           assert len(files) == 125
+
           with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
               for source_path, target in files:
                   info = zipfile.ZipInfo(target, fixed_time)
                   info.compress_type = zipfile.ZIP_DEFLATED
                   info.external_attr = 0o100644 << 16
                   zf.writestr(info, source_path.read_bytes(), compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
+
           with zipfile.ZipFile(archive) as zf:
               names = zf.namelist()
               assert len(names) == 125
               assert len(set(names)) == 125
               assert zf.testzip() is None
+
           archive_hash = hashlib.sha256(archive.read_bytes()).hexdigest()
           assert archive.stat().st_size == 456460
           assert archive_hash == '7ab034e4072dd466bcbda65d5ed4d1116ec8e318ae6fff619b8c3ad37e9c71cd'
@@ -119,56 +114,50 @@ jobs:
           PY
           git diff --check
 
-      - name: Remove temporary transfer and diagnostic files
+      - name: Remove temporary files
         run: |
-          set -euo pipefail
           rm -f retranslation/.final_dll.b64.*
+          rm -f retranslation/RUNTIME_BUILD_LOG.txt
+          rm -f tools/finalize_v1_1_runtime.py
           rm -f .github/workflows/apply-actual-dll-v1.1.0.yml
-          rm -f .github/workflows/finalize-runtime-v1.1.0.yml
           rm -f .github/workflows/export-v1.1.0-build-kit.yml
           rm -f .github/workflows/fix-no-effect-v1.1.0.yml
           rm -f .github/workflows/validate-v1.1.0-release.yml
-          rm -f retranslation/RUNTIME_BUILD_LOG.txt
-          rm -f tools/finalize_v1_1_runtime.py
+          rm -f .github/workflows/release-v1.1.0.yml
+          rm -f .github/workflows/finalize-runtime-v1.1.0.yml
 
       - name: Commit final repository state
         run: |
-          set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add -A
-          git commit -m 'v1.1.0 실제 게임 참조 DLL 최종 확정 [actual-dll-applied]'
+          git commit -m 'v1.1.0 실제 게임 참조 DLL 최종 확정'
           git push origin HEAD:main
 
-      - name: Publish v1.1.0 release
+      - name: Publish GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          final_sha="$(git rev-parse HEAD)"
-          git tag -f v1.1.0 "$final_sha"
+          git tag -f v1.1.0 HEAD
           git push origin refs/tags/v1.1.0 --force
-          cat > /tmp/release-notes.md <<'EOF'
-          # Unity Underground Korean v1.1.0
-
-          공식 영문 기준 7,092개 위치 전체를 검토한 완전 재번역 릴리스입니다.
-
-          - 번역 JSON 124개
-          - 플러그인 1개
-          - 배포 파일 총 125개
-          - 동적 문장 한국어 어순 및 조사 처리 보강
-          - 실제 게임 DLL 직접 참조 빌드
-          - 미해결 원문 대응 0개
-          - 구조·토큰 검증 오류 0개
-
-          ZIP SHA-256: `7ab034e4072dd466bcbda65d5ed4d1116ec8e318ae6fff619b8c3ad37e9c71cd`
-          EOF
           if gh release view v1.1.0 >/dev/null 2>&1; then
-            gh release edit v1.1.0 --title 'Unity Underground Korean v1.1.0' --notes-file /tmp/release-notes.md
+            gh release upload v1.1.0 \
+              dist/Unity-Underground-Korean-v1.1.0.zip \
+              dist/Unity-Underground-Korean-v1.1.0.zip.sha256 \
+              --clobber
+            gh release edit v1.1.0 \
+              --title 'Unity Underground 한국어 완전 재번역 v1.1.0' \
+              --notes-file RELEASE_NOTES_v1.1.0.md \
+              --draft=false \
+              --prerelease=false \
+              --latest
           else
-            gh release create v1.1.0 --title 'Unity Underground Korean v1.1.0' --notes-file /tmp/release-notes.md
+            gh release create v1.1.0 \
+              dist/Unity-Underground-Korean-v1.1.0.zip \
+              dist/Unity-Underground-Korean-v1.1.0.zip.sha256 \
+              --target HEAD \
+              --title 'Unity Underground 한국어 완전 재번역 v1.1.0' \
+              --notes-file RELEASE_NOTES_v1.1.0.md \
+              --latest
           fi
-          gh release upload v1.1.0 \
-            /tmp/Unity-Underground-Korean-v1.1.0.zip \
-            /tmp/Unity-Underground-Korean-v1.1.0.zip.sha256 \
-            --clobber
