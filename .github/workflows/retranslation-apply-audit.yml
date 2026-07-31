@@ -1,4 +1,4 @@
-name: Retranslation Apply Audit
+name: Apply Completed Retranslations
 
 on:
   push:
@@ -10,25 +10,20 @@ on:
       - retranslation/completed/**
       - translations/**
       - .github/workflows/retranslation-apply-audit.yml
-  pull_request:
-    branches:
-      - main
-    paths:
-      - tools/apply_completed_retranslations.py
-      - tools/prepare_retranslation_application.py
-      - retranslation/completed/**
-      - translations/**
-      - .github/workflows/retranslation-apply-audit.yml
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  audit:
+  apply:
+    if: ${{ !contains(github.event.head_commit.message, '[retranslation-applied]') }}
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Check out application branch
         uses: actions/checkout@v4
+        with:
+          ref: agent/apply-retranslation-v1.1.0
+          fetch-depth: 0
 
       - name: Download location-aware English source list
         run: |
@@ -43,37 +38,88 @@ jobs:
           python tools/prepare_retranslation_application.py
           python -m py_compile tools/apply_completed_retranslations.py
 
-      - name: Audit completed retranslations
+      - name: Apply completed retranslations
         run: |
           python tools/apply_completed_retranslations.py \
             --source-list tools/output/uw1_stringsclean.txt \
-            --report retranslation/apply_audit_report.json \
-            --max-unresolved 0 \
-            --dry-run
+            --report retranslation/APPLY_REPORT.json \
+            --max-unresolved 0
 
-      - name: Print audit summary
-        if: always()
+      - name: Validate translation package
         run: |
-          if [ -f retranslation/apply_audit_report.json ]; then
-            python - <<'PY'
+          python - <<'PY'
           import json
           from pathlib import Path
-          report = json.loads(Path('retranslation/apply_audit_report.json').read_text(encoding='utf-8'))
-          keys = [
-              'reviewedLocationCount', 'sourceLocationCount',
-              'sourceMissingLocationCount', 'changedBlockFileCount',
-              'changedBlockEntryCount', 'resolvedGlobalKeyCount',
-              'changedGlobalEntryCount', 'dynamicSkipCount', 'unresolvedCount',
-              'duplicateSourceConflictCount', 'validationIssueCount',
-          ]
-          print('\n'.join(f'{key}: {report[key]}' for key in keys))
+          paths = sorted(Path('translations').glob('*.json'))
+          if len(paths) != 124:
+              raise SystemExit(f'Expected 124 translation JSON files, found {len(paths)}')
+          for path in paths:
+              json.loads(path.read_text(encoding='utf-8'))
+          report = json.loads(Path('retranslation/APPLY_REPORT.json').read_text(encoding='utf-8'))
+          expected = {
+              'reviewedLocationCount': 7092,
+              'changedBlockFileCount': 122,
+              'changedBlockEntryCount': 5644,
+              'changedGlobalEntryCount': 3989,
+              'unresolvedCount': 0,
+              'validationIssueCount': 0,
+          }
+          for key, value in expected.items():
+              if report.get(key) != value:
+                  raise SystemExit(f'{key}: {report.get(key)} != {value}')
+          print(f'Validated {len(paths)} JSON files and {report["reviewedLocationCount"]} reviewed locations.')
           PY
-          fi
+          git diff --check
 
-      - name: Upload audit report
-        if: always()
+      - name: Commit applied translations
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add \
+            tools/apply_completed_retranslations.py \
+            retranslation/completed/bundle_24_translations.json \
+            retranslation/APPLY_REPORT.json \
+            translations
+          if git diff --cached --quiet; then
+            echo 'No translation changes to commit.'
+            exit 0
+          fi
+          git commit -m '전체 재번역 실제 패치 반영 [retranslation-applied]'
+          git push origin HEAD:agent/apply-retranslation-v1.1.0
+
+      - name: Build release candidate ZIP
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import zipfile
+          from pathlib import Path
+
+          output = Path('Unity-Underground-Korean-v1.1.0-rc.zip')
+          files = [Path('BepInEx/plugins/UnityUndergroundKorean.dll')]
+          files.extend(sorted(Path('translations').glob('*.json')))
+          if len(files) != 125:
+              raise SystemExit(f'Expected DLL plus 124 JSON files, found {len(files)} files')
+          with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
+              for path in files:
+                  archive.write(path, path.as_posix())
+          with zipfile.ZipFile(output) as archive:
+              bad = archive.testzip()
+              if bad is not None:
+                  raise SystemExit(f'Corrupt ZIP member: {bad}')
+              names = archive.namelist()
+              if len(names) != 125:
+                  raise SystemExit(f'Expected 125 ZIP members, found {len(names)}')
+          digest = hashlib.sha256(output.read_bytes()).hexdigest()
+          Path(str(output) + '.sha256').write_text(f'{digest}  {output.name}\n', encoding='utf-8')
+          print(f'{output}: {output.stat().st_size} bytes, SHA-256 {digest}')
+          PY
+
+      - name: Upload release candidate
         uses: actions/upload-artifact@v4
         with:
-          name: retranslation-apply-audit
-          path: retranslation/apply_audit_report.json
-          if-no-files-found: ignore
+          name: Unity-Underground-Korean-v1.1.0-rc
+          path: |
+            Unity-Underground-Korean-v1.1.0-rc.zip
+            Unity-Underground-Korean-v1.1.0-rc.zip.sha256
+          if-no-files-found: error
