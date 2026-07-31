@@ -55,11 +55,117 @@ jobs:
               print(f'OK {path}')
           PY
 
+      - name: Add compact source matching and literal skips
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('tools/apply_completed_retranslations.py')
+          text = path.read_text(encoding='utf-8')
+
+          text = text.replace(
+              'def is_dynamic_source(source: str) -> bool:\n',
+              'def compact_source(value: str) -> str:\n'
+              '    return re.sub(r"\\s+", "", normalize_source(value))\n\n\n'
+              'def is_dynamic_source(source: str) -> bool:\n',
+              1,
+          )
+
+          old_resolver = '''def resolve_global_key(source, global_map, normalized_index):
+    if source in global_map:
+        return source, "exact"
+    candidates = normalized_index.get(normalize_source(source), [])
+    if len(candidates) == 1:
+        return candidates[0], "normalized"
+    if len(candidates) > 1 and len({global_map[key] for key in candidates}) == 1:
+        return sorted(candidates)[0], "normalized-equivalent"
+    return None, "ambiguous-normalized" if candidates else "missing"
+'''
+          new_resolver = '''def resolve_global_key(source, global_map, normalized_index, compact_index):
+    if source in global_map:
+        return source, "exact"
+    candidates = normalized_index.get(normalize_source(source), [])
+    if len(candidates) == 1:
+        return candidates[0], "normalized"
+    if len(candidates) > 1 and len({global_map[key] for key in candidates}) == 1:
+        return sorted(candidates)[0], "normalized-equivalent"
+    compact_candidates = compact_index.get(compact_source(source), [])
+    if len(compact_candidates) == 1:
+        return compact_candidates[0], "compact"
+    if len(compact_candidates) > 1 and len({global_map[key] for key in compact_candidates}) == 1:
+        return sorted(compact_candidates)[0], "compact-equivalent"
+    if candidates:
+        return None, "ambiguous-normalized"
+    return None, "ambiguous-compact" if compact_candidates else "missing"
+'''
+          if old_resolver not in text:
+              raise SystemExit('resolver pattern not found')
+          text = text.replace(old_resolver, new_resolver, 1)
+
+          text = text.replace(
+              '    normalized_index = defaultdict(list)\n    value_index = defaultdict(list)\n',
+              '    normalized_index = defaultdict(list)\n'
+              '    compact_index = defaultdict(list)\n'
+              '    value_index = defaultdict(list)\n',
+              1,
+          )
+          text = text.replace(
+              '        normalized_index[normalize_source(key)].append(key)\n        value_index[value].append(key)\n',
+              '        normalized_index[normalize_source(key)].append(key)\n'
+              '        compact_index[compact_source(key)].append(key)\n'
+              '        value_index[value].append(key)\n',
+              1,
+          )
+
+          old_missing = '''        if source is None:
+            source_missing_locations.append({"blockId": location[0], "stringId": location[1]})
+            value_candidates = value_index.get(current_by_location[location], [])
+            if len(value_candidates) == 1:
+                key_candidates[value_candidates[0]].append((proposal, location))
+                resolution_counts["current-value-unique"] += 1
+            else:
+                unresolved.append({
+                    "blockId": location[0], "stringId": location[1],
+                    "reason": "source-location-missing",
+                    "candidateGlobalKeyCount": len(value_candidates),
+                })
+            continue
+'''
+          new_missing = '''        if source is None:
+            source_missing_locations.append({"blockId": location[0], "stringId": location[1]})
+            resolution_counts["source-missing-block-only"] += 1
+            continue
+'''
+          if old_missing not in text:
+              raise SystemExit('source-missing pattern not found')
+          text = text.replace(old_missing, new_missing, 1)
+
+          text = text.replace(
+              '        if is_dynamic_source(source):\n',
+              '        stripped_source = TOKEN_RE.sub("", source)\n'
+              '        if proposal == source or not re.search(r"[A-Za-z가-힣]", stripped_source):\n'
+              '            resolution_counts["literal-block-only"] += 1\n'
+              '            continue\n'
+              '        if is_dynamic_source(source):\n',
+              1,
+          )
+          text = text.replace(
+              '        global_key, method = resolve_global_key(source, global_map, normalized_index)\n',
+              '        global_key, method = resolve_global_key(\n'
+              '            source, global_map, normalized_index, compact_index\n'
+              '        )\n',
+              1,
+          )
+
+          path.write_text(text, encoding='utf-8')
+          PY
+          python -m py_compile tools/apply_completed_retranslations.py
+
       - name: Audit completed retranslations
         run: |
           python tools/apply_completed_retranslations.py \
             --source-list tools/output/uw1_stringsclean.txt \
             --report retranslation/apply_audit_report.json \
+            --max-unresolved 0 \
             --dry-run
 
       - name: Print audit summary
