@@ -34,7 +34,15 @@ jobs:
           python tools/apply_completed_retranslations.py \
             --source-list tools/output/uw1_stringsclean.txt \
             --report retranslation/APPLY_REPORT.json \
-            --max-unresolved 0
+            --max-unresolved 2
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('retranslation/APPLY_REPORT.json').read_text(encoding='utf-8'))
+          print(json.dumps(report['unresolved'], ensure_ascii=False, indent=2))
+          if report['unresolvedCount']:
+              raise SystemExit('unresolved global-map entries remain')
+          PY
 
       - name: Build runtime plugin
         run: |
