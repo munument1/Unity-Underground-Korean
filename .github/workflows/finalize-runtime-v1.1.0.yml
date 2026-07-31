@@ -39,30 +39,7 @@ jobs:
             --max-unresolved 0
 
       - name: Build runtime plugin
-        run: |
-          cat > plugin/UnityUndergroundKorean.csproj <<'EOF'
-          <Project Sdk="Microsoft.NET.Sdk">
-            <PropertyGroup>
-              <TargetFramework>netstandard2.0</TargetFramework>
-              <LangVersion>7.3</LangVersion>
-              <AssemblyName>UnityUndergroundKorean</AssemblyName>
-              <RootNamespace>UnityUndergroundKorean</RootNamespace>
-              <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-              <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-              <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-              <OutputPath>../BepInEx/plugins/</OutputPath>
-            </PropertyGroup>
-            <ItemGroup>
-              <Compile Include="UnityUndergroundKorean.cs" />
-              <PackageReference Include="BepInEx.Core" Version="5.4.21" PrivateAssets="all" />
-              <PackageReference Include="HarmonyX" Version="2.9.0" PrivateAssets="all" />
-              <PackageReference Include="Newtonsoft.Json" Version="13.0.2" PrivateAssets="all" />
-              <PackageReference Include="UnityEngine.Modules" Version="2021.3.33" PrivateAssets="all" />
-            </ItemGroup>
-          </Project>
-          EOF
-          dotnet build plugin/UnityUndergroundKorean.csproj -c Release
-          test -f BepInEx/plugins/UnityUndergroundKorean.dll
+        run: bash tools/build_plugin_ci.sh
 
       - name: Validate finalized output
         run: |
@@ -94,11 +71,11 @@ jobs:
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          rm -f plugin/UnityUndergroundKorean.csproj
           rm -f translations/.runtime-finalization-trigger
           git add plugin/UnityUndergroundKorean.cs BepInEx/plugins/UnityUndergroundKorean.dll \
             tools/apply_completed_retranslations.py tools/finalize_v1_1_0_runtime.py \
-            tools/add_v1_1_0_dynamic_sources.py retranslation/APPLY_REPORT.json translations
+            tools/add_v1_1_0_dynamic_sources.py tools/build_plugin_ci.sh \
+            retranslation/APPLY_REPORT.json translations
           if git diff --cached --quiet; then
             echo 'No finalization changes to commit.'
             exit 0
