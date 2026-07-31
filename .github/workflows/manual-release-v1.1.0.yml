@@ -1,6 +1,11 @@
-name: Manual release v1.1.0
+name: Publish v1.1.0
 
 'on':
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/manual-release-v1.1.0.yml
   workflow_dispatch: {}
 
 permissions:
@@ -12,11 +17,54 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-        with:
-          ref: main
-          fetch-depth: 0
 
-      - name: Finalize and publish release
+      - name: Build release archive
+        shell: bash
+        run: |
+          set -euxo pipefail
+          rm -rf package dist
+          mkdir -p package/BepInEx/plugins package/translations dist
+
+          cat \
+            retranslation/.final_dll.b64.00 \
+            retranslation/.final_dll.b64.01 \
+            retranslation/.final_dll.b64.015 \
+            retranslation/.final_dll.b64.02 \
+            retranslation/.final_dll.b64.03 \
+            | base64 --decode > package/BepInEx/plugins/UnityUndergroundKorean.dll
+
+          echo 'eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20  package/BepInEx/plugins/UnityUndergroundKorean.dll' | sha256sum --check
+
+          cp translations/*.json package/translations/
+          test "$(find package/translations -maxdepth 1 -type f -name '*.json' | wc -l)" -eq 124
+
+          (cd package && zip -X -9 -r ../dist/Unity-Underground-Korean-v1.1.0.zip BepInEx translations)
+          test "$(unzip -Z1 dist/Unity-Underground-Korean-v1.1.0.zip | grep -v '/$' | wc -l)" -eq 125
+          (cd dist && sha256sum Unity-Underground-Korean-v1.1.0.zip > Unity-Underground-Korean-v1.1.0.zip.sha256)
+
+      - name: Create or update GitHub release
+        shell: bash
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bash tools/finalize_release_v1_1_0.sh
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euxo pipefail
+          if gh release view v1.1.0 >/dev/null 2>&1; then
+            gh release upload v1.1.0 \
+              dist/Unity-Underground-Korean-v1.1.0.zip \
+              dist/Unity-Underground-Korean-v1.1.0.zip.sha256 \
+              --clobber
+          elif test -f RELEASE_NOTES_v1.1.0.md; then
+            gh release create v1.1.0 \
+              dist/Unity-Underground-Korean-v1.1.0.zip \
+              dist/Unity-Underground-Korean-v1.1.0.zip.sha256 \
+              --target main \
+              --title 'Unity Underground 한국어 완전 재번역 v1.1.0' \
+              --notes-file RELEASE_NOTES_v1.1.0.md
+          else
+            gh release create v1.1.0 \
+              dist/Unity-Underground-Korean-v1.1.0.zip \
+              dist/Unity-Underground-Korean-v1.1.0.zip.sha256 \
+              --target main \
+              --title 'Unity Underground 한국어 완전 재번역 v1.1.0' \
+              --generate-notes
+          fi
