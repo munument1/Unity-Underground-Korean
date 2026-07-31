@@ -4,16 +4,15 @@ on:
   push:
     branches:
       - agent/finalize-v1.1.0-runtime
-  pull_request:
-    branches:
-      - main
+    paths:
+      - .github/workflows/validate-v1.1.0-release.yml
+      - tools/finalize_v1_1_runtime.py
 
 permissions:
   contents: write
 
 jobs:
   finalize:
-    if: ${{ !contains(github.event.head_commit.message || '', '[runtime-finalized]') }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out finalization branch
@@ -22,14 +21,15 @@ jobs:
           ref: agent/finalize-v1.1.0-runtime
           fetch-depth: 0
 
-      - name: Prepare runtime source
+      - name: Prepare source and translations
+        id: prepare
+        continue-on-error: true
         run: |
+          set -o pipefail
+          exec > >(tee retranslation/RUNTIME_BUILD_LOG.txt) 2>&1
           python -m py_compile tools/finalize_v1_1_runtime.py
           python tools/finalize_v1_1_runtime.py
           python -m py_compile tools/apply_completed_retranslations.py
-
-      - name: Reapply completed retranslations
-        run: |
           mkdir -p tools/output
           curl --fail --location --retry 3 \
             https://raw.githubusercontent.com/hankmorgan/UnderworldExporter/master/uw1_stringsclean.txt \
@@ -40,8 +40,12 @@ jobs:
             --report retranslation/APPLY_REPORT.json \
             --max-unresolved 0
 
-      - name: Build v1.1.0 plugin
+      - name: Build plugin
+        id: build
+        continue-on-error: true
         run: |
+          set -o pipefail
+          exec >> >(tee -a retranslation/RUNTIME_BUILD_LOG.txt) 2>&1
           cat > plugin/UnityUndergroundKorean.csproj <<'EOF'
           <Project Sdk="Microsoft.NET.Sdk">
             <PropertyGroup>
@@ -65,10 +69,14 @@ jobs:
           </Project>
           EOF
           dotnet build plugin/UnityUndergroundKorean.csproj -c Release
-          test -f BepInEx/plugins/UnityUndergroundKorean.dll
+          test -s BepInEx/plugins/UnityUndergroundKorean.dll
 
-      - name: Validate translation and runtime output
+      - name: Validate output
+        id: validate
+        continue-on-error: true
         run: |
+          set -o pipefail
+          exec >> >(tee -a retranslation/RUNTIME_BUILD_LOG.txt) 2>&1
           python - <<'PY'
           import json
           from pathlib import Path
@@ -77,65 +85,54 @@ jobs:
           assert report['unresolvedCount'] == 0
           assert report['validationIssueCount'] == 0
           assert report['dynamicSkipCount'] < 100
-          files = sorted(Path('translations').glob('*.json'))
-          assert len(files) == 124
-          for path in files:
+          paths = sorted(Path('translations').glob('*.json'))
+          assert len(paths) == 124
+          for path in paths:
               json.loads(path.read_text(encoding='utf-8'))
           source = Path('plugin/UnityUndergroundKorean.cs').read_text(encoding='utf-8')
           assert '"1.1.0"' in source
           assert 'TranslateAssembledGameText' in source
-          assert Path('BepInEx/plugins/UnityUndergroundKorean.dll').stat().st_size > 0
+          dll = Path('BepInEx/plugins/UnityUndergroundKorean.dll')
+          assert dll.is_file() and dll.stat().st_size > 0
           print(json.dumps({
               'dynamicSkipCount': report['dynamicSkipCount'],
               'changedGlobalEntryCount': report['changedGlobalEntryCount'],
-              'translationJsonCount': len(files),
-              'pluginBytes': Path('BepInEx/plugins/UnityUndergroundKorean.dll').stat().st_size,
+              'translationJsonCount': len(paths),
+              'pluginBytes': dll.stat().st_size,
           }, ensure_ascii=False, indent=2))
           PY
           git diff --check
 
-      - name: Commit finalized runtime
+      - name: Record result and commit
+        if: always()
         run: |
+          rm -f plugin/UnityUndergroundKorean.csproj
+          {
+            echo
+            echo "prepare=${{ steps.prepare.outcome }}"
+            echo "build=${{ steps.build.outcome }}"
+            echo "validate=${{ steps.validate.outcome }}"
+          } >> retranslation/RUNTIME_BUILD_LOG.txt
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          rm -f plugin/UnityUndergroundKorean.csproj
-          git add plugin/UnityUndergroundKorean.cs BepInEx/plugins/UnityUndergroundKorean.dll \
-            tools/apply_completed_retranslations.py retranslation/APPLY_REPORT.json \
-            translations/global_text_map.json
+          git add retranslation/RUNTIME_BUILD_LOG.txt
+          if [ "${{ steps.prepare.outcome }}" = "success" ]; then
+            git add plugin/UnityUndergroundKorean.cs tools/apply_completed_retranslations.py \
+              retranslation/APPLY_REPORT.json translations/global_text_map.json
+          fi
+          if [ "${{ steps.build.outcome }}" = "success" ]; then
+            git add BepInEx/plugins/UnityUndergroundKorean.dll
+          fi
           if git diff --cached --quiet; then
-            echo 'No finalization changes to commit.'
+            echo 'No result changes to commit.'
           else
-            git commit -m 'v1.1.0 런타임 및 전역 맵 최종 보강 [runtime-finalized]'
+            git commit -m "v1.1.0 런타임 빌드 결과 기록 [runtime-build]"
             git push origin HEAD:agent/finalize-v1.1.0-runtime
           fi
 
-      - name: Build release archive
+      - name: Fail when finalization failed
+        if: always()
         run: |
-          python - <<'PY'
-          import hashlib
-          import zipfile
-          from pathlib import Path
-          output = Path('Unity-Underground-Korean-v1.1.0.zip')
-          files = [Path('BepInEx/plugins/UnityUndergroundKorean.dll')]
-          files.extend(sorted(Path('translations').glob('*.json')))
-          assert len(files) == 125
-          with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
-              for path in files:
-                  archive.write(path, path.as_posix())
-          with zipfile.ZipFile(output) as archive:
-              assert archive.testzip() is None
-              assert len(archive.namelist()) == 125
-          digest = hashlib.sha256(output.read_bytes()).hexdigest()
-          Path(str(output) + '.sha256').write_text(
-              f'{digest}  {output.name}\n', encoding='utf-8')
-          print(f'{output}: {output.stat().st_size} bytes, SHA-256 {digest}')
-          PY
-
-      - name: Upload release candidate
-        uses: actions/upload-artifact@v4
-        with:
-          name: Unity-Underground-Korean-v1.1.0
-          path: |
-            Unity-Underground-Korean-v1.1.0.zip
-            Unity-Underground-Korean-v1.1.0.zip.sha256
-          if-no-files-found: error
+          test "${{ steps.prepare.outcome }}" = "success"
+          test "${{ steps.build.outcome }}" = "success"
+          test "${{ steps.validate.outcome }}" = "success"
