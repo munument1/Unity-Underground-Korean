@@ -1,0 +1,292 @@
+name: Fix v1.1.0 no-effect sentence
+
+on:
+  push:
+    branches:
+      - agent/finalize-v1.1.0-runtime
+    paths:
+      - .github/workflows/fix-no-effect-v1.1.0.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fix-v1.1.0-no-effect
+  cancel-in-progress: true
+
+jobs:
+  fix-and-build:
+    if: ${{ !contains(github.event.head_commit.message, '[no-effect-fix]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out finalization branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/finalize-v1.1.0-runtime
+          fetch-depth: 0
+
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Fix no-effect sentence assembly
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('plugin/UnityUndergroundKorean.cs')
+          text = path.read_text(encoding='utf-8')
+          old = '''            if (TryTranslateObjectPrefix(value, "Your attempt has no effect on the ", "에는 아무런 효과가 없습니다.", out fragment))
+                return "시도했지만 " + fragment;
+'''
+          new = '''            if (TryTakePrefix(value, "Your attempt has no effect on the ", out fragment))
+            {
+                string item = StripLeadingEnglishArticle(
+                    TranslateKnownFragment(fragment)).TrimEnd('.');
+                if (ContainsKorean(item))
+                    return "시도했지만 " + item + "에는 아무런 효과가 없습니다.";
+            }
+'''
+          if old not in text:
+              raise SystemExit('no-effect assembly pattern not found')
+          text = text.replace(old, new, 1)
+          path.write_text(text, encoding='utf-8')
+          assert old not in text
+          assert 'return "시도했지만 " + item + "에는 아무런 효과가 없습니다.";' in text
+          PY
+
+      - name: Preserve previous plugin
+        run: |
+          set -euo pipefail
+          test -s BepInEx/plugins/UnityUndergroundKorean.dll
+          cp BepInEx/plugins/UnityUndergroundKorean.dll /tmp/UnityUndergroundKorean.old.dll
+
+      - name: Create assembly-compatible Unity compile stubs
+        run: |
+          set -euo pipefail
+          rm -rf plugin/TMProStub plugin/UnityUIStub
+          mkdir -p plugin/TMProStub plugin/UnityUIStub
+
+          cat > plugin/TMProStub/TMProStub.csproj <<'EOF'
+          <Project Sdk="Microsoft.NET.Sdk">
+            <PropertyGroup>
+              <TargetFramework>netstandard2.0</TargetFramework>
+              <LangVersion>7.3</LangVersion>
+              <AssemblyName>Unity.TextMeshPro</AssemblyName>
+              <RootNamespace>TMPro</RootNamespace>
+              <AssemblyVersion>0.0.0.0</AssemblyVersion>
+              <FileVersion>0.0.0.0</FileVersion>
+              <Version>0.0.0</Version>
+              <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+            </PropertyGroup>
+            <ItemGroup>
+              <Compile Include="TMProStub.cs" />
+              <PackageReference Include="UnityEngine.Modules" Version="2021.3.33" PrivateAssets="all" />
+            </ItemGroup>
+          </Project>
+          EOF
+          cat > plugin/TMProStub/TMProStub.cs <<'EOF'
+          using System.Collections.Generic;
+          using UnityEngine;
+
+          namespace TMPro
+          {
+              public class TMP_FontAsset : Object
+              {
+                  public List<TMP_FontAsset> fallbackFontAssetTable { get; set; }
+                  public static TMP_FontAsset CreateFontAsset(
+                      string fontName, string styleName, int pointSize) { return null; }
+              }
+
+              public class TMP_Settings : Object
+              {
+                  public static TMP_Settings LoadDefaultSettings() { return null; }
+              }
+
+              public class TMP_Text : Object
+              {
+                  public virtual string text { get; set; }
+                  public TMP_FontAsset font { get; set; }
+                  public void SetText(string value) { }
+              }
+          }
+          EOF
+
+          cat > plugin/UnityUIStub/UnityUIStub.csproj <<'EOF'
+          <Project Sdk="Microsoft.NET.Sdk">
+            <PropertyGroup>
+              <TargetFramework>netstandard2.0</TargetFramework>
+              <LangVersion>7.3</LangVersion>
+              <AssemblyName>UnityEngine.UI</AssemblyName>
+              <RootNamespace>UnityEngine.UI</RootNamespace>
+              <AssemblyVersion>1.0.0.0</AssemblyVersion>
+              <FileVersion>1.0.0.0</FileVersion>
+              <Version>1.0.0</Version>
+              <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+            </PropertyGroup>
+            <ItemGroup>
+              <Compile Include="UnityUIStub.cs" />
+              <PackageReference Include="UnityEngine.Modules" Version="2021.3.33" PrivateAssets="all" />
+            </ItemGroup>
+          </Project>
+          EOF
+          cat > plugin/UnityUIStub/UnityUIStub.cs <<'EOF'
+          using UnityEngine;
+
+          namespace UnityEngine.UI
+          {
+              public class Text : Object
+              {
+                  public virtual string text { get; set; }
+                  public Font font { get; set; }
+              }
+          }
+          EOF
+
+          dotnet build plugin/TMProStub/TMProStub.csproj -c Release
+          dotnet build plugin/UnityUIStub/UnityUIStub.csproj -c Release
+
+      - name: Rebuild plugin without Exiled.Dev.References
+        run: |
+          set -euo pipefail
+          dotnet nuget remove source BepInEx >/dev/null 2>&1 || true
+          dotnet nuget add source https://nuget.bepinex.dev/v3/index.json --name BepInEx
+          rm -f BepInEx/plugins/UnityUndergroundKorean.dll
+          cat > plugin/UnityUndergroundKorean.csproj <<'EOF'
+          <Project Sdk="Microsoft.NET.Sdk">
+            <PropertyGroup>
+              <TargetFramework>netstandard2.0</TargetFramework>
+              <LangVersion>7.3</LangVersion>
+              <AssemblyName>UnityUndergroundKorean</AssemblyName>
+              <RootNamespace>UnityUndergroundKorean</RootNamespace>
+              <Version>1.1.0</Version>
+              <AssemblyVersion>1.1.0.0</AssemblyVersion>
+              <FileVersion>1.1.0.0</FileVersion>
+              <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+              <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+              <OutputPath>../BepInEx/plugins/</OutputPath>
+            </PropertyGroup>
+            <ItemGroup>
+              <Compile Include="UnityUndergroundKorean.cs" />
+              <Reference Include="Unity.TextMeshPro">
+                <HintPath>TMProStub/bin/Release/netstandard2.0/Unity.TextMeshPro.dll</HintPath>
+                <Private>false</Private>
+              </Reference>
+              <Reference Include="UnityEngine.UI">
+                <HintPath>UnityUIStub/bin/Release/netstandard2.0/UnityEngine.UI.dll</HintPath>
+                <Private>false</Private>
+              </Reference>
+              <PackageReference Include="BepInEx.Core" Version="5.4.21" PrivateAssets="all" />
+              <PackageReference Include="HarmonyX" Version="2.9.0" PrivateAssets="all" />
+              <PackageReference Include="Newtonsoft.Json" Version="13.0.2" PrivateAssets="all" />
+              <PackageReference Include="UnityEngine.Modules" Version="2021.3.33" PrivateAssets="all" />
+            </ItemGroup>
+          </Project>
+          EOF
+          dotnet build plugin/UnityUndergroundKorean.csproj -c Release
+          test -s BepInEx/plugins/UnityUndergroundKorean.dll
+
+      - name: Validate assembly, data, and release archive
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/AssemblyInspector
+          dotnet new console -n AssemblyInspector -o /tmp/AssemblyInspector --framework net8.0 --no-restore
+          cat > /tmp/AssemblyInspector/Program.cs <<'EOF'
+          using System;
+          using System.Reflection;
+
+          AssemblyName name = AssemblyName.GetAssemblyName(args[0]);
+          Console.WriteLine($"{name.Name}|{name.Version}|{name.CultureName}|{name.GetPublicKeyToken()?.Length ?? 0}");
+          EOF
+          dotnet run --project /tmp/AssemblyInspector -- BepInEx/plugins/UnityUndergroundKorean.dll > /tmp/new-assembly.txt
+          grep -F 'UnityUndergroundKorean|1.1.0.0|' /tmp/new-assembly.txt
+
+          python - <<'PY'
+          import hashlib
+          import json
+          import zipfile
+          from pathlib import Path
+
+          report = json.loads(Path('retranslation/APPLY_REPORT.json').read_text(encoding='utf-8'))
+          assert report['reviewedLocationCount'] == 7092
+          assert report['unresolvedCount'] == 0
+          assert report['validationIssueCount'] == 0
+          assert report['dynamicSkipCount'] == 48
+
+          translations = sorted(Path('translations').glob('*.json'))
+          assert len(translations) == 124
+          for path in translations:
+              json.loads(path.read_text(encoding='utf-8'))
+
+          source = Path('plugin/UnityUndergroundKorean.cs').read_text(encoding='utf-8')
+          assert '"1.1.0"' in source
+          assert 'return "시도했지만 " + item + "에는 아무런 효과가 없습니다.";' in source
+          assert 'TryTranslateObjectPrefix(value, "Your attempt has no effect on the "' not in source
+
+          old_dll = Path('/tmp/UnityUndergroundKorean.old.dll')
+          new_dll = Path('BepInEx/plugins/UnityUndergroundKorean.dll')
+          old_sha = hashlib.sha256(old_dll.read_bytes()).hexdigest()
+          new_sha = hashlib.sha256(new_dll.read_bytes()).hexdigest()
+
+          archive = Path('/tmp/Unity-Underground-Korean-v1.1.0.zip')
+          fixed_time = (2026, 7, 31, 0, 0, 0)
+          files = [(new_dll, 'BepInEx/plugins/UnityUndergroundKorean.dll')]
+          files.extend((path, 'translations/' + path.name) for path in translations)
+          assert len(files) == 125
+          with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
+              for source_path, target in files:
+                  info = zipfile.ZipInfo(target, fixed_time)
+                  info.compress_type = zipfile.ZIP_DEFLATED
+                  info.external_attr = 0o100644 << 16
+                  zf.writestr(info, source_path.read_bytes(), compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
+          with zipfile.ZipFile(archive) as zf:
+              assert len(zf.namelist()) == 125
+              assert len(set(zf.namelist())) == 125
+              assert zf.testzip() is None
+
+          archive_sha = hashlib.sha256(archive.read_bytes()).hexdigest()
+          assembly = Path('/tmp/new-assembly.txt').read_text().strip()
+          Path('retranslation/RUNTIME_FINALIZATION.md').write_text(
+              '# v1.1.0 런타임 최종 검증\n\n'
+              f'- 플러그인 어셈블리: `{assembly}`\n'
+              f'- 이전 DLL: {old_dll.stat().st_size} bytes, `{old_sha}`\n'
+              f'- 최종 DLL: {new_dll.stat().st_size} bytes, `{new_sha}`\n'
+              f'- 번역 JSON: {len(translations)}개\n'
+              f'- 배포 파일: {len(files)}개\n'
+              f'- 후보 ZIP: {archive.stat().st_size} bytes, `{archive_sha}`\n'
+              '- 미해결 원문 대응: 0개\n'
+              '- 구조 검증 오류: 0개\n'
+              '- 동적 문장 회귀 검증: `시도했지만 …에는 아무런 효과가 없습니다.` 조사 결합 수정\n'
+              '- 실제 게임 참조 DLL은 Google Drive에 비공개 보관하며 GitHub에는 커밋하지 않음\n'
+              '- 로컬 `plugin/build.ps1`은 실제 게임 DLL을 `/nostdlib+`로 직접 참조\n'
+              '- CI는 런타임 어셈블리 정체성과 일치하는 Unity UI 컴파일 스텁만 임시 생성\n',
+              encoding='utf-8',
+          )
+          print(json.dumps({
+              'assembly': assembly,
+              'oldPluginBytes': old_dll.stat().st_size,
+              'newPluginBytes': new_dll.stat().st_size,
+              'oldPluginSha256': old_sha,
+              'newPluginSha256': new_sha,
+              'archiveBytes': archive.stat().st_size,
+              'archiveSha256': archive_sha,
+              'fileCount': len(files),
+          }, ensure_ascii=False, indent=2))
+          PY
+          git diff --check
+
+      - name: Commit fix and remove temporary workflow
+        run: |
+          set -euo pipefail
+          rm -rf plugin/TMProStub plugin/UnityUIStub plugin/obj plugin/bin
+          rm -f plugin/UnityUndergroundKorean.csproj
+          rm -f .github/workflows/fix-no-effect-v1.1.0.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add plugin/UnityUndergroundKorean.cs BepInEx/plugins/UnityUndergroundKorean.dll \
+            retranslation/RUNTIME_FINALIZATION.md
+          git add -A .github/workflows/fix-no-effect-v1.1.0.yml
+          git commit -m '동적 문장 조사 결합 수정 [no-effect-fix]'
+          git push origin HEAD:agent/finalize-v1.1.0-runtime
