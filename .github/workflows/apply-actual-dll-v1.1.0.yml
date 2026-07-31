@@ -1,0 +1,239 @@
+name: Apply actual-game v1.1.0 DLL
+
+on:
+  push:
+    branches:
+      - agent/finalize-v1.1.0-runtime
+    paths:
+      - .github/workflows/apply-actual-dll-v1.1.0.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apply-actual-game-v1.1.0-dll
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: ${{ !contains(github.event.head_commit.message, '[actual-dll-applied]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out existing finalization branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/finalize-v1.1.0-runtime
+          fetch-depth: 0
+
+      - name: Restore verified actual-game DLL
+        run: |
+          set -euo pipefail
+          cat retranslation/.final_dll.b64.* | base64 --decode > BepInEx/plugins/UnityUndergroundKorean.dll
+          test "$(stat -c %s BepInEx/plugins/UnityUndergroundKorean.dll)" = "24576"
+          echo 'eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20  BepInEx/plugins/UnityUndergroundKorean.dll' | sha256sum --check
+
+      - name: Correct no-effect sentence assembly
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('plugin/UnityUndergroundKorean.cs')
+          text = path.read_text(encoding='utf-8')
+          old = '''            if (TryTranslateObjectPrefix(value, "Your attempt has no effect on the ", "에는 아무런 효과가 없습니다.", out fragment))
+                return "시도했지만 " + fragment;
+'''
+          new = '''            if (TryTakePrefix(value, "Your attempt has no effect on the ", out fragment))
+            {
+                string item = StripLeadingEnglishArticle(
+                    TranslateKnownFragment(fragment)).TrimEnd('.');
+                if (ContainsKorean(item))
+                    return "시도했지만 " + item + "에는 아무런 효과가 없습니다.";
+            }
+'''
+          if old in text:
+              text = text.replace(old, new, 1)
+          elif new not in text:
+              raise SystemExit('no-effect sentence assembly pattern not found')
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Update actual-game direct-reference build script
+        run: |
+          set -euo pipefail
+          cat > plugin/build.ps1 <<'EOF'
+          param(
+              [Parameter(Mandatory = $true)]
+              [string]$GameDir
+          )
+
+          $ErrorActionPreference = 'Stop'
+          $game = (Resolve-Path -LiteralPath $GameDir).Path
+          $managed = Join-Path $game 'UnityUnderground_Data\Managed'
+          $bepInEx = Join-Path $game 'BepInEx\core'
+          $source = Join-Path $PSScriptRoot 'UnityUndergroundKorean.cs'
+          $outputDir = Join-Path (Split-Path -Parent $PSScriptRoot) 'BepInEx\plugins'
+          $output = Join-Path $outputDir 'UnityUndergroundKorean.dll'
+          $assemblyInfo = Join-Path $PSScriptRoot '.UnityUndergroundKorean.AssemblyInfo.cs'
+          $dotnet = (Get-Command dotnet -ErrorAction Stop).Source
+          $sdkVersion = (& $dotnet --version).Trim()
+          $dotnetRoot = Split-Path -Parent $dotnet
+          $compiler = Join-Path $dotnetRoot "sdk\$sdkVersion\Roslyn\bincore\csc.dll"
+
+          if (-not (Test-Path -LiteralPath $compiler)) {
+              throw "C# 컴파일러를 찾을 수 없습니다: $compiler"
+          }
+
+          $references = @(
+              "$managed\mscorlib.dll",
+              "$managed\System.dll",
+              "$managed\System.Core.dll",
+              "$managed\System.Runtime.dll",
+              "$managed\netstandard.dll",
+              "$bepInEx\BepInEx.dll",
+              "$bepInEx\0Harmony.dll",
+              "$managed\Newtonsoft.Json.dll",
+              "$managed\UnityEngine.dll",
+              "$managed\UnityEngine.CoreModule.dll",
+              "$managed\UnityEngine.UI.dll",
+              "$managed\Unity.TextMeshPro.dll",
+              "$managed\UnityEngine.TextRenderingModule.dll",
+              "$managed\UnityEngine.IMGUIModule.dll"
+          )
+
+          foreach ($reference in $references) {
+              if (-not (Test-Path -LiteralPath $reference)) {
+                  throw "필수 참조 파일이 없습니다: $reference"
+              }
+          }
+
+          New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
+          @'
+          using System.Reflection;
+          [assembly: AssemblyVersion("1.1.0.0")]
+          [assembly: AssemblyFileVersion("1.1.0.0")]
+          [assembly: AssemblyInformationalVersion("1.1.0")]
+          '@ | Set-Content -LiteralPath $assemblyInfo -Encoding UTF8
+
+          try {
+              $arguments = @(
+                  $compiler,
+                  '/nologo',
+                  '/target:library',
+                  '/langversion:7.3',
+                  '/nostdlib+',
+                  '/deterministic+',
+                  '/optimize+',
+                  '/debug-',
+                  "/out:$output"
+              ) + ($references | ForEach-Object { "/reference:$_" }) + @(
+                  $assemblyInfo,
+                  $source
+              )
+
+              & $dotnet @arguments
+              if ($LASTEXITCODE -ne 0) {
+                  throw "빌드 실패: 종료 코드 $LASTEXITCODE"
+              }
+          }
+          finally {
+              Remove-Item -LiteralPath $assemblyInfo -Force -ErrorAction SilentlyContinue
+          }
+
+          $hash = (Get-FileHash -LiteralPath $output -Algorithm SHA256).Hash.ToLowerInvariant()
+          Write-Host "빌드 완료: $output"
+          Write-Host "크기: $((Get-Item -LiteralPath $output).Length) bytes"
+          Write-Host "SHA-256: $hash"
+          EOF
+
+      - name: Write final runtime verification record
+        run: |
+          set -euo pipefail
+          cat > retranslation/RUNTIME_FINALIZATION.md <<'EOF'
+          # v1.1.0 런타임 최종 검증
+
+          - 플러그인 어셈블리: `UnityUndergroundKorean|1.1.0.0||0`
+          - 이전 패키지 참조 빌드 DLL: 25,088 bytes, `6e327015d35b14f3f68a603529e09795fe9fcc399b34ec68dc2271e6956a1c64`
+          - 최종 실제 게임 참조 DLL: 24,576 bytes, `eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20`
+          - 번역 JSON: 124개
+          - 배포 파일: 125개
+          - 최종 ZIP: 456,460 bytes, `7ab034e4072dd466bcbda65d5ed4d1116ec8e318ae6fff619b8c3ad37e9c71cd`
+          - 검토 위치: 7,092개
+          - 동적 문장 제외: 48개
+          - 미해결 원문 대응: 0개
+          - 구조·토큰 검증 오류: 0개
+          - 동적 문장 회귀 수정: `시도했지만 …에는 아무런 효과가 없습니다.`
+          - 빌드 방식: Roslyn `/nostdlib+`와 업로드된 실제 게임 DLL 직접 참조
+          - 런타임 참조: `mscorlib 4.0.0.0`, `BepInEx 5.4.23.5`, `HarmonyX 2.9.0.0`, `Newtonsoft.Json 13.0.0.0`
+          - 실제 게임 참조 DLL은 Google Drive에 비공개 보관하며 GitHub에는 포함하지 않음
+          EOF
+
+      - name: Validate data and deterministic release archive
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          import zipfile
+          from pathlib import Path
+
+          report = json.loads(Path('retranslation/APPLY_REPORT.json').read_text(encoding='utf-8'))
+          assert report['reviewedLocationCount'] == 7092
+          assert report['dynamicSkipCount'] == 48
+          assert report['unresolvedCount'] == 0
+          assert report['validationIssueCount'] == 0
+
+          translations = sorted(Path('translations').glob('*.json'))
+          assert len(translations) == 124
+          for path in translations:
+              json.loads(path.read_text(encoding='utf-8'))
+
+          source = Path('plugin/UnityUndergroundKorean.cs').read_text(encoding='utf-8')
+          assert '[BepInPlugin("kr.ultima-underworld.korean", "Unity Underground Korean", "1.1.0")]' in source
+          assert 'return "시도했지만 " + item + "에는 아무런 효과가 없습니다.";' in source
+          assert 'TryTranslateObjectPrefix(value, "Your attempt has no effect on the "' not in source
+
+          dll = Path('BepInEx/plugins/UnityUndergroundKorean.dll')
+          assert dll.stat().st_size == 24576
+          assert hashlib.sha256(dll.read_bytes()).hexdigest() == 'eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20'
+
+          archive = Path('/tmp/Unity-Underground-Korean-v1.1.0.zip')
+          fixed_time = (2026, 7, 31, 0, 0, 0)
+          files = [(dll, 'BepInEx/plugins/UnityUndergroundKorean.dll')]
+          files.extend((path, 'translations/' + path.name) for path in translations)
+          assert len(files) == 125
+          with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
+              for source_path, target in files:
+                  info = zipfile.ZipInfo(target, fixed_time)
+                  info.compress_type = zipfile.ZIP_DEFLATED
+                  info.external_attr = 0o100644 << 16
+                  zf.writestr(info, source_path.read_bytes(), compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
+          with zipfile.ZipFile(archive) as zf:
+              names = zf.namelist()
+              assert len(names) == 125
+              assert len(set(names)) == 125
+              assert zf.testzip() is None
+          assert archive.stat().st_size == 456460
+          assert hashlib.sha256(archive.read_bytes()).hexdigest() == '7ab034e4072dd466bcbda65d5ed4d1116ec8e318ae6fff619b8c3ad37e9c71cd'
+          PY
+          git diff --check
+
+      - name: Remove temporary transfer and diagnostic files
+        run: |
+          set -euo pipefail
+          rm -f retranslation/.final_dll.b64.*
+          rm -f .github/workflows/apply-actual-dll-v1.1.0.yml
+          rm -f .github/workflows/export-v1.1.0-build-kit.yml
+          rm -f .github/workflows/fix-no-effect-v1.1.0.yml
+          rm -f .github/workflows/validate-v1.1.0-release.yml
+          rm -f retranslation/RUNTIME_BUILD_LOG.txt
+          rm -f tools/finalize_v1_1_runtime.py
+
+      - name: Commit final actual-game build
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m '실제 게임 DLL 참조 빌드로 최종 교체 [actual-dll-applied]'
+          git push origin HEAD:agent/finalize-v1.1.0-runtime
