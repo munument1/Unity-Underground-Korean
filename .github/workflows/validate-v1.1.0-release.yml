@@ -29,6 +29,17 @@ jobs:
           exec > >(tee retranslation/RUNTIME_BUILD_LOG.txt) 2>&1
           python -m py_compile tools/finalize_v1_1_runtime.py
           python tools/finalize_v1_1_runtime.py
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('tools/apply_completed_retranslations.py')
+          text = path.read_text(encoding='utf-8')
+          old = '    "Your Rune of Warding has been set off ", "You see ",\n}'
+          new = '    "Your Rune of Warding has been set off ", "You see ",\n    "Restoring Game ", "Saving Game ",\n}'
+          if old in text:
+              path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          elif '"Restoring Game ", "Saving Game ",' not in text:
+              raise SystemExit('save/restore dynamic source insertion point not found')
+          PY
           python -m py_compile tools/apply_completed_retranslations.py
           mkdir -p tools/output
           curl --fail --location --retry 3 \
@@ -38,7 +49,7 @@ jobs:
           python tools/apply_completed_retranslations.py \
             --source-list tools/output/uw1_stringsclean.txt \
             --report retranslation/APPLY_REPORT.json \
-            --max-unresolved 2
+            --max-unresolved 0
 
       - name: Build plugin
         id: build
@@ -47,7 +58,8 @@ jobs:
           set -o pipefail
           exec >> >(tee -a retranslation/RUNTIME_BUILD_LOG.txt) 2>&1
           dotnet nuget add source https://nuget.bepinex.dev/v3/index.json \
-            --name BepInEx --configfile NuGet.Config
+            --name BepInEx
+          rm -f BepInEx/plugins/UnityUndergroundKorean.dll
           cat > plugin/UnityUndergroundKorean.csproj <<'EOF'
           <Project Sdk="Microsoft.NET.Sdk">
             <PropertyGroup>
@@ -59,7 +71,6 @@ jobs:
               <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
               <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
               <OutputPath>../BepInEx/plugins/</OutputPath>
-              <RestoreConfigFile>../NuGet.Config</RestoreConfigFile>
             </PropertyGroup>
             <ItemGroup>
               <Compile Include="UnityUndergroundKorean.cs" />
@@ -71,8 +82,7 @@ jobs:
             </ItemGroup>
           </Project>
           EOF
-          dotnet build plugin/UnityUndergroundKorean.csproj -c Release \
-            --configfile NuGet.Config
+          dotnet build plugin/UnityUndergroundKorean.csproj -c Release
           test -s BepInEx/plugins/UnityUndergroundKorean.dll
 
       - name: Validate output
@@ -86,9 +96,9 @@ jobs:
           from pathlib import Path
           report = json.loads(Path('retranslation/APPLY_REPORT.json').read_text(encoding='utf-8'))
           assert report['reviewedLocationCount'] == 7092
-          assert report['unresolvedCount'] <= 2
+          assert report['unresolvedCount'] == 0
           assert report['validationIssueCount'] == 0
-          assert report['dynamicSkipCount'] < 100
+          assert report['dynamicSkipCount'] == 48
           paths = sorted(Path('translations').glob('*.json'))
           assert len(paths) == 124
           for path in paths:
@@ -101,7 +111,7 @@ jobs:
           print(json.dumps({
               'dynamicSkipCount': report['dynamicSkipCount'],
               'changedGlobalEntryCount': report['changedGlobalEntryCount'],
-              'unresolved': report['unresolved'],
+              'unresolvedCount': report['unresolvedCount'],
               'translationJsonCount': len(paths),
               'pluginBytes': dll.stat().st_size,
           }, ensure_ascii=False, indent=2))
@@ -111,7 +121,7 @@ jobs:
       - name: Record result and commit
         if: always()
         run: |
-          rm -f plugin/UnityUndergroundKorean.csproj NuGet.Config
+          rm -f plugin/UnityUndergroundKorean.csproj
           {
             echo
             echo "prepare=${{ steps.prepare.outcome }}"
