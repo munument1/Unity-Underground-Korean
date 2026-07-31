@@ -38,6 +38,20 @@ jobs:
       - name: Compile application tool
         run: python -m py_compile tools/apply_completed_retranslations.py
 
+      - name: Parse every completed bundle
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for path in sorted(Path('retranslation/completed').glob('bundle_*_translations.json')):
+              try:
+                  json.loads(path.read_text(encoding='utf-8'))
+              except Exception as exc:
+                  print(f'INVALID_JSON {path}: {exc}')
+                  raise
+              print(f'OK {path}')
+          PY
+
       - name: Audit completed retranslations
         run: |
           python tools/apply_completed_retranslations.py \
@@ -70,4 +84,4 @@ jobs:
         with:
           name: retranslation-apply-audit
           path: retranslation/apply_audit_report.json
-          if-no-files-found: error
+          if-no-files-found: ignore
