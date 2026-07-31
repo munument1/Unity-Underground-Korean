@@ -37,7 +37,7 @@ cat > plugin/UnityUndergroundKorean.csproj <<EOF
       <Private>false</Private>
     </Reference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" PrivateAssets="all" />
-    <PackageReference Include="UnityEngine.Modules" Version="2021.3.33" PrivateAssets="all" />
+    <PackageReference Include="OpenMod.UnityEngine.Redist" Version="2021.3.29.1" PrivateAssets="all" />
   </ItemGroup>
 </Project>
 EOF
