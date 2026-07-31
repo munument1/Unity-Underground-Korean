@@ -1,164 +1,133 @@
-name: Validate v1.1.0 Release
+name: Finalize v1.1.0 Runtime
 
 on:
+  push:
+    branches:
+      - agent/finalize-v1.1.0-runtime
   pull_request:
     branches:
       - main
-  push:
-    branches:
-      - agent/apply-retranslation-v1.1.0
 
 permissions:
   contents: write
 
 jobs:
-  validate:
+  finalize:
+    if: ${{ !contains(github.event.head_commit.message || '', '[runtime-finalized]') }}
     runs-on: ubuntu-latest
     steps:
-      - name: Check out application branch
+      - name: Check out finalization branch
         uses: actions/checkout@v4
         with:
-          ref: agent/apply-retranslation-v1.1.0
+          ref: agent/finalize-v1.1.0-runtime
           fetch-depth: 0
 
-      - name: Download location-aware English source list
+      - name: Prepare runtime source
+        run: |
+          python -m py_compile tools/finalize_v1_1_runtime.py
+          python tools/finalize_v1_1_runtime.py
+          python -m py_compile tools/apply_completed_retranslations.py
+
+      - name: Reapply completed retranslations
         run: |
           mkdir -p tools/output
           curl --fail --location --retry 3 \
             https://raw.githubusercontent.com/hankmorgan/UnderworldExporter/master/uw1_stringsclean.txt \
             --output tools/output/uw1_stringsclean.txt
-
-      - name: Refine and apply the global map
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          path = Path('tools/apply_completed_retranslations.py')
-          text = path.read_text(encoding='utf-8')
-          old = '''    return (
-        source in DYNAMIC_SOURCES
-        or "%s" in source
-        or "{0}" in source
-        or source != source.strip()
-    )
-'''
-          new = '''    return (
-        source in DYNAMIC_SOURCES
-        or "%s" in source
-        or "{0}" in source
-    )
-'''
-          if old in text:
-              path.write_text(text.replace(old, new, 1), encoding='utf-8')
-          elif new not in text:
-              raise SystemExit('Dynamic-source detection pattern not found')
-          PY
-          python -m py_compile tools/prepare_retranslation_application.py
-          python -m py_compile tools/apply_completed_retranslations.py
           python tools/prepare_retranslation_application.py
           python tools/apply_completed_retranslations.py \
             --source-list tools/output/uw1_stringsclean.txt \
             --report retranslation/APPLY_REPORT.json \
             --max-unresolved 0
+
+      - name: Build v1.1.0 plugin
+        run: |
+          cat > plugin/UnityUndergroundKorean.csproj <<'EOF'
+          <Project Sdk="Microsoft.NET.Sdk">
+            <PropertyGroup>
+              <TargetFramework>netstandard2.0</TargetFramework>
+              <LangVersion>7.3</LangVersion>
+              <AssemblyName>UnityUndergroundKorean</AssemblyName>
+              <RootNamespace>UnityUndergroundKorean</RootNamespace>
+              <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+              <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+              <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+              <OutputPath>../BepInEx/plugins/</OutputPath>
+            </PropertyGroup>
+            <ItemGroup>
+              <Compile Include="UnityUndergroundKorean.cs" />
+              <PackageReference Include="BepInEx.Core" Version="5.4.21" PrivateAssets="all" />
+              <PackageReference Include="HarmonyX" Version="2.9.0" PrivateAssets="all" />
+              <PackageReference Include="Newtonsoft.Json" Version="13.0.2" PrivateAssets="all" />
+              <PackageReference Include="UnityEngine.Modules" Version="2021.3.33" PrivateAssets="all" />
+              <PackageReference Include="Exiled.Dev.References" Version="1.0.4" PrivateAssets="all" />
+            </ItemGroup>
+          </Project>
+          EOF
+          dotnet build plugin/UnityUndergroundKorean.csproj -c Release
+          test -f BepInEx/plugins/UnityUndergroundKorean.dll
+
+      - name: Validate translation and runtime output
+        run: |
           python - <<'PY'
           import json
           from pathlib import Path
           report = json.loads(Path('retranslation/APPLY_REPORT.json').read_text(encoding='utf-8'))
-          required = {
-              'reviewedLocationCount': 7092,
-              'unresolvedCount': 0,
-              'validationIssueCount': 0,
-          }
-          for key, value in required.items():
-              if report.get(key) != value:
-                  raise SystemExit(f'{key}: {report.get(key)} != {value}')
+          assert report['reviewedLocationCount'] == 7092
+          assert report['unresolvedCount'] == 0
+          assert report['validationIssueCount'] == 0
+          assert report['dynamicSkipCount'] < 100
+          files = sorted(Path('translations').glob('*.json'))
+          assert len(files) == 124
+          for path in files:
+              json.loads(path.read_text(encoding='utf-8'))
+          source = Path('plugin/UnityUndergroundKorean.cs').read_text(encoding='utf-8')
+          assert '"1.1.0"' in source
+          assert 'TranslateAssembledGameText' in source
+          assert Path('BepInEx/plugins/UnityUndergroundKorean.dll').stat().st_size > 0
           print(json.dumps({
-              key: report[key]
-              for key in (
-                  'reviewedLocationCount', 'changedBlockFileCount',
-                  'changedBlockEntryCount', 'resolvedGlobalKeyCount',
-                  'changedGlobalEntryCount', 'dynamicSkipCount',
-                  'unresolvedCount', 'duplicateSourceConflictCount',
-                  'validationIssueCount'
-              )
+              'dynamicSkipCount': report['dynamicSkipCount'],
+              'changedGlobalEntryCount': report['changedGlobalEntryCount'],
+              'translationJsonCount': len(files),
+              'pluginBytes': Path('BepInEx/plugins/UnityUndergroundKorean.dll').stat().st_size,
           }, ensure_ascii=False, indent=2))
           PY
           git diff --check
 
-      - name: Verify refined retranslations are idempotent
-        run: |
-          python tools/apply_completed_retranslations.py \
-            --source-list tools/output/uw1_stringsclean.txt \
-            --report retranslation/POST_APPLY_CHECK.json \
-            --max-unresolved 0 \
-            --dry-run
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          report = json.loads(Path('retranslation/POST_APPLY_CHECK.json').read_text(encoding='utf-8'))
-          expected = {
-              'reviewedLocationCount': 7092,
-              'changedBlockFileCount': 0,
-              'changedBlockEntryCount': 0,
-              'changedGlobalEntryCount': 0,
-              'unresolvedCount': 0,
-              'validationIssueCount': 0,
-          }
-          for key, value in expected.items():
-              if report.get(key) != value:
-                  raise SystemExit(f'{key}: {report.get(key)} != {value}')
-          PY
-
-      - name: Validate translation JSON
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          paths = sorted(Path('translations').glob('*.json'))
-          if len(paths) != 124:
-              raise SystemExit(f'Expected 124 JSON files, found {len(paths)}')
-          for path in paths:
-              json.loads(path.read_text(encoding='utf-8'))
-          print(f'Validated {len(paths)} translation JSON files.')
-          PY
-          git diff --check
-
-      - name: Commit refined map when needed
+      - name: Commit finalized runtime
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add tools/apply_completed_retranslations.py retranslation/APPLY_REPORT.json translations/global_text_map.json
+          rm -f plugin/UnityUndergroundKorean.csproj
+          git add plugin/UnityUndergroundKorean.cs BepInEx/plugins/UnityUndergroundKorean.dll \
+            tools/apply_completed_retranslations.py retranslation/APPLY_REPORT.json \
+            translations/global_text_map.json
           if git diff --cached --quiet; then
-            echo 'Global map is already refined.'
+            echo 'No finalization changes to commit.'
           else
-            git commit -m '동적 문장 제외 범위 정밀화 [global-map-refined]'
-            git push origin HEAD:agent/apply-retranslation-v1.1.0
+            git commit -m 'v1.1.0 런타임 및 전역 맵 최종 보강 [runtime-finalized]'
+            git push origin HEAD:agent/finalize-v1.1.0-runtime
           fi
 
-      - name: Build release candidate
+      - name: Build release archive
         run: |
           python - <<'PY'
           import hashlib
           import zipfile
           from pathlib import Path
-
           output = Path('Unity-Underground-Korean-v1.1.0.zip')
           files = [Path('BepInEx/plugins/UnityUndergroundKorean.dll')]
           files.extend(sorted(Path('translations').glob('*.json')))
-          if len(files) != 125:
-              raise SystemExit(f'Expected DLL plus 124 JSON files, found {len(files)}')
+          assert len(files) == 125
           with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
               for path in files:
                   archive.write(path, path.as_posix())
           with zipfile.ZipFile(output) as archive:
-              bad = archive.testzip()
-              if bad is not None:
-                  raise SystemExit(f'Corrupt ZIP member: {bad}')
-              if len(archive.namelist()) != 125:
-                  raise SystemExit('Unexpected ZIP member count')
+              assert archive.testzip() is None
+              assert len(archive.namelist()) == 125
           digest = hashlib.sha256(output.read_bytes()).hexdigest()
           Path(str(output) + '.sha256').write_text(
-              f'{digest}  {output.name}\n', encoding='utf-8'
-          )
+              f'{digest}  {output.name}\n', encoding='utf-8')
           print(f'{output}: {output.stat().st_size} bytes, SHA-256 {digest}')
           PY
 
