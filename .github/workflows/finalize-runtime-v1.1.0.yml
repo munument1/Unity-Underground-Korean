@@ -1,104 +1,174 @@
-name: Finalize v1.1.0 Runtime
+name: Finalize and release v1.1.0
 
 on:
-  pull_request:
-    branches:
-      - main
   push:
     branches:
-      - agent/apply-retranslation-v1.1.0
+      - main
+    paths:
+      - .github/workflows/finalize-runtime-v1.1.0.yml
+      - retranslation/.final_dll.b64.*
+      - plugin/build.ps1
+      - retranslation/RUNTIME_FINALIZATION.md
 
 permissions:
   contents: write
 
+concurrency:
+  group: finalize-and-release-v1.1.0
+  cancel-in-progress: false
+
 jobs:
   finalize:
-    if: ${{ (github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'agent/apply-retranslation-v1.1.0') || (github.event_name == 'push' && !contains(github.event.head_commit.message, '[runtime-finalized]')) }}
+    if: ${{ contains(github.event.head_commit.message, '[run-final-release]') }}
     runs-on: ubuntu-latest
     steps:
-      - name: Check out application branch
+      - name: Check out main
         uses: actions/checkout@v4
         with:
-          ref: agent/apply-retranslation-v1.1.0
+          ref: main
           fetch-depth: 0
 
-      - name: Finalize source and translation map rules
+      - name: Restore verified actual-game DLL
         run: |
-          python -m py_compile tools/finalize_v1_1_0_runtime.py
-          python tools/finalize_v1_1_0_runtime.py
-          mkdir -p tools/output
-          curl --fail --location --retry 3 \
-            https://raw.githubusercontent.com/hankmorgan/UnderworldExporter/master/uw1_stringsclean.txt \
-            --output tools/output/uw1_stringsclean.txt
-          python tools/prepare_retranslation_application.py
-          python tools/apply_completed_retranslations.py \
-            --source-list tools/output/uw1_stringsclean.txt \
-            --report retranslation/APPLY_REPORT.json \
-            --max-unresolved 0
+          set -euo pipefail
+          cat retranslation/.final_dll.b64.* | base64 --decode > BepInEx/plugins/UnityUndergroundKorean.dll
+          test "$(stat -c %s BepInEx/plugins/UnityUndergroundKorean.dll)" = "24576"
+          echo 'eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20  BepInEx/plugins/UnityUndergroundKorean.dll' | sha256sum --check
 
-      - name: Build runtime plugin
+      - name: Correct no-effect sentence assembly
         run: |
-          cat > plugin/UnityUndergroundKorean.csproj <<'EOF'
-          <Project Sdk="Microsoft.NET.Sdk">
-            <PropertyGroup>
-              <TargetFramework>netstandard2.0</TargetFramework>
-              <LangVersion>7.3</LangVersion>
-              <AssemblyName>UnityUndergroundKorean</AssemblyName>
-              <RootNamespace>UnityUndergroundKorean</RootNamespace>
-              <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-              <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-              <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-              <OutputPath>../BepInEx/plugins/</OutputPath>
-            </PropertyGroup>
-            <ItemGroup>
-              <Compile Include="UnityUndergroundKorean.cs" />
-              <PackageReference Include="BepInEx.Core" Version="5.4.21" PrivateAssets="all" />
-              <PackageReference Include="HarmonyX" Version="2.9.0" PrivateAssets="all" />
-              <PackageReference Include="Newtonsoft.Json" Version="13.0.2" PrivateAssets="all" />
-              <PackageReference Include="UnityEngine.Modules" Version="2021.3.33" PrivateAssets="all" />
-            </ItemGroup>
-          </Project>
-          EOF
-          dotnet build plugin/UnityUndergroundKorean.csproj -c Release
-          test -f BepInEx/plugins/UnityUndergroundKorean.dll
-
-      - name: Validate finalized output
-        run: |
+          set -euo pipefail
           python - <<'PY'
-          import json
           from pathlib import Path
+
+          path = Path('plugin/UnityUndergroundKorean.cs')
+          text = path.read_text(encoding='utf-8')
+          old = '''            if (TryTranslateObjectPrefix(value, "Your attempt has no effect on the ", "에는 아무런 효과가 없습니다.", out fragment))
+                return "시도했지만 " + fragment;
+'''
+          new = '''            if (TryTakePrefix(value, "Your attempt has no effect on the ", out fragment))
+            {
+                string item = StripLeadingEnglishArticle(
+                    TranslateKnownFragment(fragment)).TrimEnd('.');
+                if (ContainsKorean(item))
+                    return "시도했지만 " + item + "에는 아무런 효과가 없습니다.";
+            }
+'''
+          if old in text:
+              text = text.replace(old, new, 1)
+          elif new not in text:
+              raise SystemExit('no-effect sentence assembly pattern not found')
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Validate and create deterministic release archive
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          import zipfile
+          from pathlib import Path
+
           report = json.loads(Path('retranslation/APPLY_REPORT.json').read_text(encoding='utf-8'))
           assert report['reviewedLocationCount'] == 7092
+          assert report['dynamicSkipCount'] == 48
           assert report['unresolvedCount'] == 0
           assert report['validationIssueCount'] == 0
-          assert report['dynamicSkipCount'] < 100
-          files = sorted(Path('translations').glob('*.json'))
-          assert len(files) == 124
-          for path in files:
+
+          translations = sorted(Path('translations').glob('*.json'))
+          assert len(translations) == 124
+          for path in translations:
               json.loads(path.read_text(encoding='utf-8'))
+
           source = Path('plugin/UnityUndergroundKorean.cs').read_text(encoding='utf-8')
-          assert '"1.1.0"' in source
-          assert 'TranslateAssembledGameText' in source
-          print(json.dumps({
-              'dynamicSkipCount': report['dynamicSkipCount'],
-              'changedGlobalEntryCount': report['changedGlobalEntryCount'],
-              'translationJsonCount': len(files),
-              'pluginBytes': Path('BepInEx/plugins/UnityUndergroundKorean.dll').stat().st_size,
-          }, ensure_ascii=False, indent=2))
+          assert '[BepInPlugin("kr.ultima-underworld.korean", "Unity Underground Korean", "1.1.0")]' in source
+          assert 'return "시도했지만 " + item + "에는 아무런 효과가 없습니다.";' in source
+          assert 'TryTranslateObjectPrefix(value, "Your attempt has no effect on the "' not in source
+
+          build = Path('plugin/build.ps1').read_text(encoding='utf-8')
+          assert "'/nostdlib+'" in build
+          assert 'AssemblyVersion("1.1.0.0")' in build
+          assert 'Exiled.Dev.References' not in build
+
+          dll = Path('BepInEx/plugins/UnityUndergroundKorean.dll')
+          assert dll.stat().st_size == 24576
+          assert hashlib.sha256(dll.read_bytes()).hexdigest() == 'eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20'
+
+          archive = Path('/tmp/Unity-Underground-Korean-v1.1.0.zip')
+          checksum = Path('/tmp/Unity-Underground-Korean-v1.1.0.zip.sha256')
+          fixed_time = (2026, 7, 31, 0, 0, 0)
+          files = [(dll, 'BepInEx/plugins/UnityUndergroundKorean.dll')]
+          files.extend((path, 'translations/' + path.name) for path in translations)
+          assert len(files) == 125
+          with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
+              for source_path, target in files:
+                  info = zipfile.ZipInfo(target, fixed_time)
+                  info.compress_type = zipfile.ZIP_DEFLATED
+                  info.external_attr = 0o100644 << 16
+                  zf.writestr(info, source_path.read_bytes(), compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
+          with zipfile.ZipFile(archive) as zf:
+              names = zf.namelist()
+              assert len(names) == 125
+              assert len(set(names)) == 125
+              assert zf.testzip() is None
+          archive_hash = hashlib.sha256(archive.read_bytes()).hexdigest()
+          assert archive.stat().st_size == 456460
+          assert archive_hash == '7ab034e4072dd466bcbda65d5ed4d1116ec8e318ae6fff619b8c3ad37e9c71cd'
+          checksum.write_text(f'{archive_hash}  {archive.name}\n', encoding='ascii')
           PY
           git diff --check
 
-      - name: Commit finalized runtime
+      - name: Remove temporary transfer and diagnostic files
         run: |
+          set -euo pipefail
+          rm -f retranslation/.final_dll.b64.*
+          rm -f .github/workflows/apply-actual-dll-v1.1.0.yml
+          rm -f .github/workflows/finalize-runtime-v1.1.0.yml
+          rm -f .github/workflows/export-v1.1.0-build-kit.yml
+          rm -f .github/workflows/fix-no-effect-v1.1.0.yml
+          rm -f .github/workflows/validate-v1.1.0-release.yml
+          rm -f retranslation/RUNTIME_BUILD_LOG.txt
+          rm -f tools/finalize_v1_1_runtime.py
+
+      - name: Commit final repository state
+        run: |
+          set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          rm -f plugin/UnityUndergroundKorean.csproj
-          git add plugin/UnityUndergroundKorean.cs BepInEx/plugins/UnityUndergroundKorean.dll \
-            tools/apply_completed_retranslations.py tools/finalize_v1_1_0_runtime.py \
-            retranslation/APPLY_REPORT.json translations
-          if git diff --cached --quiet; then
-            echo 'No finalization changes to commit.'
-            exit 0
+          git add -A
+          git commit -m 'v1.1.0 실제 게임 참조 DLL 최종 확정 [actual-dll-applied]'
+          git push origin HEAD:main
+
+      - name: Publish v1.1.0 release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          final_sha="$(git rev-parse HEAD)"
+          git tag -f v1.1.0 "$final_sha"
+          git push origin refs/tags/v1.1.0 --force
+          cat > /tmp/release-notes.md <<'EOF'
+          # Unity Underground Korean v1.1.0
+
+          공식 영문 기준 7,092개 위치 전체를 검토한 완전 재번역 릴리스입니다.
+
+          - 번역 JSON 124개
+          - 플러그인 1개
+          - 배포 파일 총 125개
+          - 동적 문장 한국어 어순 및 조사 처리 보강
+          - 실제 게임 DLL 직접 참조 빌드
+          - 미해결 원문 대응 0개
+          - 구조·토큰 검증 오류 0개
+
+          ZIP SHA-256: `7ab034e4072dd466bcbda65d5ed4d1116ec8e318ae6fff619b8c3ad37e9c71cd`
+          EOF
+          if gh release view v1.1.0 >/dev/null 2>&1; then
+            gh release edit v1.1.0 --title 'Unity Underground Korean v1.1.0' --notes-file /tmp/release-notes.md
+          else
+            gh release create v1.1.0 --title 'Unity Underground Korean v1.1.0' --notes-file /tmp/release-notes.md
           fi
-          git commit -m 'v1.1.0 동적 문장 처리 및 전역 맵 최종 보강 [runtime-finalized]'
-          git push origin HEAD:agent/apply-retranslation-v1.1.0
+          gh release upload v1.1.0 \
+            /tmp/Unity-Underground-Korean-v1.1.0.zip \
+            /tmp/Unity-Underground-Korean-v1.1.0.zip.sha256 \
+            --clobber
