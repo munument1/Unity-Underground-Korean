@@ -25,7 +25,9 @@ jobs:
       - name: Finalize source and translation map rules
         run: |
           python -m py_compile tools/finalize_v1_1_0_runtime.py
+          python -m py_compile tools/add_v1_1_0_dynamic_sources.py
           python tools/finalize_v1_1_0_runtime.py
+          python tools/add_v1_1_0_dynamic_sources.py
           mkdir -p tools/output
           curl --fail --location --retry 3 \
             https://raw.githubusercontent.com/hankmorgan/UnderworldExporter/master/uw1_stringsclean.txt \
@@ -34,15 +36,7 @@ jobs:
           python tools/apply_completed_retranslations.py \
             --source-list tools/output/uw1_stringsclean.txt \
             --report retranslation/APPLY_REPORT.json \
-            --max-unresolved 2
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          report = json.loads(Path('retranslation/APPLY_REPORT.json').read_text(encoding='utf-8'))
-          print(json.dumps(report['unresolved'], ensure_ascii=False, indent=2))
-          if report['unresolvedCount']:
-              raise SystemExit('unresolved global-map entries remain')
-          PY
+            --max-unresolved 0
 
       - name: Build runtime plugin
         run: |
@@ -101,9 +95,10 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           rm -f plugin/UnityUndergroundKorean.csproj
+          rm -f translations/.runtime-finalization-trigger
           git add plugin/UnityUndergroundKorean.cs BepInEx/plugins/UnityUndergroundKorean.dll \
             tools/apply_completed_retranslations.py tools/finalize_v1_1_0_runtime.py \
-            retranslation/APPLY_REPORT.json translations
+            tools/add_v1_1_0_dynamic_sources.py retranslation/APPLY_REPORT.json translations
           if git diff --cached --quiet; then
             echo 'No finalization changes to commit.'
             exit 0
