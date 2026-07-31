@@ -40,11 +40,12 @@ jobs:
           test -s BepInEx/plugins/UnityUndergroundKorean.dll
           cp BepInEx/plugins/UnityUndergroundKorean.dll /tmp/UnityUndergroundKorean.old.dll
 
-      - name: Create assembly-compatible TextMeshPro compile stub
+      - name: Create assembly-compatible Unity compile stubs
         run: |
           set -euo pipefail
-          rm -rf plugin/TMProStub
-          mkdir -p plugin/TMProStub
+          rm -rf plugin/TMProStub plugin/UnityUIStub
+          mkdir -p plugin/TMProStub plugin/UnityUIStub
+
           cat > plugin/TMProStub/TMProStub.csproj <<'EOF'
           <Project Sdk="Microsoft.NET.Sdk">
             <PropertyGroup>
@@ -99,8 +100,42 @@ jobs:
               }
           }
           EOF
+
+          cat > plugin/UnityUIStub/UnityUIStub.csproj <<'EOF'
+          <Project Sdk="Microsoft.NET.Sdk">
+            <PropertyGroup>
+              <TargetFramework>netstandard2.0</TargetFramework>
+              <LangVersion>7.3</LangVersion>
+              <AssemblyName>UnityEngine.UI</AssemblyName>
+              <RootNamespace>UnityEngine.UI</RootNamespace>
+              <AssemblyVersion>1.0.0.0</AssemblyVersion>
+              <FileVersion>1.0.0.0</FileVersion>
+              <Version>1.0.0</Version>
+              <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+            </PropertyGroup>
+            <ItemGroup>
+              <Compile Include="UnityUIStub.cs" />
+              <PackageReference Include="UnityEngine.Modules" Version="2021.3.33" PrivateAssets="all" />
+            </ItemGroup>
+          </Project>
+          EOF
+          cat > plugin/UnityUIStub/UnityUIStub.cs <<'EOF'
+          using UnityEngine;
+
+          namespace UnityEngine.UI
+          {
+              public class Text : Object
+              {
+                  public virtual string text { get; set; }
+                  public Font font { get; set; }
+              }
+          }
+          EOF
+
           dotnet build plugin/TMProStub/TMProStub.csproj -c Release
+          dotnet build plugin/UnityUIStub/UnityUIStub.csproj -c Release
           test -s plugin/TMProStub/bin/Release/netstandard2.0/Unity.TextMeshPro.dll
+          test -s plugin/UnityUIStub/bin/Release/netstandard2.0/UnityEngine.UI.dll
 
       - name: Build plugin without Exiled.Dev.References
         run: |
@@ -126,6 +161,10 @@ jobs:
               <Compile Include="UnityUndergroundKorean.cs" />
               <Reference Include="Unity.TextMeshPro">
                 <HintPath>TMProStub/bin/Release/netstandard2.0/Unity.TextMeshPro.dll</HintPath>
+                <Private>false</Private>
+              </Reference>
+              <Reference Include="UnityEngine.UI">
+                <HintPath>UnityUIStub/bin/Release/netstandard2.0/UnityEngine.UI.dll</HintPath>
                 <Private>false</Private>
               </Reference>
               <PackageReference Include="BepInEx.Core" Version="5.4.21" PrivateAssets="all" />
@@ -243,15 +282,14 @@ jobs:
               'newAssemblyIdentity': Path('/tmp/new-assembly.txt').read_text().strip(),
               'archiveBytes': archive.stat().st_size,
               'archiveSha256': archive_sha,
-              'buildMode': 'netstandard2.0 with package references and an assembly-compatible Unity.TextMeshPro compile stub',
+              'buildMode': 'netstandard2.0 with package references and assembly-compatible Unity UI compile stubs',
               'runtimeReferenceArchive': 'stored privately in Google Drive; not committed to GitHub',
           }
           (dist / 'BUILD_AUDIT.json').write_text(
               json.dumps(audit, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
           )
 
-          finalization = Path('retranslation/RUNTIME_FINALIZATION.md')
-          finalization.write_text(
+          Path('retranslation/RUNTIME_FINALIZATION.md').write_text(
               '# v1.1.0 런타임 최종 검증\n\n'
               f'- 플러그인 어셈블리: `{audit["newAssemblyIdentity"]}`\n'
               f'- 기존 DLL: {audit["oldPluginBytes"]} bytes, `{old_sha}`\n'
@@ -263,7 +301,7 @@ jobs:
               f'- 구조 검증 오류: {audit["validationIssueCount"]}개\n'
               '- 실제 게임 참조 DLL은 Google Drive에 비공개 보관하며 GitHub에는 커밋하지 않음\n'
               '- 로컬 `plugin/build.ps1`은 실제 게임 DLL을 `/nostdlib+`로 직접 참조\n'
-              '- CI는 런타임 어셈블리 정체성과 일치하는 TextMeshPro 컴파일 스텁만 임시 생성\n',
+              '- CI는 런타임 어셈블리 정체성과 일치하는 Unity UI 컴파일 스텁만 임시 생성\n',
               encoding='utf-8',
           )
           print(json.dumps(audit, ensure_ascii=False, indent=2))
@@ -284,7 +322,7 @@ jobs:
       - name: Commit finalized runtime and remove diagnostics
         run: |
           set -euo pipefail
-          rm -rf plugin/TMProStub plugin/UnityUndergroundKorean.csproj
+          rm -rf plugin/TMProStub plugin/UnityUIStub plugin/UnityUndergroundKorean.csproj
           rm -rf plugin/.game-refs
           rm -f retranslation/RUNTIME_BUILD_LOG.txt
           rm -f tools/finalize_v1_1_runtime.py
