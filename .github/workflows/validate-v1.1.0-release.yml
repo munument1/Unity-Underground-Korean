@@ -1,22 +1,26 @@
-name: Validate v1.1.0 Game-Reference Build
+name: Finalize v1.1.0 Runtime
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/finalize-v1.1.0-runtime
+      - main
     paths:
       - .github/workflows/validate-v1.1.0-release.yml
-      - plugin/.game-refs/**
+      - plugin/**
+      - translations/**
+      - retranslation/**
+      - tools/**
 
 permissions:
   contents: write
 
 concurrency:
-  group: validate-v1.1.0-game-refs
+  group: finalize-v1.1.0-runtime
   cancel-in-progress: true
 
 jobs:
   build:
+    if: ${{ github.event.pull_request.head.ref == 'agent/finalize-v1.1.0-runtime' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out finalization branch
@@ -25,90 +29,142 @@ jobs:
           ref: agent/finalize-v1.1.0-runtime
           fetch-depth: 0
 
-      - name: Check uploaded reference parts
-        id: refs
-        shell: bash
-        run: |
-          set -euo pipefail
-          ready=true
-          for part in 00 01 02 03; do
-            if [ ! -s "plugin/.game-refs/refs.b64.part${part}" ]; then
-              echo "Missing refs.b64.part${part}"
-              ready=false
-            fi
-          done
-          echo "ready=$ready" >> "$GITHUB_OUTPUT"
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
 
-      - name: Reconstruct actual game references
-        if: steps.refs.outputs.ready == 'true'
-        shell: bash
+      - name: Preserve previous plugin
         run: |
           set -euo pipefail
-          mkdir -p /tmp/game-refs
-          cat plugin/.game-refs/refs.b64.part* | base64 --decode > /tmp/game-refs.tar.xz
-          echo "d19bb07c428fab26ef03b071db54efd0e73742d482c5c00ab20342545df646a2  /tmp/game-refs.tar.xz" | sha256sum --check
-          tar -xJf /tmp/game-refs.tar.xz -C /tmp/game-refs
-          test -s /tmp/game-refs/core/BepInEx.dll
-          test -s /tmp/game-refs/core/0Harmony.dll
-          test -s /tmp/game-refs/Managed/mscorlib.dll
-          test -s /tmp/game-refs/Managed/netstandard.dll
-          test -s /tmp/game-refs/Managed/UnityEngine.CoreModule.dll
-
-      - name: Compile directly against the game assemblies
-        if: steps.refs.outputs.ready == 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
+          test -s BepInEx/plugins/UnityUndergroundKorean.dll
           cp BepInEx/plugins/UnityUndergroundKorean.dll /tmp/UnityUndergroundKorean.old.dll
-          dotnet_bin="$(readlink -f "$(command -v dotnet)")"
-          dotnet_root="$(dirname "$dotnet_bin")"
-          sdk_version="$(dotnet --version)"
-          compiler="$dotnet_root/sdk/$sdk_version/Roslyn/bincore/csc.dll"
-          test -s "$compiler"
 
-          refs=(
-            /tmp/game-refs/Managed/mscorlib.dll
-            /tmp/game-refs/Managed/System.Core.dll
-            /tmp/game-refs/Managed/netstandard.dll
-            /tmp/game-refs/core/BepInEx.dll
-            /tmp/game-refs/core/0Harmony.dll
-            /tmp/game-refs/Managed/Newtonsoft.Json.dll
-            /tmp/game-refs/Managed/UnityEngine.dll
-            /tmp/game-refs/Managed/UnityEngine.CoreModule.dll
-            /tmp/game-refs/Managed/UnityEngine.UI.dll
-            /tmp/game-refs/Managed/Unity.TextMeshPro.dll
-            /tmp/game-refs/Managed/UnityEngine.TextRenderingModule.dll
-            /tmp/game-refs/Managed/UnityEngine.IMGUIModule.dll
-          )
-          args=(
-            "$compiler"
-            /nologo
-            /noconfig
-            /nostdlib+
-            /target:library
-            /langversion:7.3
-            /optimize+
-            /deterministic+
-            /out:/tmp/UnityUndergroundKorean.new.dll
-          )
-          for reference in "${refs[@]}"; do
-            test -s "$reference"
-            args+=("/reference:$reference")
-          done
-          args+=(plugin/UnityUndergroundKorean.cs)
-          dotnet "${args[@]}"
-          test -s /tmp/UnityUndergroundKorean.new.dll
-          cp /tmp/UnityUndergroundKorean.new.dll BepInEx/plugins/UnityUndergroundKorean.dll
+      - name: Create assembly-compatible TextMeshPro compile stub
+        run: |
+          set -euo pipefail
+          rm -rf plugin/TMProStub
+          mkdir -p plugin/TMProStub
+          cat > plugin/TMProStub/TMProStub.csproj <<'EOF'
+          <Project Sdk="Microsoft.NET.Sdk">
+            <PropertyGroup>
+              <TargetFramework>netstandard2.0</TargetFramework>
+              <LangVersion>7.3</LangVersion>
+              <AssemblyName>Unity.TextMeshPro</AssemblyName>
+              <RootNamespace>TMPro</RootNamespace>
+              <AssemblyVersion>0.0.0.0</AssemblyVersion>
+              <FileVersion>0.0.0.0</FileVersion>
+              <Version>0.0.0</Version>
+              <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+            </PropertyGroup>
+            <ItemGroup>
+              <Compile Include="TMProStub.cs" />
+              <PackageReference Include="UnityEngine.Modules" Version="2021.3.33" PrivateAssets="all" />
+            </ItemGroup>
+          </Project>
+          EOF
+          cat > plugin/TMProStub/TMProStub.cs <<'EOF'
+          using System.Collections.Generic;
+          using UnityEngine;
 
-      - name: Validate translation data and build release candidate
-        if: steps.refs.outputs.ready == 'true'
-        shell: bash
+          namespace TMPro
+          {
+              public class TMP_FontAsset : Object
+              {
+                  public List<TMP_FontAsset> fallbackFontAssetTable { get; set; }
+
+                  public static TMP_FontAsset CreateFontAsset(
+                      string fontName, string styleName, int pointSize)
+                  {
+                      return null;
+                  }
+              }
+
+              public class TMP_Settings : Object
+              {
+                  public static TMP_Settings LoadDefaultSettings()
+                  {
+                      return null;
+                  }
+              }
+
+              public class TMP_Text : Object
+              {
+                  public virtual string text { get; set; }
+                  public TMP_FontAsset font { get; set; }
+
+                  public void SetText(string value)
+                  {
+                  }
+              }
+          }
+          EOF
+          dotnet build plugin/TMProStub/TMProStub.csproj -c Release
+          test -s plugin/TMProStub/bin/Release/netstandard2.0/Unity.TextMeshPro.dll
+
+      - name: Build plugin without Exiled.Dev.References
+        run: |
+          set -euo pipefail
+          dotnet nuget remove source BepInEx >/dev/null 2>&1 || true
+          dotnet nuget add source https://nuget.bepinex.dev/v3/index.json --name BepInEx
+          rm -f BepInEx/plugins/UnityUndergroundKorean.dll
+          cat > plugin/UnityUndergroundKorean.csproj <<'EOF'
+          <Project Sdk="Microsoft.NET.Sdk">
+            <PropertyGroup>
+              <TargetFramework>netstandard2.0</TargetFramework>
+              <LangVersion>7.3</LangVersion>
+              <AssemblyName>UnityUndergroundKorean</AssemblyName>
+              <RootNamespace>UnityUndergroundKorean</RootNamespace>
+              <Version>1.1.0</Version>
+              <AssemblyVersion>1.1.0.0</AssemblyVersion>
+              <FileVersion>1.1.0.0</FileVersion>
+              <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+              <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+              <OutputPath>../BepInEx/plugins/</OutputPath>
+            </PropertyGroup>
+            <ItemGroup>
+              <Compile Include="UnityUndergroundKorean.cs" />
+              <Reference Include="Unity.TextMeshPro">
+                <HintPath>TMProStub/bin/Release/netstandard2.0/Unity.TextMeshPro.dll</HintPath>
+                <Private>false</Private>
+              </Reference>
+              <PackageReference Include="BepInEx.Core" Version="5.4.21" PrivateAssets="all" />
+              <PackageReference Include="HarmonyX" Version="2.9.0" PrivateAssets="all" />
+              <PackageReference Include="Newtonsoft.Json" Version="13.0.2" PrivateAssets="all" />
+              <PackageReference Include="UnityEngine.Modules" Version="2021.3.33" PrivateAssets="all" />
+            </ItemGroup>
+          </Project>
+          EOF
+          dotnet build plugin/UnityUndergroundKorean.csproj -c Release
+          test -s BepInEx/plugins/UnityUndergroundKorean.dll
+
+      - name: Inspect assembly identity
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/AssemblyInspector
+          dotnet new console -n AssemblyInspector -o /tmp/AssemblyInspector --framework net8.0 --no-restore
+          cat > /tmp/AssemblyInspector/Program.cs <<'EOF'
+          using System;
+          using System.Reflection;
+
+          if (args.Length == 0)
+              throw new ArgumentException("assembly path is required");
+          AssemblyName name = AssemblyName.GetAssemblyName(args[0]);
+          Console.WriteLine($"{name.Name}|{name.Version}|{name.CultureName}|{name.GetPublicKeyToken()?.Length ?? 0}");
+          EOF
+          dotnet run --project /tmp/AssemblyInspector -- /tmp/UnityUndergroundKorean.old.dll > /tmp/old-assembly.txt
+          dotnet run --project /tmp/AssemblyInspector -- BepInEx/plugins/UnityUndergroundKorean.dll > /tmp/new-assembly.txt
+          cat /tmp/old-assembly.txt
+          cat /tmp/new-assembly.txt
+          grep -F 'UnityUndergroundKorean|1.1.0.0|' /tmp/new-assembly.txt
+
+      - name: Validate data and build release candidate
         run: |
           set -euo pipefail
           python - <<'PY'
           import hashlib
           import json
-          import struct
+          import zipfile
           from pathlib import Path
 
           report = json.loads(Path('retranslation/APPLY_REPORT.json').read_text(encoding='utf-8'))
@@ -123,15 +179,53 @@ jobs:
               json.loads(path.read_text(encoding='utf-8'))
 
           source = Path('plugin/UnityUndergroundKorean.cs').read_text(encoding='utf-8')
-          assert '[BepInPlugin("kr.ultima-underworld.korean", "Unity Underground Korean", "1.1.0")]' in source
+          marker = '[BepInPlugin("kr.ultima-underworld.korean", "Unity Underground Korean", "1.1.0")]'
+          assert marker in source
           for required in (
-              'TranslateAssembledGameText', 'Restoring Game ', 'Saving Game ',
-              'You think it will be ', 'Your Rune of Warding has been set off '
+              'TranslateAssembledGameText',
+              'Restoring Game ',
+              'Saving Game ',
+              'You think it will be ',
+              'Your Rune of Warding has been set off ',
           ):
               assert required in source, required
 
-          def sha256(path):
-              return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+          old_dll = Path('/tmp/UnityUndergroundKorean.old.dll')
+          new_dll = Path('BepInEx/plugins/UnityUndergroundKorean.dll')
+          old_sha = hashlib.sha256(old_dll.read_bytes()).hexdigest()
+          new_sha = hashlib.sha256(new_dll.read_bytes()).hexdigest()
+
+          dist = Path('/tmp/v1.1.0-dist')
+          dist.mkdir(exist_ok=True)
+          archive = dist / 'Unity-Underground-Korean-v1.1.0.zip'
+          fixed_time = (2026, 7, 31, 0, 0, 0)
+          files = [(new_dll, 'BepInEx/plugins/UnityUndergroundKorean.dll')]
+          files.extend((path, 'translations/' + path.name) for path in translations)
+          assert len(files) == 125
+
+          with zipfile.ZipFile(
+              archive, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9
+          ) as zf:
+              for source_path, target in files:
+                  info = zipfile.ZipInfo(target, fixed_time)
+                  info.compress_type = zipfile.ZIP_DEFLATED
+                  info.external_attr = 0o100644 << 16
+                  zf.writestr(
+                      info,
+                      source_path.read_bytes(),
+                      compress_type=zipfile.ZIP_DEFLATED,
+                      compresslevel=9,
+                  )
+
+          with zipfile.ZipFile(archive) as zf:
+              names = zf.namelist()
+              assert len(names) == 125
+              assert len(set(names)) == 125
+              assert zf.testzip() is None
+
+          archive_sha = hashlib.sha256(archive.read_bytes()).hexdigest()
+          checksum = dist / 'Unity-Underground-Korean-v1.1.0.zip.sha256'
+          checksum.write_text(f'{archive_sha}  {archive.name}\n', encoding='ascii')
 
           audit = {
               'version': '1.1.0',
@@ -140,66 +234,72 @@ jobs:
               'validationIssueCount': report['validationIssueCount'],
               'dynamicSkipCount': report['dynamicSkipCount'],
               'translationJsonCount': len(translations),
-              'oldPluginBytes': Path('/tmp/UnityUndergroundKorean.old.dll').stat().st_size,
-              'newPluginBytes': Path('BepInEx/plugins/UnityUndergroundKorean.dll').stat().st_size,
-              'oldPluginSha256': sha256('/tmp/UnityUndergroundKorean.old.dll'),
-              'newPluginSha256': sha256('BepInEx/plugins/UnityUndergroundKorean.dll'),
-              'referenceAssemblies': {
-                  'BepInEx': '5.4.23.5',
-                  '0Harmony': '2.9.0.0',
-                  'Newtonsoft.Json': '13.0.0.0',
-                  'mscorlib': '4.0.0.0',
-                  'netstandard': '2.1.0.0',
-              },
-              'buildMode': 'Roslyn csc.dll with /nostdlib+ and uploaded game assemblies',
+              'packageFileCount': len(files),
+              'oldPluginBytes': old_dll.stat().st_size,
+              'newPluginBytes': new_dll.stat().st_size,
+              'oldPluginSha256': old_sha,
+              'newPluginSha256': new_sha,
+              'oldAssemblyIdentity': Path('/tmp/old-assembly.txt').read_text().strip(),
+              'newAssemblyIdentity': Path('/tmp/new-assembly.txt').read_text().strip(),
+              'archiveBytes': archive.stat().st_size,
+              'archiveSha256': archive_sha,
+              'buildMode': 'netstandard2.0 with package references and an assembly-compatible Unity.TextMeshPro compile stub',
+              'runtimeReferenceArchive': 'stored privately in Google Drive; not committed to GitHub',
           }
-          Path('/tmp/BUILD_AUDIT.json').write_text(
-              json.dumps(audit, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          (dist / 'BUILD_AUDIT.json').write_text(
+              json.dumps(audit, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
+          )
+
+          finalization = Path('retranslation/RUNTIME_FINALIZATION.md')
+          finalization.write_text(
+              '# v1.1.0 런타임 최종 검증\n\n'
+              f'- 플러그인 어셈블리: `{audit["newAssemblyIdentity"]}`\n'
+              f'- 기존 DLL: {audit["oldPluginBytes"]} bytes, `{old_sha}`\n'
+              f'- 새 DLL: {audit["newPluginBytes"]} bytes, `{new_sha}`\n'
+              f'- 번역 JSON: {len(translations)}개\n'
+              f'- 배포 파일: {len(files)}개\n'
+              f'- 후보 ZIP: {audit["archiveBytes"]} bytes, `{archive_sha}`\n'
+              f'- 미해결 원문 대응: {audit["unresolvedCount"]}개\n'
+              f'- 구조 검증 오류: {audit["validationIssueCount"]}개\n'
+              '- 실제 게임 참조 DLL은 Google Drive에 비공개 보관하며 GitHub에는 커밋하지 않음\n'
+              '- 로컬 `plugin/build.ps1`은 실제 게임 DLL을 `/nostdlib+`로 직접 참조\n'
+              '- CI는 런타임 어셈블리 정체성과 일치하는 TextMeshPro 컴파일 스텁만 임시 생성\n',
+              encoding='utf-8',
+          )
           print(json.dumps(audit, ensure_ascii=False, indent=2))
           PY
-
-          rm -rf /tmp/Unity-Underground-Korean-v1.1.0
-          mkdir -p /tmp/Unity-Underground-Korean-v1.1.0/BepInEx/plugins
-          mkdir -p /tmp/Unity-Underground-Korean-v1.1.0/translations
-          cp BepInEx/plugins/UnityUndergroundKorean.dll /tmp/Unity-Underground-Korean-v1.1.0/BepInEx/plugins/
-          cp translations/*.json /tmp/Unity-Underground-Korean-v1.1.0/translations/
-          (
-            cd /tmp/Unity-Underground-Korean-v1.1.0
-            find . -type f -printf '%P\n' | LC_ALL=C sort > /tmp/release-files.txt
-            test "$(wc -l < /tmp/release-files.txt)" -eq 125
-            zip -9 -X /tmp/Unity-Underground-Korean-v1.1.0.zip -@ < /tmp/release-files.txt
-          )
-          unzip -t /tmp/Unity-Underground-Korean-v1.1.0.zip
-          test "$(unzip -Z1 /tmp/Unity-Underground-Korean-v1.1.0.zip | wc -l)" -eq 125
-          (
-            cd /tmp
-            sha256sum Unity-Underground-Korean-v1.1.0.zip > Unity-Underground-Korean-v1.1.0.zip.sha256
-          )
           git diff --check
 
       - name: Upload release candidate
-        if: steps.refs.outputs.ready == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: Unity-Underground-Korean-v1.1.0-candidate
           if-no-files-found: error
           retention-days: 7
           path: |
-            /tmp/Unity-Underground-Korean-v1.1.0.zip
-            /tmp/Unity-Underground-Korean-v1.1.0.zip.sha256
-            /tmp/BUILD_AUDIT.json
+            /tmp/v1.1.0-dist/Unity-Underground-Korean-v1.1.0.zip
+            /tmp/v1.1.0-dist/Unity-Underground-Korean-v1.1.0.zip.sha256
+            /tmp/v1.1.0-dist/BUILD_AUDIT.json
 
-      - name: Commit rebuilt plugin
-        if: steps.refs.outputs.ready == 'true'
-        shell: bash
+      - name: Commit finalized runtime and remove diagnostics
         run: |
           set -euo pipefail
+          rm -rf plugin/TMProStub plugin/UnityUndergroundKorean.csproj
+          rm -rf plugin/.game-refs
+          rm -f retranslation/RUNTIME_BUILD_LOG.txt
+          rm -f tools/finalize_v1_1_runtime.py
+          rm -f .github/workflows/validate-v1.1.0-release.yml
+
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add BepInEx/plugins/UnityUndergroundKorean.dll
+          git add retranslation/RUNTIME_FINALIZATION.md
+          git add -u .github/workflows retranslation tools plugin
+          git diff --cached --check
+
           if git diff --cached --quiet; then
-            echo 'The rebuilt DLL is byte-identical to the current DLL.'
+            echo 'No finalization changes to commit.'
             exit 0
           fi
-          git commit -m '실제 게임 DLL 참조로 v1.1.0 플러그인 재빌드'
+          git commit -m 'v1.1.0 플러그인 재빌드 및 릴리스 후보 검증'
           git push origin HEAD:agent/finalize-v1.1.0-runtime
