@@ -60,6 +60,10 @@ def normalize_source(value: str) -> str:
     return re.sub(r"\s+([,.;:!?])", r"\1", value)
 
 
+def compact_source(value: str) -> str:
+    return re.sub(r"\s+", "", normalize_source(value))
+
+
 def is_dynamic_source(source: str) -> bool:
     return (
         source in DYNAMIC_SOURCES
@@ -141,7 +145,7 @@ def load_source_list(path: Path):
     return result
 
 
-def resolve_global_key(source, global_map, normalized_index):
+def resolve_global_key(source, global_map, normalized_index, compact_index):
     if source in global_map:
         return source, "exact"
     candidates = normalized_index.get(normalize_source(source), [])
@@ -149,7 +153,14 @@ def resolve_global_key(source, global_map, normalized_index):
         return candidates[0], "normalized"
     if len(candidates) > 1 and len({global_map[key] for key in candidates}) == 1:
         return sorted(candidates)[0], "normalized-equivalent"
-    return None, "ambiguous-normalized" if candidates else "missing"
+    compact_candidates = compact_index.get(compact_source(source), [])
+    if len(compact_candidates) == 1:
+        return compact_candidates[0], "compact"
+    if len(compact_candidates) > 1 and len({global_map[key] for key in compact_candidates}) == 1:
+        return sorted(compact_candidates)[0], "compact-equivalent"
+    if candidates:
+        return None, "ambiguous-normalized"
+    return None, "ambiguous-compact" if compact_candidates else "missing"
 
 
 def select_candidate(candidates, current_value):
@@ -197,9 +208,11 @@ def apply(args):
     original_global_count = len(global_map)
 
     normalized_index = defaultdict(list)
+    compact_index = defaultdict(list)
     value_index = defaultdict(list)
     for key, value in global_map.items():
         normalized_index[normalize_source(key)].append(key)
+        compact_index[compact_source(key)].append(key)
         value_index[value].append(key)
 
     block_roots = {}
@@ -235,16 +248,11 @@ def apply(args):
         source = source_by_location.get(location)
         if source is None:
             source_missing_locations.append({"blockId": location[0], "stringId": location[1]})
-            value_candidates = value_index.get(current_by_location[location], [])
-            if len(value_candidates) == 1:
-                key_candidates[value_candidates[0]].append((proposal, location))
-                resolution_counts["current-value-unique"] += 1
-            else:
-                unresolved.append({
-                    "blockId": location[0], "stringId": location[1],
-                    "reason": "source-location-missing",
-                    "candidateGlobalKeyCount": len(value_candidates),
-                })
+            resolution_counts["source-missing-block-only"] += 1
+            continue
+        stripped_source = TOKEN_RE.sub("", source)
+        if proposal == source or not re.search(r"[A-Za-z가-힣]", stripped_source):
+            resolution_counts["literal-block-only"] += 1
             continue
         if is_dynamic_source(source):
             dynamic_skips.append({
@@ -253,7 +261,9 @@ def apply(args):
             })
             resolution_counts["dynamic-skip"] += 1
             continue
-        global_key, method = resolve_global_key(source, global_map, normalized_index)
+        global_key, method = resolve_global_key(
+            source, global_map, normalized_index, compact_index
+        )
         if global_key is None:
             value_candidates = value_index.get(current_by_location[location], [])
             if len(value_candidates) == 1:

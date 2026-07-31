@@ -1,0 +1,8235 @@
+{
+  "schemaVersion": 1,
+  "expectedReviewedLocationCount": 7092,
+  "reviewedLocationCount": 7092,
+  "bundleCount": 33,
+  "bundleStats": [
+    {
+      "bundle": 1,
+      "file": "bundle_01_translations.json",
+      "entryCount": 314,
+      "changedEntryCount": 130
+    },
+    {
+      "bundle": 2,
+      "file": "bundle_02_translations.json",
+      "entryCount": 410,
+      "changedEntryCount": 235
+    },
+    {
+      "bundle": 3,
+      "file": "bundle_03_translations.json",
+      "entryCount": 507,
+      "changedEntryCount": 156
+    },
+    {
+      "bundle": 4,
+      "file": "bundle_04_translations.json",
+      "entryCount": 477,
+      "changedEntryCount": 270
+    },
+    {
+      "bundle": 5,
+      "file": "bundle_05_translations.json",
+      "entryCount": 171,
+      "changedEntryCount": 161
+    },
+    {
+      "bundle": 6,
+      "file": "bundle_06_translations.json",
+      "entryCount": 122,
+      "changedEntryCount": 122
+    },
+    {
+      "bundle": 7,
+      "file": "bundle_07_translations.json",
+      "entryCount": 197,
+      "changedEntryCount": 182
+    },
+    {
+      "bundle": 8,
+      "file": "bundle_08_translations.json",
+      "entryCount": 142,
+      "changedEntryCount": 129
+    },
+    {
+      "bundle": 9,
+      "file": "bundle_09_translations.json",
+      "entryCount": 306,
+      "changedEntryCount": 284
+    },
+    {
+      "bundle": 10,
+      "file": "bundle_10_translations.json",
+      "entryCount": 279,
+      "changedEntryCount": 259
+    },
+    {
+      "bundle": 11,
+      "file": "bundle_11_translations.json",
+      "entryCount": 137,
+      "changedEntryCount": 126
+    },
+    {
+      "bundle": 12,
+      "file": "bundle_12_translations.json",
+      "entryCount": 139,
+      "changedEntryCount": 119
+    },
+    {
+      "bundle": 13,
+      "file": "bundle_13_translations.json",
+      "entryCount": 312,
+      "changedEntryCount": 288
+    },
+    {
+      "bundle": 14,
+      "file": "bundle_14_translations.json",
+      "entryCount": 250,
+      "changedEntryCount": 213
+    },
+    {
+      "bundle": 15,
+      "file": "bundle_15_translations.json",
+      "entryCount": 166,
+      "changedEntryCount": 151
+    },
+    {
+      "bundle": 16,
+      "file": "bundle_16_translations.json",
+      "entryCount": 120,
+      "changedEntryCount": 97
+    },
+    {
+      "bundle": 17,
+      "file": "bundle_17_translations.json",
+      "entryCount": 114,
+      "changedEntryCount": 103
+    },
+    {
+      "bundle": 18,
+      "file": "bundle_18_translations.json",
+      "entryCount": 164,
+      "changedEntryCount": 145
+    },
+    {
+      "bundle": 19,
+      "file": "bundle_19_translations.json",
+      "entryCount": 138,
+      "changedEntryCount": 125
+    },
+    {
+      "bundle": 20,
+      "file": "bundle_20_translations.json",
+      "entryCount": 114,
+      "changedEntryCount": 105
+    },
+    {
+      "bundle": 21,
+      "file": "bundle_21_translations.json",
+      "entryCount": 182,
+      "changedEntryCount": 158
+    },
+    {
+      "bundle": 22,
+      "file": "bundle_22_translations.json",
+      "entryCount": 391,
+      "changedEntryCount": 379
+    },
+    {
+      "bundle": 23,
+      "file": "bundle_23_translations.json",
+      "entryCount": 53,
+      "changedEntryCount": 48
+    },
+    {
+      "bundle": 24,
+      "file": "bundle_24_translations.json",
+      "entryCount": 181,
+      "changedEntryCount": 158
+    },
+    {
+      "bundle": 25,
+      "file": "bundle_25_translations.json",
+      "entryCount": 190,
+      "changedEntryCount": 170
+    },
+    {
+      "bundle": 26,
+      "file": "bundle_26_translations.json",
+      "entryCount": 100,
+      "changedEntryCount": 100
+    },
+    {
+      "bundle": 27,
+      "file": "bundle_27_translations.json",
+      "entryCount": 191,
+      "changedEntryCount": 171
+    },
+    {
+      "bundle": 28,
+      "file": "bundle_28_translations.json",
+      "entryCount": 193,
+      "changedEntryCount": 162
+    },
+    {
+      "bundle": 29,
+      "file": "bundle_29_translations.json",
+      "entryCount": 220,
+      "changedEntryCount": 181
+    },
+    {
+      "bundle": 30,
+      "file": "bundle_30_translations.json",
+      "entryCount": 184,
+      "changedEntryCount": 161
+    },
+    {
+      "bundle": 31,
+      "file": "bundle_31_translations.json",
+      "entryCount": 188,
+      "changedEntryCount": 169
+    },
+    {
+      "bundle": 32,
+      "file": "bundle_32_translations.json",
+      "entryCount": 192,
+      "changedEntryCount": 161
+    },
+    {
+      "bundle": 33,
+      "file": "bundle_33_translations.json",
+      "entryCount": 248,
+      "changedEntryCount": 205
+    }
+  ],
+  "sourceLocationCount": 7090,
+  "sourceMissingLocationCount": 2,
+  "sourceMissingLocations": [
+    {
+      "blockId": 24,
+      "stringId": 30
+    },
+    {
+      "blockId": 3728,
+      "stringId": 26
+    }
+  ],
+  "changedBlockFileCount": 122,
+  "changedBlockEntryCount": 5644,
+  "globalMapKeyCount": 5181,
+  "resolvedGlobalKeyCount": 4868,
+  "changedGlobalEntryCount": 3989,
+  "resolutionCounts": {
+    "compact": 11,
+    "dynamic-skip": 178,
+    "exact": 6812,
+    "literal-block-only": 6,
+    "normalized": 83,
+    "source-missing-block-only": 2
+  },
+  "dynamicSkipCount": 178,
+  "dynamicSkips": [
+    {
+      "blockId": 1,
+      "stringId": 22,
+      "source": "It looks to be that of ",
+      "proposedTranslation": "그것은 %s 의 것으로 보입니다."
+    },
+    {
+      "blockId": 1,
+      "stringId": 23,
+      "source": "They look to be those of ",
+      "proposedTranslation": "그것들은 %s 의 것으로 보입니다."
+    },
+    {
+      "blockId": 1,
+      "stringId": 28,
+      "source": "You have advanced greatly in ",
+      "proposedTranslation": "%s 기술이 크게 향상되었습니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 29,
+      "source": "You have advanced in ",
+      "proposedTranslation": "%s 기술이 향상되었습니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 34,
+      "source": "You cannot advance in ",
+      "proposedTranslation": "%s 기술은 향상시킬 수 없습니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 35,
+      "source": "The Cup of Wonder is ",
+      "proposedTranslation": "경이의 잔은 %s에 있습니다."
+    },
+    {
+      "blockId": 1,
+      "stringId": 59,
+      "source": "You detect a creature ",
+      "proposedTranslation": "생명체 한 마리가 %s에서 감지됩니다."
+    },
+    {
+      "blockId": 1,
+      "stringId": 60,
+      "source": "You detect a few creatures ",
+      "proposedTranslation": "몇몇 생명체가 %s에서 감지됩니다."
+    },
+    {
+      "blockId": 1,
+      "stringId": 61,
+      "source": "You detect the activity of many creatures ",
+      "proposedTranslation": "많은 생명체의 움직임이 %s에서 감지됩니다."
+    },
+    {
+      "blockId": 1,
+      "stringId": 63,
+      "source": " is currently active.",
+      "proposedTranslation": "현재 활성화되어 있습니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 64,
+      "source": "You are currently ",
+      "proposedTranslation": "현재 상태: %s.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 65,
+      "source": "You are on the ",
+      "proposedTranslation": "현재 스티지언 심연의 %s층에 있습니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 66,
+      "source": " level of the Abyss.",
+      "proposedTranslation": "심연의 층.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 67,
+      "source": "It is the ",
+      "proposedTranslation": "감금된 지 %s일째입니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 68,
+      "source": " day of your imprisonment.",
+      "proposedTranslation": "감옥에 갇힌 지 일째 되는 날.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 70,
+      "source": "You guess that it is currently ",
+      "proposedTranslation": "현재 시각은 %s 무렵으로 보입니다."
+    },
+    {
+      "blockId": 1,
+      "stringId": 89,
+      "source": "Your current vitality is ",
+      "proposedTranslation": "현재 생명력: %s\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 90,
+      "source": "Your current mana points are ",
+      "proposedTranslation": "현재 마나: %s\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 91,
+      "source": "You are ",
+      "proposedTranslation": "당신은 %s "
+    },
+    {
+      "blockId": 1,
+      "stringId": 92,
+      "source": " poisoned.",
+      "proposedTranslation": "독에 걸렸습니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 103,
+      "source": " and ",
+      "proposedTranslation": " 그리고 %s "
+    },
+    {
+      "blockId": 1,
+      "stringId": 137,
+      "source": " is nearly done",
+      "proposedTranslation": "거의 다 되었습니다\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 138,
+      "source": " is unstable",
+      "proposedTranslation": "불안정합니다\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 139,
+      "source": " is stable",
+      "proposedTranslation": "안정적입니다\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 140,
+      "source": "You destroyed the ",
+      "proposedTranslation": "%s을(를) 파괴했습니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 141,
+      "source": "You damaged the ",
+      "proposedTranslation": "%s을(를) 손상시켰습니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 143,
+      "source": "Your attempt has no effect on the ",
+      "proposedTranslation": "시도했지만 %s에는 아무런 효과가 없습니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 144,
+      "source": "You have partially repaired the ",
+      "proposedTranslation": "%s을(를) 일부 수리했습니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 145,
+      "source": "You have fully repaired the ",
+      "proposedTranslation": "%s을(를) 완전히 수리했습니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 147,
+      "source": "You have attained experience level ",
+      "proposedTranslation": "경험 레벨 %s에 도달했습니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 166,
+      "source": "Restoring Game ",
+      "proposedTranslation": "게임 불러오는 중: %s"
+    },
+    {
+      "blockId": 1,
+      "stringId": 167,
+      "source": "Saving Game ",
+      "proposedTranslation": "게임 저장 중: %s"
+    },
+    {
+      "blockId": 1,
+      "stringId": 172,
+      "source": " tasted putrid.",
+      "proposedTranslation": "맛이 썩 좋지 않았다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 173,
+      "source": " tasted a little rancid.",
+      "proposedTranslation": "맛이 약간 상해 있었다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 174,
+      "source": " tasted kind of bland.",
+      "proposedTranslation": "맛이 밋밋했다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 175,
+      "source": " tasted pretty good.",
+      "proposedTranslation": "맛이 꽤 괜찮았다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 176,
+      "source": " tasted great.",
+      "proposedTranslation": "맛이 아주 훌륭했다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 187,
+      "source": "A level ",
+      "proposedTranslation": "레벨 %s 의"
+    },
+    {
+      "blockId": 1,
+      "stringId": 189,
+      "source": "after ",
+      "proposedTranslation": "%s 일 후"
+    },
+    {
+      "blockId": 1,
+      "stringId": 190,
+      "source": " days in the Abyss",
+      "proposedTranslation": "스티지언 심연에서 %s 일 후"
+    },
+    {
+      "blockId": 1,
+      "stringId": 216,
+      "source": "You think it will be ",
+      "proposedTranslation": "%s 을(를) 수리하는 것이 %s 일 것이라 생각합니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 217,
+      "source": " to repair the ",
+      "proposedTranslation": "을(를) 수리하는 것이 %s 일 것이라 생각합니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 218,
+      "source": "Make an attempt? ",
+      "proposedTranslation": "시도하시겠습니까?"
+    },
+    {
+      "blockId": 1,
+      "stringId": 225,
+      "source": " is angered by your action.",
+      "proposedTranslation": "이(가) 이 행동에 분노합니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 226,
+      "source": " is annoyed by your action.",
+      "proposedTranslation": "이(가) 이 행동에 불쾌해합니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 227,
+      "source": " notes your action.",
+      "proposedTranslation": "이(가) 이 행동을 눈여겨봅니다.\n"
+    },
+    {
+      "blockId": 1,
+      "stringId": 244,
+      "source": "You found a trap!  Do you wish to try to disarm it? ",
+      "proposedTranslation": "함정을 발견했습니다! 해제하시겠습니까?"
+    },
+    {
+      "blockId": 1,
+      "stringId": 245,
+      "source": "Your Rune of Warding has been set off ",
+      "proposedTranslation": "당신의 수호 룬이 발동되었습니다 %s "
+    },
+    {
+      "blockId": 1,
+      "stringId": 260,
+      "source": "You see ",
+      "proposedTranslation": "당신은 다음을 봅니다:"
+    },
+    {
+      "blockId": 1,
+      "stringId": 370,
+      "source": " a denizen of the area",
+      "proposedTranslation": " 이 지역의 주민"
+    },
+    {
+      "blockId": 1,
+      "stringId": 371,
+      "source": " a rotworm",
+      "proposedTranslation": " 썩은벌레"
+    },
+    {
+      "blockId": 1,
+      "stringId": 372,
+      "source": " a slug",
+      "proposedTranslation": " 민달팽이"
+    },
+    {
+      "blockId": 1,
+      "stringId": 373,
+      "source": " a bat",
+      "proposedTranslation": " 박쥐"
+    },
+    {
+      "blockId": 1,
+      "stringId": 374,
+      "source": " a rat",
+      "proposedTranslation": " 쥐"
+    },
+    {
+      "blockId": 1,
+      "stringId": 375,
+      "source": " a spider",
+      "proposedTranslation": " 거미"
+    },
+    {
+      "blockId": 1,
+      "stringId": 376,
+      "source": " a green goblin",
+      "proposedTranslation": " 초록 고블린"
+    },
+    {
+      "blockId": 1,
+      "stringId": 377,
+      "source": " a skeleton",
+      "proposedTranslation": " 해골"
+    },
+    {
+      "blockId": 1,
+      "stringId": 378,
+      "source": " an imp",
+      "proposedTranslation": " 임프"
+    },
+    {
+      "blockId": 1,
+      "stringId": 379,
+      "source": " a gray goblin",
+      "proposedTranslation": " 회색 고블린"
+    },
+    {
+      "blockId": 1,
+      "stringId": 380,
+      "source": " a mountainman",
+      "proposedTranslation": " 산악인"
+    },
+    {
+      "blockId": 1,
+      "stringId": 381,
+      "source": " a lizardman",
+      "proposedTranslation": " 리자드맨"
+    },
+    {
+      "blockId": 1,
+      "stringId": 382,
+      "source": " a lurker",
+      "proposedTranslation": " 잠복자"
+    },
+    {
+      "blockId": 1,
+      "stringId": 383,
+      "source": " a knight",
+      "proposedTranslation": " 기사"
+    },
+    {
+      "blockId": 1,
+      "stringId": 384,
+      "source": " a headless",
+      "proposedTranslation": " 목 없는 자"
+    },
+    {
+      "blockId": 1,
+      "stringId": 385,
+      "source": " a troll",
+      "proposedTranslation": " 트롤"
+    },
+    {
+      "blockId": 1,
+      "stringId": 386,
+      "source": " a ghost",
+      "proposedTranslation": " 유령"
+    },
+    {
+      "blockId": 1,
+      "stringId": 387,
+      "source": " a ghoul",
+      "proposedTranslation": " 구울"
+    },
+    {
+      "blockId": 1,
+      "stringId": 388,
+      "source": " a gazer",
+      "proposedTranslation": " 게이저"
+    },
+    {
+      "blockId": 1,
+      "stringId": 389,
+      "source": " a mage",
+      "proposedTranslation": " 마법사"
+    },
+    {
+      "blockId": 1,
+      "stringId": 390,
+      "source": " a golem",
+      "proposedTranslation": " 골렘"
+    },
+    {
+      "blockId": 1,
+      "stringId": 391,
+      "source": " a shadow beast",
+      "proposedTranslation": " 그림자 야수"
+    },
+    {
+      "blockId": 1,
+      "stringId": 392,
+      "source": " a reaper",
+      "proposedTranslation": " 사신"
+    },
+    {
+      "blockId": 1,
+      "stringId": 393,
+      "source": " a fire elemental",
+      "proposedTranslation": " 화염 정령"
+    },
+    {
+      "blockId": 1,
+      "stringId": 394,
+      "source": " a wisp",
+      "proposedTranslation": " 위습"
+    },
+    {
+      "blockId": 1,
+      "stringId": 395,
+      "source": " Tyball",
+      "proposedTranslation": " 타이볼"
+    },
+    {
+      "blockId": 1,
+      "stringId": 396,
+      "source": " the Slasher of Veils",
+      "proposedTranslation": " 장막을 가르는 자"
+    },
+    {
+      "blockId": 1,
+      "stringId": 397,
+      "source": " an outcast",
+      "proposedTranslation": " 추방자"
+    },
+    {
+      "blockId": 1,
+      "stringId": 398,
+      "source": " a creature",
+      "proposedTranslation": " 생명체"
+    },
+    {
+      "blockId": 2,
+      "stringId": 7,
+      "source": "Name: ",
+      "proposedTranslation": "이름: "
+    },
+    {
+      "blockId": 7,
+      "stringId": 2,
+      "source": " that I am getting ",
+      "proposedTranslation": " 내가 받게 될 거래는 "
+    },
+    {
+      "blockId": 8,
+      "stringId": 352,
+      "source": "The gravestone reads: ",
+      "proposedTranslation": "묘비에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 8,
+      "stringId": 353,
+      "source": "The tombstone reads: ",
+      "proposedTranslation": "비석에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 8,
+      "stringId": 368,
+      "source": "The plaque reads: ",
+      "proposedTranslation": "명판에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 8,
+      "stringId": 369,
+      "source": "The plaque reads: ",
+      "proposedTranslation": "명판에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 8,
+      "stringId": 370,
+      "source": "An ancient rune: ",
+      "proposedTranslation": "고대 룬에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 8,
+      "stringId": 371,
+      "source": "An ancient rune: ",
+      "proposedTranslation": "고대 룬에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 8,
+      "stringId": 372,
+      "source": "The sign reads: ",
+      "proposedTranslation": "표지판에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 8,
+      "stringId": 373,
+      "source": "The sign reads: ",
+      "proposedTranslation": "표지판에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 8,
+      "stringId": 374,
+      "source": "The sign reads: ",
+      "proposedTranslation": "표지판에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 8,
+      "stringId": 375,
+      "source": "The sign reads: ",
+      "proposedTranslation": "표지판에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 8,
+      "stringId": 376,
+      "source": "The writing reads: ",
+      "proposedTranslation": "글에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 8,
+      "stringId": 377,
+      "source": "The writing reads: ",
+      "proposedTranslation": "글에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 8,
+      "stringId": 378,
+      "source": "An ancient rune: ",
+      "proposedTranslation": "고대 룬에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 8,
+      "stringId": 379,
+      "source": "An ancient rune: ",
+      "proposedTranslation": "고대 룬에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 8,
+      "stringId": 380,
+      "source": "The writing reads: ",
+      "proposedTranslation": "글에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 8,
+      "stringId": 382,
+      "source": "The runes read: ",
+      "proposedTranslation": "룬에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 8,
+      "stringId": 383,
+      "source": "The writing reads: ",
+      "proposedTranslation": "글에는 이렇게 쓰여 있다: "
+    },
+    {
+      "blockId": 24,
+      "stringId": 0,
+      "source": " for level ",
+      "proposedTranslation": " / 레벨 "
+    },
+    {
+      "blockId": 24,
+      "stringId": 4,
+      "source": " critters on the level",
+      "proposedTranslation": "개 생명체가 이 레벨에 있음\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 7,
+      "source": " animation objects on the level",
+      "proposedTranslation": "개 애니메이션 오브젝트가 이 레벨에 있음\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 10,
+      "source": " book objects on the level",
+      "proposedTranslation": "개 책 오브젝트가 이 레벨에 있음\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 12,
+      "source": " is the number of animcount objects according to anim_o",
+      "proposedTranslation": "은 anim_o 기준 animcount 오브젝트 수\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 13,
+      "source": " X, Y l: _______Name_____ ___Goal__ A L _Whoami _HP/MHP HIP",
+      "proposedTranslation": " X, Y l: _______이름_____ ___목표__ A L _정체___ _HP/MHP HIP\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 18,
+      "source": " runes on the level",
+      "proposedTranslation": "개 룬이 이 레벨에 있음\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 22,
+      "source": " Hostile Non-Loner!",
+      "proposedTranslation": " 적대적 집단형!"
+    },
+    {
+      "blockId": 24,
+      "stringId": 26,
+      "source": " UnLocked",
+      "proposedTranslation": " 잠금 해제"
+    },
+    {
+      "blockId": 24,
+      "stringId": 27,
+      "source": " Locked",
+      "proposedTranslation": " 잠김"
+    },
+    {
+      "blockId": 24,
+      "stringId": 28,
+      "source": " Not Reset",
+      "proposedTranslation": " 리셋되지 않음"
+    },
+    {
+      "blockId": 24,
+      "stringId": 29,
+      "source": " Reset",
+      "proposedTranslation": " 리셋됨"
+    },
+    {
+      "blockId": 24,
+      "stringId": 32,
+      "source": " in an Invalid Position",
+      "proposedTranslation": " 위치가 유효하지 않음\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 34,
+      "source": " Mobile Objects are not creatures",
+      "proposedTranslation": "개 이동 오브젝트가 생명체가 아님\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 35,
+      "source": " Mobile Objects are in invalid positions",
+      "proposedTranslation": "개 이동 오브젝트가 잘못된 위치에 있음\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 37,
+      "source": " total traps.==== TRIGGERS ====",
+      "proposedTranslation": "개 함정.\n==== 트리거 ===="
+    },
+    {
+      "blockId": 24,
+      "stringId": 38,
+      "source": " total triggers.",
+      "proposedTranslation": "개 트리거.\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 39,
+      "source": "  TrapErr: too many trigers?",
+      "proposedTranslation": "\n 함정 오류: 트리거가 너무 많음?"
+    },
+    {
+      "blockId": 24,
+      "stringId": 40,
+      "source": "  TrapErr: no triggers?",
+      "proposedTranslation": "\n 함정 오류: 트리거가 없음?"
+    },
+    {
+      "blockId": 24,
+      "stringId": 41,
+      "source": "    TrapErr: doesnt point to a trap",
+      "proposedTranslation": "  함정 오류: 함정을 가리키지 않음\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 43,
+      "source": "    TrapErr:  bad terrain",
+      "proposedTranslation": "  함정 오류: 잘못된 지형\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 44,
+      "source": "    TrapErr:  no del trap obj",
+      "proposedTranslation": "  함정 오류: 삭제 대상 함정 오브젝트 없음\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 45,
+      "source": "    TrapErr:  no text strnum ",
+      "proposedTranslation": "  함정 오류: 텍스트 문자열 번호 없음 "
+    },
+    {
+      "blockId": 24,
+      "stringId": 47,
+      "source": " Pumped!",
+      "proposedTranslation": " 강화형!"
+    },
+    {
+      "blockId": 24,
+      "stringId": 48,
+      "source": " Wimpy!",
+      "proposedTranslation": " 약화형!"
+    },
+    {
+      "blockId": 24,
+      "stringId": 50,
+      "source": " is Mobile",
+      "proposedTranslation": " 이동 오브젝트임\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 51,
+      "source": " is a Flying Creature on the ground.",
+      "proposedTranslation": " 지상에 있는 비행 생명체임.\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 54,
+      "source": " impassable diagonal",
+      "proposedTranslation": " 통과 불가능한 대각선\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 55,
+      "source": " crossing slopes",
+      "proposedTranslation": " 교차하는 경사면\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 57,
+      "source": " door on a slope",
+      "proposedTranslation": " 경사면 위의 문\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 58,
+      "source": " door in an odd position (theta/pos)",
+      "proposedTranslation": " 비정상 위치의 문(theta/pos)\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 59,
+      "source": " door opens out of its square",
+      "proposedTranslation": " 문이 자기 타일 밖으로 열림\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 60,
+      "source": " door(s) were in invalid/bad positions",
+      "proposedTranslation": "개 문이 유효하지 않거나 잘못된 위치에 있음\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 63,
+      "source": " with magic powers",
+      "proposedTranslation": " 마법 능력 보유\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 65,
+      "source": " adventurers bones.  Died while building the level, eh?",
+      "proposedTranslation": "개 모험가 유골. 레벨 만들다 죽었나?\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 66,
+      "source": " object with illegal ObjIID.  What is this?",
+      "proposedTranslation": "개 오브젝트의 ObjIID가 잘못됨. 이건 뭐지?\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 67,
+      "source": " Its a major quest item",
+      "proposedTranslation": " 주요 퀘스트 아이템임\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 68,
+      "source": " active spell",
+      "proposedTranslation": " 활성형 주문"
+    },
+    {
+      "blockId": 24,
+      "stringId": 69,
+      "source": " passive spell",
+      "proposedTranslation": " 지속형 주문"
+    },
+    {
+      "blockId": 24,
+      "stringId": 72,
+      "source": " Transient!",
+      "proposedTranslation": " 일시적 오브젝트!"
+    },
+    {
+      "blockId": 24,
+      "stringId": 75,
+      "source": " with no spell",
+      "proposedTranslation": " 주문 없음"
+    },
+    {
+      "blockId": 24,
+      "stringId": 77,
+      "source": "Total Value of all treasure on level is ",
+      "proposedTranslation": "이 레벨의 모든 보물 총가치: "
+    },
+    {
+      "blockId": 24,
+      "stringId": 78,
+      "source": " count ",
+      "proposedTranslation": " 수량 "
+    },
+    {
+      "blockId": 24,
+      "stringId": 79,
+      "source": " value ",
+      "proposedTranslation": " 가치 "
+    },
+    {
+      "blockId": 24,
+      "stringId": 81,
+      "source": "Monster Generator Chance ",
+      "proposedTranslation": "몬스터 생성 확률 "
+    },
+    {
+      "blockId": 24,
+      "stringId": 82,
+      "source": " No Magic Properties.",
+      "proposedTranslation": " 마법 속성 없음.\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 85,
+      "source": " Tough 0 Dr ",
+      "proposedTranslation": " 내구도 0 문 "
+    },
+    {
+      "blockId": 24,
+      "stringId": 86,
+      "source": " Tough 1 Dr ",
+      "proposedTranslation": " 내구도 1 문 "
+    },
+    {
+      "blockId": 24,
+      "stringId": 87,
+      "source": " Tough 1 Dr ",
+      "proposedTranslation": " 내구도 1 문 "
+    },
+    {
+      "blockId": 24,
+      "stringId": 88,
+      "source": " Tough 2 Dr ",
+      "proposedTranslation": " 내구도 2 문 "
+    },
+    {
+      "blockId": 24,
+      "stringId": 89,
+      "source": " Tough 2 Dr ",
+      "proposedTranslation": " 내구도 2 문 "
+    },
+    {
+      "blockId": 24,
+      "stringId": 90,
+      "source": " Tough 3 Dr ",
+      "proposedTranslation": " 내구도 3 문 "
+    },
+    {
+      "blockId": 24,
+      "stringId": 91,
+      "source": " Portcullis ",
+      "proposedTranslation": " 쇠창살문 "
+    },
+    {
+      "blockId": 24,
+      "stringId": 92,
+      "source": " SecretDoor",
+      "proposedTranslation": " 비밀문 "
+    },
+    {
+      "blockId": 24,
+      "stringId": 94,
+      "source": " door spiked",
+      "proposedTranslation": " 문에 쐐기 박힘"
+    },
+    {
+      "blockId": 24,
+      "stringId": 96,
+      "source": " Passive not active...",
+      "proposedTranslation": " 지속형이지만 활성 상태 아님...\n"
+    },
+    {
+      "blockId": 24,
+      "stringId": 98,
+      "source": " Not Home",
+      "proposedTranslation": " 원위치 아님"
+    },
+    {
+      "blockId": 24,
+      "stringId": 99,
+      "source": " Not in correct position",
+      "proposedTranslation": " 올바른 위치 아님"
+    },
+    {
+      "blockId": 3586,
+      "stringId": 22,
+      "source": "Ach, do I look like I have four arms? I can only fix one thing at a time, you know. ",
+      "proposedTranslation": "내가 팔이 네 개로 보이오? 한 번에 하나씩만 고칠 수 있소."
+    },
+    {
+      "blockId": 3586,
+      "stringId": 99,
+      "source": "Thank thee.  Thou art truly a craftsman. ",
+      "proposedTranslation": "고맙소. 그대는 진정한 장인이오."
+    },
+    {
+      "blockId": 3588,
+      "stringId": 83,
+      "source": "Here is a trick to catch the knave . . .  ",
+      "proposedTranslation": "그 악당을 잡을 묘수가 있소..."
+    },
+    {
+      "blockId": 3588,
+      "stringId": 84,
+      "source": "I think I know a way to make the villain confess . . .  ",
+      "proposedTranslation": "범인이 자백하게 만들 방법을 알 것 같소..."
+    },
+    {
+      "blockId": 3588,
+      "stringId": 88,
+      "source": "I thank thee.  Now, about the troll . . .  ",
+      "proposedTranslation": "고맙소. 이제 그 트롤 이야기를..."
+    },
+    {
+      "blockId": 3589,
+      "stringId": 5,
+      "source": " else",
+      "proposedTranslation": " 그 밖에"
+    },
+    {
+      "blockId": 3595,
+      "stringId": 28,
+      "source": "Thou art a fool to waste thy life, twice so to pester me! ",
+      "proposedTranslation": "목숨을 헛되이 버리려 하다니 어리석군. 나를 두 번이나 귀찮게 하니 더욱 어리석소!"
+    },
+    {
+      "blockId": 3596,
+      "stringId": 40,
+      "source": "You take the cup.  Within it is a is a clear, odorless liquid.  You raise it to your lips and . . .  ",
+      "proposedTranslation": "잔을 집어 듭니다. 안에는 맑고 냄새 없는 액체가 담겨 있습니다. 잔을 입술로 가져가자..."
+    },
+    {
+      "blockId": 3596,
+      "stringId": 47,
+      "source": "The taste of it is like pure water.  You wait for several moments, and nothing happens.  Then a voice cries out in mourning and a funeral dirge plays. ",
+      "proposedTranslation": "맑은 물과 같은 맛입니다. 잠시 기다려도 아무 일도 일어나지 않습니다. 그때 애도하는 외침이 울리고 장송곡이 흐르기 시작합니다."
+    },
+    {
+      "blockId": 3599,
+      "stringId": 12,
+      "source": "Dost \"'click\" mean \"no?\" ",
+      "proposedTranslation": "‘클릭’이 ‘아니다’라는 뜻인가?"
+    },
+    {
+      "blockId": 3606,
+      "stringId": 12,
+      "source": "Hold!  Thou hast fought well, mortal.  Better than any in many a year.  I would give thee a chance to live, that valor such as yours should not die.  Flee now and I grant thee thy life. ",
+      "proposedTranslation": "멈춰라! 잘 싸웠다, 필멸자여. 여러 해 동안 너만큼 훌륭한 상대는 없었다. 이토록 큰 용기가 사라지지 않도록 살 기회를 주마. 지금 달아나면 목숨을 보전해 주겠다. "
+    },
+    {
+      "blockId": 3607,
+      "stringId": 50,
+      "source": "Excuse me, I must be going. ",
+      "proposedTranslation": "실례하오. 이만 가보겠소."
+    },
+    {
+      "blockId": 3608,
+      "stringId": 11,
+      "source": "I have it.  Thy name is ... ",
+      "proposedTranslation": "알겠네. 자네 이름은..."
+    },
+    {
+      "blockId": 3696,
+      "stringId": 12,
+      "source": "Of this I know nothing.  ",
+      "proposedTranslation": "그 일은 아는 바 없다."
+    },
+    {
+      "blockId": 3696,
+      "stringId": 14,
+      "source": "I have neither.  ",
+      "proposedTranslation": "둘 다 없다."
+    },
+    {
+      "blockId": 3697,
+      "stringId": 1,
+      "source": "What art thou doing here?  ",
+      "proposedTranslation": "여기서 뭘 하고 있지?"
+    },
+    {
+      "blockId": 3697,
+      "stringId": 2,
+      "source": "What art thou doing here again?  ",
+      "proposedTranslation": "또 여기서 뭘 하는 거지?"
+    },
+    {
+      "blockId": 3697,
+      "stringId": 29,
+      "source": "What about ... ",
+      "proposedTranslation": "…에 대해서는 무엇을 아시오?"
+    },
+    {
+      "blockId": 3697,
+      "stringId": 42,
+      "source": "A great one, was Sir Cabirus.  After he died, things all went haywire. The races of the Abyss split off into many small groups like our own.  Dealing with the others can be a touchy task. ",
+      "proposedTranslation": "카비루스 경은 위대한 분이셨소. 그분이 돌아가신 뒤 모든 것이 엉망이 되었지. 심연의 종족들은 우리처럼 여러 작은 무리로 갈라졌고, 다른 무리들을 상대하는 일도 까다로워졌소."
+    },
+    {
+      "blockId": 3793,
+      "stringId": 17,
+      "source": "Sorry, here it is. ",
+      "proposedTranslation": "미안하오, 여기 있소. "
+    },
+    {
+      "blockId": 3803,
+      "stringId": 17,
+      "source": "Sorry, here it is. ",
+      "proposedTranslation": "미안하오. 여기 있소. "
+    },
+    {
+      "blockId": 3804,
+      "stringId": 16,
+      "source": "Sorry, here it is. ",
+      "proposedTranslation": "미안하오. 여기 있소. "
+    },
+    {
+      "blockId": 3806,
+      "stringId": 14,
+      "source": "I beg your pardon. Here it is. ",
+      "proposedTranslation": "실례했소. 여기 있소. "
+    }
+  ],
+  "unresolvedCount": 0,
+  "unresolved": [],
+  "duplicateSourceConflictCount": 113,
+  "duplicateSourceConflicts": [
+    {
+      "source": "'click.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "클릭",
+      "candidateCounts": {
+        "클릭": 3,
+        "클릭.": 2
+      },
+      "locations": [
+        {
+          "blockId": 3599,
+          "stringId": 10,
+          "translation": "클릭."
+        },
+        {
+          "blockId": 3599,
+          "stringId": 14,
+          "translation": "클릭."
+        },
+        {
+          "blockId": 3698,
+          "stringId": 3,
+          "translation": "클릭"
+        },
+        {
+          "blockId": 3698,
+          "stringId": 6,
+          "translation": "클릭"
+        },
+        {
+          "blockId": 3698,
+          "stringId": 9,
+          "translation": "클릭"
+        }
+      ]
+    },
+    {
+      "source": "Are ye joking with me?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "나를 놀리는 것이오?",
+      "candidateCounts": {
+        "나를 놀리는 것이오?": 2,
+        "농담하는 거요?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 158,
+          "translation": "농담하는 거요?"
+        },
+        {
+          "blockId": 3860,
+          "stringId": 41,
+          "translation": "나를 놀리는 것이오?"
+        },
+        {
+          "blockId": 3862,
+          "stringId": 41,
+          "translation": "나를 놀리는 것이오?"
+        }
+      ]
+    },
+    {
+      "source": "Certainly.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "좋소.",
+      "candidateCounts": {
+        "좋소.": 4,
+        "물론이오.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3612,
+          "stringId": 6,
+          "translation": "물론이오."
+        },
+        {
+          "blockId": 3730,
+          "stringId": 25,
+          "translation": "좋소."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 25,
+          "translation": "좋소."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 25,
+          "translation": "좋소."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 25,
+          "translation": "좋소."
+        }
+      ]
+    },
+    {
+      "source": "Do ye intend to rob me?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "나를 강탈하려는 거요?",
+      "candidateCounts": {
+        "나를 강탈하려는 거요?": 2,
+        "나를 털어먹을 셈이오?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 159,
+          "translation": "나를 털어먹을 셈이오?"
+        },
+        {
+          "blockId": 3860,
+          "stringId": 42,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3862,
+          "stringId": 42,
+          "translation": "나를 강탈하려는 거요?"
+        }
+      ]
+    },
+    {
+      "source": "Do ye take me for a fool?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "나를 바보로 아시오?",
+      "candidateCounts": {
+        "나를 바보로 아시오?": 2,
+        "나를 바보로 보는 거요?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 156,
+          "translation": "나를 바보로 보는 거요?"
+        },
+        {
+          "blockId": 3860,
+          "stringId": 39,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3862,
+          "stringId": 39,
+          "translation": "나를 바보로 아시오?"
+        }
+      ]
+    },
+    {
+      "source": "Don't tell ME what to do, goblin, or I'll remove your head.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "내게 명령하지 마라, 고블린. 안 그러면 네 목을 날려버리겠다.",
+      "candidateCounts": {
+        "내게 명령하지 마라, 고블린. 안 그러면 네 목을 날려버리겠다.": 1,
+        "내게 이래라저래라 하지 마라, 고블린. 그러다 네 머리를 날려버리겠다.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3793,
+          "stringId": 22,
+          "translation": "내게 명령하지 마라, 고블린. 안 그러면 네 목을 날려버리겠다."
+        },
+        {
+          "blockId": 3806,
+          "stringId": 20,
+          "translation": "내게 이래라저래라 하지 마라, 고블린. 그러다 네 머리를 날려버리겠다."
+        }
+      ]
+    },
+    {
+      "source": "Dost thou intend to rob me?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "나를 강탈하려는 거요?",
+      "candidateCounts": {
+        "나를 강탈하려는 거요?": 27,
+        "나를 털려는 거요?": 4,
+        "나를 털어갈 작정이오?": 4,
+        "나를 털어먹을 셈인가?": 2,
+        "나를 강탈할 셈이오?": 1,
+        "나를 털려는 셈이오?": 1,
+        "나를 털려는 셈인가?": 1,
+        "날 털어먹을 셈이야?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3594,
+          "stringId": 49,
+          "translation": "날 털어먹을 셈이야?"
+        },
+        {
+          "blockId": 3597,
+          "stringId": 95,
+          "translation": "나를 털어갈 작정이오?"
+        },
+        {
+          "blockId": 3603,
+          "stringId": 60,
+          "translation": "나를 털어갈 작정이오?"
+        },
+        {
+          "blockId": 3604,
+          "stringId": 81,
+          "translation": "나를 털어갈 작정이오?"
+        },
+        {
+          "blockId": 3609,
+          "stringId": 48,
+          "translation": "나를 털어먹을 셈인가?"
+        },
+        {
+          "blockId": 3610,
+          "stringId": 44,
+          "translation": "나를 털어먹을 셈인가?"
+        },
+        {
+          "blockId": 3612,
+          "stringId": 65,
+          "translation": "나를 털어갈 작정이오?"
+        },
+        {
+          "blockId": 3672,
+          "stringId": 26,
+          "translation": "나를 털려는 거요?"
+        },
+        {
+          "blockId": 3673,
+          "stringId": 39,
+          "translation": "나를 털려는 셈인가?"
+        },
+        {
+          "blockId": 3696,
+          "stringId": 45,
+          "translation": "나를 털려는 거요?"
+        },
+        {
+          "blockId": 3697,
+          "stringId": 63,
+          "translation": "나를 털려는 거요?"
+        },
+        {
+          "blockId": 3699,
+          "stringId": 14,
+          "translation": "나를 털려는 셈이오?"
+        },
+        {
+          "blockId": 3723,
+          "stringId": 77,
+          "translation": "나를 털려는 거요?"
+        },
+        {
+          "blockId": 3725,
+          "stringId": 55,
+          "translation": "나를 강탈할 셈이오?"
+        },
+        {
+          "blockId": 3730,
+          "stringId": 80,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3731,
+          "stringId": 80,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3732,
+          "stringId": 80,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3733,
+          "stringId": 80,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3768,
+          "stringId": 25,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3769,
+          "stringId": 34,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3770,
+          "stringId": 36,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3771,
+          "stringId": 70,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3772,
+          "stringId": 36,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3773,
+          "stringId": 44,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3774,
+          "stringId": 37,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3775,
+          "stringId": 57,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3778,
+          "stringId": 53,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3792,
+          "stringId": 40,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3793,
+          "stringId": 38,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3795,
+          "stringId": 60,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3796,
+          "stringId": 75,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3798,
+          "stringId": 42,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3799,
+          "stringId": 41,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3800,
+          "stringId": 41,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3801,
+          "stringId": 34,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3802,
+          "stringId": 48,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3803,
+          "stringId": 39,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3804,
+          "stringId": 38,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3805,
+          "stringId": 77,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3806,
+          "stringId": 36,
+          "translation": "나를 강탈하려는 거요?"
+        },
+        {
+          "blockId": 3872,
+          "stringId": 31,
+          "translation": "나를 강탈하려는 거요?"
+        }
+      ]
+    },
+    {
+      "source": "Dost thou take me for a fool?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "나를 바보로 아시오?",
+      "candidateCounts": {
+        "나를 바보로 아시오?": 33,
+        "나를 무슨 바보로 아시오?": 4,
+        "나를 바보로 보는 건가?": 2,
+        "나를 바보로 아나?": 1,
+        "나를 바보로 알아?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3594,
+          "stringId": 46,
+          "translation": "나를 바보로 알아?"
+        },
+        {
+          "blockId": 3597,
+          "stringId": 92,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3603,
+          "stringId": 57,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3604,
+          "stringId": 78,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3609,
+          "stringId": 45,
+          "translation": "나를 바보로 보는 건가?"
+        },
+        {
+          "blockId": 3610,
+          "stringId": 42,
+          "translation": "나를 바보로 보는 건가?"
+        },
+        {
+          "blockId": 3612,
+          "stringId": 62,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3672,
+          "stringId": 23,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3673,
+          "stringId": 36,
+          "translation": "나를 바보로 아나?"
+        },
+        {
+          "blockId": 3696,
+          "stringId": 42,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3697,
+          "stringId": 60,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3699,
+          "stringId": 12,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3723,
+          "stringId": 74,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3725,
+          "stringId": 52,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3730,
+          "stringId": 77,
+          "translation": "나를 무슨 바보로 아시오?"
+        },
+        {
+          "blockId": 3731,
+          "stringId": 77,
+          "translation": "나를 무슨 바보로 아시오?"
+        },
+        {
+          "blockId": 3732,
+          "stringId": 77,
+          "translation": "나를 무슨 바보로 아시오?"
+        },
+        {
+          "blockId": 3733,
+          "stringId": 77,
+          "translation": "나를 무슨 바보로 아시오?"
+        },
+        {
+          "blockId": 3768,
+          "stringId": 22,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3769,
+          "stringId": 31,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3770,
+          "stringId": 34,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3771,
+          "stringId": 67,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3772,
+          "stringId": 33,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3773,
+          "stringId": 41,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3774,
+          "stringId": 34,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3775,
+          "stringId": 54,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3778,
+          "stringId": 50,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3792,
+          "stringId": 37,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3793,
+          "stringId": 35,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3795,
+          "stringId": 57,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3796,
+          "stringId": 72,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3798,
+          "stringId": 39,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3799,
+          "stringId": 38,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3800,
+          "stringId": 38,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3801,
+          "stringId": 31,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3802,
+          "stringId": 45,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3803,
+          "stringId": 36,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3804,
+          "stringId": 35,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3805,
+          "stringId": 74,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3806,
+          "stringId": 33,
+          "translation": "나를 바보로 아시오?"
+        },
+        {
+          "blockId": 3872,
+          "stringId": 28,
+          "translation": "나를 바보로 아시오?"
+        }
+      ]
+    },
+    {
+      "source": "Excuse me, I did not mean to intrude upon thee.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "실례했소. 방해할 생각은 아니었소.",
+      "candidateCounts": {
+        "실례했소. 끼어들 생각은 아니었소.": 4,
+        "실례했소. 방해할 생각은 아니었소.": 4
+      },
+      "locations": [
+        {
+          "blockId": 3730,
+          "stringId": 13,
+          "translation": "실례했소. 방해할 생각은 아니었소."
+        },
+        {
+          "blockId": 3730,
+          "stringId": 14,
+          "translation": "실례했소. 끼어들 생각은 아니었소."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 13,
+          "translation": "실례했소. 방해할 생각은 아니었소."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 14,
+          "translation": "실례했소. 끼어들 생각은 아니었소."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 13,
+          "translation": "실례했소. 방해할 생각은 아니었소."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 14,
+          "translation": "실례했소. 끼어들 생각은 아니었소."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 13,
+          "translation": "실례했소. 방해할 생각은 아니었소."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 14,
+          "translation": "실례했소. 끼어들 생각은 아니었소."
+        }
+      ]
+    },
+    {
+      "source": "Excuse me, I must be going.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "실례하오. 이제 가봐야겠소.",
+      "candidateCounts": {
+        "실례하오. 이제 가봐야겠소.": 4,
+        "실례지만, 이만 가보겠소.": 1,
+        "실례하오. 이만 가봐야겠소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3588,
+          "stringId": 125,
+          "translation": "실례지만, 이만 가보겠소."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 2,
+          "translation": "실례하오. 이제 가봐야겠소."
+        },
+        {
+          "blockId": 3599,
+          "stringId": 13,
+          "translation": "실례하오. 이제 가봐야겠소."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 18,
+          "translation": "실례하오. 이제 가봐야겠소."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 22,
+          "translation": "실례하오. 이제 가봐야겠소."
+        },
+        {
+          "blockId": 3612,
+          "stringId": 28,
+          "translation": "실례하오. 이만 가봐야겠소."
+        }
+      ]
+    },
+    {
+      "source": "Excuse me, I must think about this deal.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소.",
+      "candidateCounts": {
+        "실례하지만, 이 거래는 좀 더 생각해 봐야겠소.": 38,
+        "잠깐, 이 거래는 생각해 봐야겠소.": 3,
+        "실례지만 이 거래는 좀 더 생각해보겠소.": 2,
+        "실례하오. 이 거래는 좀 더 생각해 보겠소.": 2,
+        "실례지만, 이 거래는 좀 더 생각해 보겠소.": 1,
+        "실례하지만, 이 거래는 좀 더 생각해 보겠소.": 1,
+        "실례하지만, 이 거래는 좀 더 생각해 봐야겠네.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 151,
+          "translation": "잠깐, 이 거래는 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3594,
+          "stringId": 41,
+          "translation": "실례지만, 이 거래는 좀 더 생각해 보겠소."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 87,
+          "translation": "실례지만 이 거래는 좀 더 생각해보겠소."
+        },
+        {
+          "blockId": 3603,
+          "stringId": 52,
+          "translation": "실례지만 이 거래는 좀 더 생각해보겠소."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 73,
+          "translation": "실례하오. 이 거래는 좀 더 생각해 보겠소."
+        },
+        {
+          "blockId": 3609,
+          "stringId": 40,
+          "translation": "잠깐, 이 거래는 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3610,
+          "stringId": 37,
+          "translation": "잠깐, 이 거래는 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3612,
+          "stringId": 57,
+          "translation": "실례하오. 이 거래는 좀 더 생각해 보겠소."
+        },
+        {
+          "blockId": 3672,
+          "stringId": 18,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3673,
+          "stringId": 31,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠네."
+        },
+        {
+          "blockId": 3696,
+          "stringId": 37,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3697,
+          "stringId": 55,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3699,
+          "stringId": 7,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 보겠소."
+        },
+        {
+          "blockId": 3723,
+          "stringId": 69,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3725,
+          "stringId": 47,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3730,
+          "stringId": 72,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 72,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 72,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 72,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3768,
+          "stringId": 17,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3769,
+          "stringId": 26,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3770,
+          "stringId": 29,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3771,
+          "stringId": 62,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3772,
+          "stringId": 28,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3773,
+          "stringId": 36,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3774,
+          "stringId": 29,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3775,
+          "stringId": 49,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3778,
+          "stringId": 45,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3792,
+          "stringId": 32,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3793,
+          "stringId": 30,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3795,
+          "stringId": 52,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3796,
+          "stringId": 67,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3798,
+          "stringId": 34,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3799,
+          "stringId": 33,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3800,
+          "stringId": 33,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3801,
+          "stringId": 26,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3802,
+          "stringId": 40,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3803,
+          "stringId": 31,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3804,
+          "stringId": 30,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3805,
+          "stringId": 69,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3806,
+          "stringId": 28,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3846,
+          "stringId": 20,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3847,
+          "stringId": 20,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3852,
+          "stringId": 22,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3856,
+          "stringId": 22,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3860,
+          "stringId": 34,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3862,
+          "stringId": 34,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 23,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        }
+      ]
+    },
+    {
+      "source": "Farewell then.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그럼 잘 가시오.",
+      "candidateCounts": {
+        "그럼 잘 가시오.": 5,
+        "그럼 잘 있소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 145,
+          "translation": "그럼 잘 가시오."
+        },
+        {
+          "blockId": 3722,
+          "stringId": 32,
+          "translation": "그럼 잘 있소."
+        },
+        {
+          "blockId": 3730,
+          "stringId": 65,
+          "translation": "그럼 잘 가시오."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 65,
+          "translation": "그럼 잘 가시오."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 65,
+          "translation": "그럼 잘 가시오."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 65,
+          "translation": "그럼 잘 가시오."
+        }
+      ]
+    },
+    {
+      "source": "Farewell.",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "잘 있소.",
+      "candidateCounts": {
+        "잘 있소.": 53,
+        "잘 가시오.": 12,
+        "잘 있으시오.": 9,
+        "잘 있게.": 2,
+        "잘 가라.": 1,
+        "잘 계시오.": 1,
+        "잘 계십시오.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 153,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3592,
+          "stringId": 13,
+          "translation": "잘 있으시오."
+        },
+        {
+          "blockId": 3594,
+          "stringId": 43,
+          "translation": "잘 있으시오."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 89,
+          "translation": "잘 있으시오."
+        },
+        {
+          "blockId": 3599,
+          "stringId": 88,
+          "translation": "잘 있으시오."
+        },
+        {
+          "blockId": 3601,
+          "stringId": 35,
+          "translation": "잘 가라."
+        },
+        {
+          "blockId": 3603,
+          "stringId": 54,
+          "translation": "잘 있으시오."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 75,
+          "translation": "잘 있으시오."
+        },
+        {
+          "blockId": 3609,
+          "stringId": 42,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3610,
+          "stringId": 39,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3612,
+          "stringId": 59,
+          "translation": "잘 있으시오."
+        },
+        {
+          "blockId": 3649,
+          "stringId": 17,
+          "translation": "잘 있으시오."
+        },
+        {
+          "blockId": 3649,
+          "stringId": 36,
+          "translation": "잘 있으시오."
+        },
+        {
+          "blockId": 3672,
+          "stringId": 14,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3672,
+          "stringId": 20,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3673,
+          "stringId": 28,
+          "translation": "잘 있게."
+        },
+        {
+          "blockId": 3673,
+          "stringId": 33,
+          "translation": "잘 있게."
+        },
+        {
+          "blockId": 3674,
+          "stringId": 36,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3674,
+          "stringId": 38,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3696,
+          "stringId": 39,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3697,
+          "stringId": 57,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3699,
+          "stringId": 9,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3720,
+          "stringId": 74,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3721,
+          "stringId": 44,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3722,
+          "stringId": 33,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3723,
+          "stringId": 27,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3723,
+          "stringId": 66,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3723,
+          "stringId": 71,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3724,
+          "stringId": 37,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3725,
+          "stringId": 44,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3725,
+          "stringId": 49,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3727,
+          "stringId": 43,
+          "translation": "잘 계십시오."
+        },
+        {
+          "blockId": 3727,
+          "stringId": 74,
+          "translation": "잘 계시오."
+        },
+        {
+          "blockId": 3730,
+          "stringId": 74,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 74,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 74,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 74,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3745,
+          "stringId": 33,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3745,
+          "stringId": 36,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3745,
+          "stringId": 39,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3745,
+          "stringId": 43,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3768,
+          "stringId": 19,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3769,
+          "stringId": 28,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3770,
+          "stringId": 31,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3771,
+          "stringId": 64,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3772,
+          "stringId": 30,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3773,
+          "stringId": 38,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3774,
+          "stringId": 31,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3775,
+          "stringId": 51,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3778,
+          "stringId": 47,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3792,
+          "stringId": 29,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3792,
+          "stringId": 34,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3793,
+          "stringId": 32,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3794,
+          "stringId": 21,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3794,
+          "stringId": 35,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3795,
+          "stringId": 54,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3796,
+          "stringId": 69,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3798,
+          "stringId": 36,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3799,
+          "stringId": 35,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3800,
+          "stringId": 35,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3801,
+          "stringId": 12,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3801,
+          "stringId": 17,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3801,
+          "stringId": 28,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3802,
+          "stringId": 23,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3802,
+          "stringId": 42,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3803,
+          "stringId": 33,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3804,
+          "stringId": 32,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3805,
+          "stringId": 71,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3806,
+          "stringId": 30,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3846,
+          "stringId": 22,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3847,
+          "stringId": 22,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3852,
+          "stringId": 24,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3856,
+          "stringId": 24,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3860,
+          "stringId": 36,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 56,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3862,
+          "stringId": 36,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 56,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3865,
+          "stringId": 39,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 25,
+          "translation": "잘 있소."
+        }
+      ]
+    },
+    {
+      "source": "GRRAAARRRGGH!!!",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "크르아아아악!!!",
+      "candidateCounts": {
+        "크르아아아악!!!": 1,
+        "크아아아아아!!!": 1,
+        "크아아아아악!!!": 1,
+        "크아아아악!!!": 1
+      },
+      "locations": [
+        {
+          "blockId": 3793,
+          "stringId": 26,
+          "translation": "크르아아아악!!!"
+        },
+        {
+          "blockId": 3803,
+          "stringId": 27,
+          "translation": "크아아아아악!!!"
+        },
+        {
+          "blockId": 3804,
+          "stringId": 26,
+          "translation": "크아아아아아!!!"
+        },
+        {
+          "blockId": 3806,
+          "stringId": 24,
+          "translation": "크아아아악!!!"
+        }
+      ]
+    },
+    {
+      "source": "Ghouls live below us.  They disgusting.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "구울들은 우리 아래에 산다. 역겨운 놈들이다.",
+      "candidateCounts": {
+        "구울들은 우리 아래에 산다. 역겨운 놈들이다.": 1,
+        "우리 아래에 구울 산다. 역겹다.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3602,
+          "stringId": 35,
+          "translation": "구울들은 우리 아래에 산다. 역겨운 놈들이다."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 15,
+          "translation": "우리 아래에 구울 산다. 역겹다."
+        }
+      ]
+    },
+    {
+      "source": "Good luck!",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "행운을 비오!",
+      "candidateCounts": {
+        "행운을 비네!": 1,
+        "행운을 비오!": 1
+      },
+      "locations": [
+        {
+          "blockId": 3771,
+          "stringId": 30,
+          "translation": "행운을 비오!"
+        },
+        {
+          "blockId": 3772,
+          "stringId": 22,
+          "translation": "행운을 비네!"
+        }
+      ]
+    },
+    {
+      "source": "Good riddance!",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "잘 가시게!",
+      "candidateCounts": {
+        "썩 가라!": 1,
+        "잘 가시게!": 1,
+        "잘 가시오!": 1
+      },
+      "locations": [
+        {
+          "blockId": 3673,
+          "stringId": 25,
+          "translation": "잘 가시게!"
+        },
+        {
+          "blockId": 3796,
+          "stringId": 36,
+          "translation": "썩 가라!"
+        },
+        {
+          "blockId": 3879,
+          "stringId": 7,
+          "translation": "잘 가시오!"
+        }
+      ]
+    },
+    {
+      "source": "Goodbye, then.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그렇다면 잘 있소.",
+      "candidateCounts": {
+        "그러면 잘 가시오.": 1,
+        "그렇다면 잘 있소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3778,
+          "stringId": 21,
+          "translation": "그렇다면 잘 있소."
+        },
+        {
+          "blockId": 3816,
+          "stringId": 46,
+          "translation": "그러면 잘 가시오."
+        }
+      ]
+    },
+    {
+      "source": "Goodbye.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "잘 가시오.",
+      "candidateCounts": {
+        "잘 가시오.": 10,
+        "잘 있소.": 5,
+        "잘 있으시오.": 5,
+        "잘 가라.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3585,
+          "stringId": 34,
+          "translation": "잘 있으시오."
+        },
+        {
+          "blockId": 3595,
+          "stringId": 29,
+          "translation": "잘 있으시오."
+        },
+        {
+          "blockId": 3596,
+          "stringId": 61,
+          "translation": "잘 있으시오."
+        },
+        {
+          "blockId": 3599,
+          "stringId": 61,
+          "translation": "잘 있으시오."
+        },
+        {
+          "blockId": 3607,
+          "stringId": 48,
+          "translation": "잘 있으시오."
+        },
+        {
+          "blockId": 3610,
+          "stringId": 24,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3610,
+          "stringId": 31,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3610,
+          "stringId": 34,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3696,
+          "stringId": 31,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3697,
+          "stringId": 17,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3697,
+          "stringId": 21,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3697,
+          "stringId": 27,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3698,
+          "stringId": 30,
+          "translation": "잘 있소."
+        },
+        {
+          "blockId": 3746,
+          "stringId": 48,
+          "translation": "잘 가라."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 21,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 25,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 42,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 21,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 25,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 42,
+          "translation": "잘 가시오."
+        },
+        {
+          "blockId": 3865,
+          "stringId": 16,
+          "translation": "잘 가시오."
+        }
+      ]
+    },
+    {
+      "source": "Here it is.",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "여기 있소.",
+      "candidateCounts": {
+        "여기 있다.": 4,
+        "여기 있소.": 4,
+        "여기 있네.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3589,
+          "stringId": 34,
+          "translation": "여기 있소."
+        },
+        {
+          "blockId": 3599,
+          "stringId": 58,
+          "translation": "여기 있소."
+        },
+        {
+          "blockId": 3601,
+          "stringId": 28,
+          "translation": "여기 있소."
+        },
+        {
+          "blockId": 3728,
+          "stringId": 37,
+          "translation": "여기 있네."
+        },
+        {
+          "blockId": 3775,
+          "stringId": 44,
+          "translation": "여기 있소."
+        },
+        {
+          "blockId": 3793,
+          "stringId": 6,
+          "translation": "여기 있다."
+        },
+        {
+          "blockId": 3803,
+          "stringId": 6,
+          "translation": "여기 있다."
+        },
+        {
+          "blockId": 3804,
+          "stringId": 5,
+          "translation": "여기 있다."
+        },
+        {
+          "blockId": 3806,
+          "stringId": 3,
+          "translation": "여기 있다."
+        }
+      ]
+    },
+    {
+      "source": "I accept thy offer.",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "그대의 제안을 받아들이겠소.",
+      "candidateCounts": {
+        "그대의 제안을 받아들이겠소.": 28,
+        "좋소, 그 제안을 받아들이겠소.": 8,
+        "그 제안을 받아들이겠소.": 2,
+        "좋네, 받겠네.": 1,
+        "좋소, 받겠소.": 1,
+        "좋아, 받겠어.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3594,
+          "stringId": 44,
+          "translation": "좋아, 받겠어."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 90,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3603,
+          "stringId": 55,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 76,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3609,
+          "stringId": 43,
+          "translation": "그 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3610,
+          "stringId": 40,
+          "translation": "그 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3612,
+          "stringId": 60,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3672,
+          "stringId": 21,
+          "translation": "좋소, 받겠소."
+        },
+        {
+          "blockId": 3673,
+          "stringId": 34,
+          "translation": "좋네, 받겠네."
+        },
+        {
+          "blockId": 3696,
+          "stringId": 40,
+          "translation": "좋소, 그 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3697,
+          "stringId": 58,
+          "translation": "좋소, 그 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3699,
+          "stringId": 10,
+          "translation": "좋소, 그 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3723,
+          "stringId": 72,
+          "translation": "좋소, 그 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3725,
+          "stringId": 50,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3730,
+          "stringId": 75,
+          "translation": "좋소, 그 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 75,
+          "translation": "좋소, 그 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 75,
+          "translation": "좋소, 그 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 75,
+          "translation": "좋소, 그 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3768,
+          "stringId": 20,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3769,
+          "stringId": 29,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3770,
+          "stringId": 32,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3771,
+          "stringId": 65,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3772,
+          "stringId": 31,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3773,
+          "stringId": 39,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3774,
+          "stringId": 32,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3775,
+          "stringId": 52,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3778,
+          "stringId": 48,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3792,
+          "stringId": 35,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3793,
+          "stringId": 33,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3795,
+          "stringId": 55,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3796,
+          "stringId": 70,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3798,
+          "stringId": 37,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3799,
+          "stringId": 36,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3800,
+          "stringId": 36,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3801,
+          "stringId": 29,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3802,
+          "stringId": 43,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3803,
+          "stringId": 34,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3804,
+          "stringId": 33,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3805,
+          "stringId": 72,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3806,
+          "stringId": 31,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 26,
+          "translation": "그대의 제안을 받아들이겠소."
+        }
+      ]
+    },
+    {
+      "source": "I accept your offer.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그대의 제안을 받아들이겠소.",
+      "candidateCounts": {
+        "그대의 제안을 받아들이겠소.": 2,
+        "그 제안을 받아들이겠소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 154,
+          "translation": "그 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3860,
+          "stringId": 37,
+          "translation": "그대의 제안을 받아들이겠소."
+        },
+        {
+          "blockId": 3862,
+          "stringId": 37,
+          "translation": "그대의 제안을 받아들이겠소."
+        }
+      ]
+    },
+    {
+      "source": "I am @GS8.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "나는 @GS8이오.",
+      "candidateCounts": {
+        "나는 @GS8이다.": 2,
+        "나는 @GS8이오.": 2,
+        "내 이름은 @GS8이오.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3596,
+          "stringId": 3,
+          "translation": "내 이름은 @GS8이오."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 3,
+          "translation": "나는 @GS8이오."
+        },
+        {
+          "blockId": 3605,
+          "stringId": 2,
+          "translation": "나는 @GS8이다."
+        },
+        {
+          "blockId": 3727,
+          "stringId": 63,
+          "translation": "나는 @GS8이오."
+        },
+        {
+          "blockId": 3728,
+          "stringId": 2,
+          "translation": "나는 @GS8이다."
+        }
+      ]
+    },
+    {
+      "source": "I am an adventurer.",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "나는 모험가요.",
+      "candidateCounts": {
+        "나는 모험가다.": 1,
+        "나는 모험가요.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3727,
+          "stringId": 65,
+          "translation": "나는 모험가요."
+        },
+        {
+          "blockId": 3728,
+          "stringId": 3,
+          "translation": "나는 모험가다."
+        }
+      ]
+    },
+    {
+      "source": "I am in search of adventure.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "모험을 찾고 있소.",
+      "candidateCounts": {
+        "모험을 찾고 있소.": 2,
+        "모험할 일을 찾고 있소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3587,
+          "stringId": 14,
+          "translation": "모험을 찾고 있소."
+        },
+        {
+          "blockId": 3587,
+          "stringId": 88,
+          "translation": "모험을 찾고 있소."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 5,
+          "translation": "모험할 일을 찾고 있소."
+        }
+      ]
+    },
+    {
+      "source": "I am merely exploring.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그저 탐험 중이다.",
+      "candidateCounts": {
+        "그저 탐험 중이다.": 1,
+        "그저 탐험 중이오.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3605,
+          "stringId": 10,
+          "translation": "그저 탐험 중이다."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 5,
+          "translation": "그저 탐험 중이오."
+        }
+      ]
+    },
+    {
+      "source": "I am weary of this haggling.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "이런 흥정에는 이제 지쳤소.",
+      "candidateCounts": {
+        "이런 흥정에는 이제 지쳤소.": 30,
+        "이런 흥정은 이제 지긋지긋하오.": 4,
+        "이런 흥정은 이제 지쳤소.": 4,
+        "이제 흥정도 지긋지긋하오.": 2,
+        "이제 흥정도 지쳤소.": 2,
+        "이런 흥정은 이제 지쳤네.": 1,
+        "이제 흥정도 지긋지긋해.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 157,
+          "translation": "이런 흥정은 이제 지긋지긋하오."
+        },
+        {
+          "blockId": 3594,
+          "stringId": 47,
+          "translation": "이제 흥정도 지긋지긋해."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 93,
+          "translation": "이제 흥정도 지긋지긋하오."
+        },
+        {
+          "blockId": 3603,
+          "stringId": 58,
+          "translation": "이제 흥정도 지긋지긋하오."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 79,
+          "translation": "이제 흥정도 지쳤소."
+        },
+        {
+          "blockId": 3609,
+          "stringId": 46,
+          "translation": "이런 흥정은 이제 지긋지긋하오."
+        },
+        {
+          "blockId": 3610,
+          "stringId": 43,
+          "translation": "이런 흥정은 이제 지긋지긋하오."
+        },
+        {
+          "blockId": 3612,
+          "stringId": 63,
+          "translation": "이제 흥정도 지쳤소."
+        },
+        {
+          "blockId": 3672,
+          "stringId": 24,
+          "translation": "이런 흥정은 이제 지쳤소."
+        },
+        {
+          "blockId": 3673,
+          "stringId": 37,
+          "translation": "이런 흥정은 이제 지쳤네."
+        },
+        {
+          "blockId": 3696,
+          "stringId": 43,
+          "translation": "이런 흥정은 이제 지쳤소."
+        },
+        {
+          "blockId": 3697,
+          "stringId": 61,
+          "translation": "이런 흥정은 이제 지쳤소."
+        },
+        {
+          "blockId": 3699,
+          "stringId": 13,
+          "translation": "이런 흥정은 이제 지긋지긋하오."
+        },
+        {
+          "blockId": 3723,
+          "stringId": 75,
+          "translation": "이런 흥정은 이제 지쳤소."
+        },
+        {
+          "blockId": 3725,
+          "stringId": 53,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3730,
+          "stringId": 78,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 78,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 78,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 78,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3768,
+          "stringId": 23,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3769,
+          "stringId": 32,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3770,
+          "stringId": 35,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3771,
+          "stringId": 68,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3772,
+          "stringId": 34,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3773,
+          "stringId": 42,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3774,
+          "stringId": 35,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3775,
+          "stringId": 55,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3778,
+          "stringId": 51,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3792,
+          "stringId": 38,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3793,
+          "stringId": 36,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3795,
+          "stringId": 58,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3796,
+          "stringId": 73,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3798,
+          "stringId": 40,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3799,
+          "stringId": 39,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3800,
+          "stringId": 39,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3801,
+          "stringId": 32,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3802,
+          "stringId": 46,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3803,
+          "stringId": 37,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3804,
+          "stringId": 36,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3805,
+          "stringId": 75,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3806,
+          "stringId": 34,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3860,
+          "stringId": 40,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3862,
+          "stringId": 40,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 29,
+          "translation": "이런 흥정에는 이제 지쳤소."
+        }
+      ]
+    },
+    {
+      "source": "I beg thy pardon, I must think about this deal.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소.",
+      "candidateCounts": {
+        "실례하지만, 이 거래는 좀 더 생각해 봐야겠소.": 2,
+        "실례지만, 이 거래는 좀 더 생각해 보겠소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3590,
+          "stringId": 67,
+          "translation": "실례지만, 이 거래는 좀 더 생각해 보겠소."
+        },
+        {
+          "blockId": 3720,
+          "stringId": 72,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        },
+        {
+          "blockId": 3721,
+          "stringId": 42,
+          "translation": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소."
+        }
+      ]
+    },
+    {
+      "source": "I demand that thou givest me these items.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "이 물건들을 내게 넘기시오.",
+      "candidateCounts": {
+        "이 물건들을 내게 넘기시오.": 6,
+        "이 물건들을 내놓으시오.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 150,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3599,
+          "stringId": 85,
+          "translation": "이 물건들을 내놓으시오."
+        },
+        {
+          "blockId": 3860,
+          "stringId": 33,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 53,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3862,
+          "stringId": 33,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 53,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3865,
+          "stringId": 36,
+          "translation": "이 물건들을 내게 넘기시오."
+        }
+      ]
+    },
+    {
+      "source": "I demand thou givest me these items.",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "이 물건들을 내게 넘기시오.",
+      "candidateCounts": {
+        "이 물건들을 내게 넘기시오.": 41,
+        "이 물건들을 내놓으시오.": 3,
+        "그 물건들을 내게 넘기시오.": 2,
+        "이 물건들을 내게 넘기게.": 2
+      },
+      "locations": [
+        {
+          "blockId": 3590,
+          "stringId": 66,
+          "translation": "이 물건들을 내놓으시오."
+        },
+        {
+          "blockId": 3594,
+          "stringId": 40,
+          "translation": "이 물건들을 내놓으시오."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 86,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3603,
+          "stringId": 51,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 72,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3609,
+          "stringId": 39,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3610,
+          "stringId": 36,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3612,
+          "stringId": 56,
+          "translation": "이 물건들을 내놓으시오."
+        },
+        {
+          "blockId": 3672,
+          "stringId": 17,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3673,
+          "stringId": 30,
+          "translation": "이 물건들을 내게 넘기게."
+        },
+        {
+          "blockId": 3696,
+          "stringId": 36,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3697,
+          "stringId": 54,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3699,
+          "stringId": 6,
+          "translation": "이 물건들을 내게 넘기게."
+        },
+        {
+          "blockId": 3720,
+          "stringId": 71,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3721,
+          "stringId": 41,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3723,
+          "stringId": 68,
+          "translation": "그 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3725,
+          "stringId": 46,
+          "translation": "그 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3730,
+          "stringId": 71,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 71,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 71,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 71,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3768,
+          "stringId": 16,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3769,
+          "stringId": 25,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3770,
+          "stringId": 28,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3771,
+          "stringId": 61,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3772,
+          "stringId": 27,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3773,
+          "stringId": 35,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3774,
+          "stringId": 28,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3775,
+          "stringId": 48,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3778,
+          "stringId": 44,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3792,
+          "stringId": 31,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3793,
+          "stringId": 29,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3795,
+          "stringId": 51,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3796,
+          "stringId": 66,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3798,
+          "stringId": 33,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3799,
+          "stringId": 32,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3800,
+          "stringId": 32,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3801,
+          "stringId": 25,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3802,
+          "stringId": 39,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3803,
+          "stringId": 30,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3804,
+          "stringId": 29,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3805,
+          "stringId": 68,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3806,
+          "stringId": 27,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3846,
+          "stringId": 19,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3847,
+          "stringId": 19,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3852,
+          "stringId": 21,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3856,
+          "stringId": 21,
+          "translation": "이 물건들을 내게 넘기시오."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 22,
+          "translation": "이 물건들을 내게 넘기시오."
+        }
+      ]
+    },
+    {
+      "source": "I do not wish to barter any further.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "더는 흥정하고 싶지 않소.",
+      "candidateCounts": {
+        "더는 흥정하고 싶지 않소.": 52,
+        "더는 물물교환하고 싶지 않소.": 2,
+        "더는 흥정하고 싶지 않네.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 152,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3590,
+          "stringId": 68,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3594,
+          "stringId": 42,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 88,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3599,
+          "stringId": 87,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3603,
+          "stringId": 53,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 74,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3609,
+          "stringId": 41,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3610,
+          "stringId": 38,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3612,
+          "stringId": 58,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3672,
+          "stringId": 19,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3673,
+          "stringId": 32,
+          "translation": "더는 흥정하고 싶지 않네."
+        },
+        {
+          "blockId": 3696,
+          "stringId": 38,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3697,
+          "stringId": 56,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3699,
+          "stringId": 8,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3720,
+          "stringId": 73,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3721,
+          "stringId": 43,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3723,
+          "stringId": 70,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3725,
+          "stringId": 48,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3730,
+          "stringId": 73,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 73,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 73,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 73,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3768,
+          "stringId": 18,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3769,
+          "stringId": 27,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3770,
+          "stringId": 30,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3771,
+          "stringId": 63,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3772,
+          "stringId": 29,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3773,
+          "stringId": 37,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3774,
+          "stringId": 30,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3775,
+          "stringId": 50,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3778,
+          "stringId": 46,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3792,
+          "stringId": 33,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3793,
+          "stringId": 31,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3795,
+          "stringId": 53,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3796,
+          "stringId": 68,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3798,
+          "stringId": 35,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3799,
+          "stringId": 34,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3800,
+          "stringId": 34,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3801,
+          "stringId": 27,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3802,
+          "stringId": 41,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3803,
+          "stringId": 32,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3804,
+          "stringId": 31,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3805,
+          "stringId": 70,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3806,
+          "stringId": 29,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3846,
+          "stringId": 21,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3847,
+          "stringId": 21,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3852,
+          "stringId": 23,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3856,
+          "stringId": 23,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3860,
+          "stringId": 35,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 55,
+          "translation": "더는 물물교환하고 싶지 않소."
+        },
+        {
+          "blockId": 3862,
+          "stringId": 35,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 55,
+          "translation": "더는 물물교환하고 싶지 않소."
+        },
+        {
+          "blockId": 3865,
+          "stringId": 38,
+          "translation": "더는 흥정하고 싶지 않소."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 24,
+          "translation": "더는 흥정하고 싶지 않소."
+        }
+      ]
+    },
+    {
+      "source": "I have no new news for you.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "새로 들려줄 소식은 없다.",
+      "candidateCounts": {
+        "너에게 알려줄 새 소식 없다.": 1,
+        "새로 들려줄 소식은 없다.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3602,
+          "stringId": 29,
+          "translation": "새로 들려줄 소식은 없다."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 9,
+          "translation": "너에게 알려줄 새 소식 없다."
+        }
+      ]
+    },
+    {
+      "source": "I make thee this offer.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "이렇게 제안하겠소.",
+      "candidateCounts": {
+        "이렇게 제안하겠소.": 53,
+        "이렇게 제안하겠네.": 2
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 149,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3590,
+          "stringId": 65,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3594,
+          "stringId": 39,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 85,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3599,
+          "stringId": 84,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3603,
+          "stringId": 50,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 71,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3609,
+          "stringId": 38,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3610,
+          "stringId": 35,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3612,
+          "stringId": 55,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3672,
+          "stringId": 16,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3673,
+          "stringId": 29,
+          "translation": "이렇게 제안하겠네."
+        },
+        {
+          "blockId": 3696,
+          "stringId": 35,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3697,
+          "stringId": 53,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3699,
+          "stringId": 5,
+          "translation": "이렇게 제안하겠네."
+        },
+        {
+          "blockId": 3720,
+          "stringId": 70,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3721,
+          "stringId": 40,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3723,
+          "stringId": 67,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3725,
+          "stringId": 45,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3730,
+          "stringId": 70,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 70,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 70,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 70,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3768,
+          "stringId": 15,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3769,
+          "stringId": 24,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3770,
+          "stringId": 27,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3771,
+          "stringId": 60,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3772,
+          "stringId": 26,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3773,
+          "stringId": 34,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3774,
+          "stringId": 27,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3775,
+          "stringId": 47,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3778,
+          "stringId": 43,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3792,
+          "stringId": 30,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3793,
+          "stringId": 28,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3795,
+          "stringId": 50,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3796,
+          "stringId": 65,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3798,
+          "stringId": 32,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3799,
+          "stringId": 31,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3800,
+          "stringId": 31,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3801,
+          "stringId": 24,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3802,
+          "stringId": 38,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3803,
+          "stringId": 29,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3804,
+          "stringId": 28,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3805,
+          "stringId": 67,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3806,
+          "stringId": 26,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3846,
+          "stringId": 18,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3847,
+          "stringId": 18,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3852,
+          "stringId": 20,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3856,
+          "stringId": 20,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3860,
+          "stringId": 32,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 52,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3862,
+          "stringId": 32,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 52,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3865,
+          "stringId": 35,
+          "translation": "이렇게 제안하겠소."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 21,
+          "translation": "이렇게 제안하겠소."
+        }
+      ]
+    },
+    {
+      "source": "I need thy help.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그대의 도움이 필요하오.",
+      "candidateCounts": {
+        "그대의 도움이 필요하오.": 1,
+        "도움이 필요하오.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3591,
+          "stringId": 56,
+          "translation": "그대의 도움이 필요하오."
+        },
+        {
+          "blockId": 3598,
+          "stringId": 2,
+          "translation": "도움이 필요하오."
+        }
+      ]
+    },
+    {
+      "source": "I thank thee for thy help.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "도와주어 고맙소.",
+      "candidateCounts": {
+        "도와주어 고맙소.": 4,
+        "도움에 감사하오.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3651,
+          "stringId": 32,
+          "translation": "도움에 감사하오."
+        },
+        {
+          "blockId": 3730,
+          "stringId": 37,
+          "translation": "도와주어 고맙소."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 37,
+          "translation": "도와주어 고맙소."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 37,
+          "translation": "도와주어 고맙소."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 37,
+          "translation": "도와주어 고맙소."
+        }
+      ]
+    },
+    {
+      "source": "I thank thee kindly.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "친절에 감사하오.",
+      "candidateCounts": {
+        "정말 고맙소.": 2,
+        "친절에 감사하오.": 2
+      },
+      "locations": [
+        {
+          "blockId": 3592,
+          "stringId": 12,
+          "translation": "친절에 감사하오."
+        },
+        {
+          "blockId": 3594,
+          "stringId": 19,
+          "translation": "정말 고맙소."
+        },
+        {
+          "blockId": 3594,
+          "stringId": 37,
+          "translation": "정말 고맙소."
+        },
+        {
+          "blockId": 3651,
+          "stringId": 44,
+          "translation": "친절에 감사하오."
+        }
+      ]
+    },
+    {
+      "source": "I thank thee, but I must be going.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "고맙지만 이제 가봐야겠소.",
+      "candidateCounts": {
+        "고맙지만 이제 가봐야겠소.": 2,
+        "고맙지만, 이만 가겠다.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3604,
+          "stringId": 42,
+          "translation": "고맙지만 이제 가봐야겠소."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 47,
+          "translation": "고맙지만 이제 가봐야겠소."
+        },
+        {
+          "blockId": 3606,
+          "stringId": 8,
+          "translation": "고맙지만, 이만 가겠다."
+        }
+      ]
+    },
+    {
+      "source": "I thank thee.  Farewell.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "고맙소. 잘 있으시오.",
+      "candidateCounts": {
+        "고맙소. 잘 있으시오.": 3,
+        "고맙소. 잘 가시오.": 1,
+        "고맙소. 잘 있소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3587,
+          "stringId": 69,
+          "translation": "고맙소. 잘 가시오."
+        },
+        {
+          "blockId": 3588,
+          "stringId": 97,
+          "translation": "고맙소. 잘 있으시오."
+        },
+        {
+          "blockId": 3588,
+          "stringId": 100,
+          "translation": "고맙소. 잘 있으시오."
+        },
+        {
+          "blockId": 3588,
+          "stringId": 118,
+          "translation": "고맙소. 잘 있으시오."
+        },
+        {
+          "blockId": 3795,
+          "stringId": 14,
+          "translation": "고맙소. 잘 있소."
+        }
+      ]
+    },
+    {
+      "source": "I was just leaving.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "마침 떠나려던 참이오.",
+      "candidateCounts": {
+        "마침 떠나려던 참이오.": 2,
+        "마침 떠나려던 참이었다.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3588,
+          "stringId": 122,
+          "translation": "마침 떠나려던 참이오."
+        },
+        {
+          "blockId": 3606,
+          "stringId": 5,
+          "translation": "마침 떠나려던 참이었다."
+        },
+        {
+          "blockId": 3612,
+          "stringId": 31,
+          "translation": "마침 떠나려던 참이오."
+        }
+      ]
+    },
+    {
+      "source": "I will seek him out.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그를 찾아가겠소.",
+      "candidateCounts": {
+        "그를 찾아가겠소.": 1,
+        "그를 찾아보겠습니다.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3604,
+          "stringId": 39,
+          "translation": "그를 찾아가겠소."
+        },
+        {
+          "blockId": 3727,
+          "stringId": 42,
+          "translation": "그를 찾아보겠습니다."
+        }
+      ]
+    },
+    {
+      "source": "I'm afraid not.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "유감이지만 아니오.",
+      "candidateCounts": {
+        "유감이지만 아니오.": 2,
+        "미안하지만 없소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3771,
+          "stringId": 6,
+          "translation": "유감이지만 아니오."
+        },
+        {
+          "blockId": 3771,
+          "stringId": 51,
+          "translation": "유감이지만 아니오."
+        },
+        {
+          "blockId": 3802,
+          "stringId": 31,
+          "translation": "미안하지만 없소."
+        }
+      ]
+    },
+    {
+      "source": "I'm sorry, here it is.",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "미안하오, 여기 있소.",
+      "candidateCounts": {
+        "미안하오, 여기 있소.": 2,
+        "미안하오. 여기 있소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3607,
+          "stringId": 65,
+          "translation": "미안하오. 여기 있소."
+        },
+        {
+          "blockId": 3795,
+          "stringId": 45,
+          "translation": "미안하오, 여기 있소."
+        },
+        {
+          "blockId": 3795,
+          "stringId": 48,
+          "translation": "미안하오, 여기 있소."
+        }
+      ]
+    },
+    {
+      "source": "If thou dost insist, thou canst have them.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그대가 고집한다면 가져가시오.",
+      "candidateCounts": {
+        "그대가 고집한다면 가져가시오.": 31,
+        "정 원한다면 가져가시오.": 6,
+        "그대가 정 원한다면 가져가시오.": 2,
+        "자네가 정 원한다면 가져가게.": 1,
+        "정 그렇다면 가져가.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3594,
+          "stringId": 52,
+          "translation": "정 그렇다면 가져가."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 98,
+          "translation": "정 원한다면 가져가시오."
+        },
+        {
+          "blockId": 3603,
+          "stringId": 63,
+          "translation": "정 원한다면 가져가시오."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 84,
+          "translation": "정 원한다면 가져가시오."
+        },
+        {
+          "blockId": 3609,
+          "stringId": 51,
+          "translation": "정 원한다면 가져가시오."
+        },
+        {
+          "blockId": 3610,
+          "stringId": 47,
+          "translation": "정 원한다면 가져가시오."
+        },
+        {
+          "blockId": 3612,
+          "stringId": 68,
+          "translation": "정 원한다면 가져가시오."
+        },
+        {
+          "blockId": 3672,
+          "stringId": 29,
+          "translation": "그대가 정 원한다면 가져가시오."
+        },
+        {
+          "blockId": 3673,
+          "stringId": 42,
+          "translation": "자네가 정 원한다면 가져가게."
+        },
+        {
+          "blockId": 3696,
+          "stringId": 48,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3697,
+          "stringId": 66,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3699,
+          "stringId": 17,
+          "translation": "그대가 정 원한다면 가져가시오."
+        },
+        {
+          "blockId": 3723,
+          "stringId": 80,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3725,
+          "stringId": 58,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3730,
+          "stringId": 83,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 83,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 83,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 83,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3768,
+          "stringId": 28,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3769,
+          "stringId": 37,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3770,
+          "stringId": 39,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3771,
+          "stringId": 73,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3772,
+          "stringId": 39,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3773,
+          "stringId": 47,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3774,
+          "stringId": 40,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3775,
+          "stringId": 60,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3778,
+          "stringId": 56,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3792,
+          "stringId": 43,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3793,
+          "stringId": 41,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3795,
+          "stringId": 63,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3796,
+          "stringId": 78,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3798,
+          "stringId": 45,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3799,
+          "stringId": 44,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3800,
+          "stringId": 44,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3801,
+          "stringId": 37,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3802,
+          "stringId": 51,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3803,
+          "stringId": 42,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3804,
+          "stringId": 41,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3805,
+          "stringId": 80,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3806,
+          "stringId": 39,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 34,
+          "translation": "그대가 고집한다면 가져가시오."
+        }
+      ]
+    },
+    {
+      "source": "If ye insist, ye can have them.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그대가 고집한다면 가져가시오.",
+      "candidateCounts": {
+        "그대가 고집한다면 가져가시오.": 2,
+        "정 원한다면 가져가시오.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 162,
+          "translation": "정 원한다면 가져가시오."
+        },
+        {
+          "blockId": 3860,
+          "stringId": 45,
+          "translation": "그대가 고집한다면 가져가시오."
+        },
+        {
+          "blockId": 3862,
+          "stringId": 45,
+          "translation": "그대가 고집한다면 가져가시오."
+        }
+      ]
+    },
+    {
+      "source": "Is this it?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "이것이 그 방패요?",
+      "candidateCounts": {
+        "이것이 그 방패요?": 1,
+        "이것이오?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 66,
+          "translation": "이것이 그 방패요?"
+        },
+        {
+          "blockId": 3610,
+          "stringId": 27,
+          "translation": "이것이오?"
+        }
+      ]
+    },
+    {
+      "source": "It is a pleasure to meet thee.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "만나서 반갑소.",
+      "candidateCounts": {
+        "그대를 만나 영광이오.": 1,
+        "만나서 반갑소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3875,
+          "stringId": 3,
+          "translation": "만나서 반갑소."
+        },
+        {
+          "blockId": 3881,
+          "stringId": 3,
+          "translation": "그대를 만나 영광이오."
+        }
+      ]
+    },
+    {
+      "source": "Me hear one Troll got caught by Wizard, made slave.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "트롤 하나가 마법사에게 붙잡혀 노예가 됐다고 들었다.",
+      "candidateCounts": {
+        "마법사에게 잡혀 노예가 된 트롤이 있다는 소문 들었다.": 1,
+        "트롤 하나가 마법사에게 붙잡혀 노예가 됐다고 들었다.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3602,
+          "stringId": 30,
+          "translation": "트롤 하나가 마법사에게 붙잡혀 노예가 됐다고 들었다."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 10,
+          "translation": "마법사에게 잡혀 노예가 된 트롤이 있다는 소문 들었다."
+        }
+      ]
+    },
+    {
+      "source": "Me hear somebody killing Trolls!  Me catch, me eat!",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "누군가 트롤들을 죽이고 있다고 들었다! 내가 잡으면 먹어버린다!",
+      "candidateCounts": {
+        "누가 트롤들을 죽이고 다닌다는 소문 들었다! 잡으면 먹는다!": 1,
+        "누군가 트롤들을 죽이고 있다고 들었다! 내가 잡으면 먹어버린다!": 1
+      },
+      "locations": [
+        {
+          "blockId": 3602,
+          "stringId": 31,
+          "translation": "누군가 트롤들을 죽이고 있다고 들었다! 내가 잡으면 먹어버린다!"
+        },
+        {
+          "blockId": 3872,
+          "stringId": 11,
+          "translation": "누가 트롤들을 죽이고 다닌다는 소문 들었다! 잡으면 먹는다!"
+        }
+      ]
+    },
+    {
+      "source": "My name is @GS8.",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "내 이름은 @GS8이오.",
+      "candidateCounts": {
+        "내 이름은 @GS8이오.": 2,
+        "내 이름은 @GS8이다.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3649,
+          "stringId": 4,
+          "translation": "내 이름은 @GS8이오."
+        },
+        {
+          "blockId": 3649,
+          "stringId": 8,
+          "translation": "내 이름은 @GS8이오."
+        },
+        {
+          "blockId": 3696,
+          "stringId": 5,
+          "translation": "내 이름은 @GS8이다."
+        }
+      ]
+    },
+    {
+      "source": "No",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "아니요",
+      "candidateCounts": {
+        "아니오.": 1,
+        "아니요": 1
+      },
+      "locations": [
+        {
+          "blockId": 2,
+          "stringId": 16,
+          "translation": "아니요"
+        },
+        {
+          "blockId": 3590,
+          "stringId": 64,
+          "translation": "아니오."
+        }
+      ]
+    },
+    {
+      "source": "No! Thou shalt not take them!",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "안 돼! 절대로 가져갈 수 없소!",
+      "candidateCounts": {
+        "안 돼! 절대로 가져갈 수 없소!": 27,
+        "안 돼! 절대 내줄 수 없소!": 4,
+        "안 되오! 절대 가져갈 수 없소!": 4,
+        "안 돼! 그것들은 못 가져간다!": 2,
+        "안 돼! 절대 가져갈 수 없소!": 1,
+        "안 돼! 절대 내줄 수 없네!": 1,
+        "안 돼! 절대 못 줘!": 1,
+        "안 되오! 절대 내줄 수 없소!": 1
+      },
+      "locations": [
+        {
+          "blockId": 3594,
+          "stringId": 53,
+          "translation": "안 돼! 절대 못 줘!"
+        },
+        {
+          "blockId": 3597,
+          "stringId": 99,
+          "translation": "안 되오! 절대 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3603,
+          "stringId": 64,
+          "translation": "안 되오! 절대 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3604,
+          "stringId": 85,
+          "translation": "안 되오! 절대 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3609,
+          "stringId": 52,
+          "translation": "안 돼! 그것들은 못 가져간다!"
+        },
+        {
+          "blockId": 3610,
+          "stringId": 48,
+          "translation": "안 돼! 그것들은 못 가져간다!"
+        },
+        {
+          "blockId": 3612,
+          "stringId": 69,
+          "translation": "안 되오! 절대 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3672,
+          "stringId": 30,
+          "translation": "안 되오! 절대 내줄 수 없소!"
+        },
+        {
+          "blockId": 3673,
+          "stringId": 43,
+          "translation": "안 돼! 절대 내줄 수 없네!"
+        },
+        {
+          "blockId": 3696,
+          "stringId": 49,
+          "translation": "안 돼! 절대 내줄 수 없소!"
+        },
+        {
+          "blockId": 3697,
+          "stringId": 67,
+          "translation": "안 돼! 절대 내줄 수 없소!"
+        },
+        {
+          "blockId": 3699,
+          "stringId": 18,
+          "translation": "안 돼! 절대 내줄 수 없소!"
+        },
+        {
+          "blockId": 3723,
+          "stringId": 81,
+          "translation": "안 돼! 절대 내줄 수 없소!"
+        },
+        {
+          "blockId": 3725,
+          "stringId": 59,
+          "translation": "안 돼! 절대 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3730,
+          "stringId": 84,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3731,
+          "stringId": 84,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3732,
+          "stringId": 84,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3733,
+          "stringId": 84,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3768,
+          "stringId": 29,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3769,
+          "stringId": 38,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3770,
+          "stringId": 40,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3771,
+          "stringId": 74,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3772,
+          "stringId": 40,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3773,
+          "stringId": 48,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3774,
+          "stringId": 41,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3775,
+          "stringId": 61,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3778,
+          "stringId": 57,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3792,
+          "stringId": 44,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3793,
+          "stringId": 42,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3795,
+          "stringId": 64,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3796,
+          "stringId": 79,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3798,
+          "stringId": 46,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3799,
+          "stringId": 45,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3800,
+          "stringId": 45,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3801,
+          "stringId": 38,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3802,
+          "stringId": 52,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3803,
+          "stringId": 43,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3804,
+          "stringId": 42,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3805,
+          "stringId": 81,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3806,
+          "stringId": 40,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3872,
+          "stringId": 35,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        }
+      ]
+    },
+    {
+      "source": "No! Ye shall not take them!",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "안 돼! 절대로 가져갈 수 없소!",
+      "candidateCounts": {
+        "안 돼! 절대로 가져갈 수 없소!": 2,
+        "안 되오! 그것들은 못 가져가오!": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 163,
+          "translation": "안 되오! 그것들은 못 가져가오!"
+        },
+        {
+          "blockId": 3860,
+          "stringId": 46,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        },
+        {
+          "blockId": 3862,
+          "stringId": 46,
+          "translation": "안 돼! 절대로 가져갈 수 없소!"
+        }
+      ]
+    },
+    {
+      "source": "No, I cannot.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "아니오, 지금은 어렵소.",
+      "candidateCounts": {
+        "아니오, 지금은 어렵소.": 1,
+        "아니오, 할 수 없소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 13,
+          "translation": "아니오, 지금은 어렵소."
+        },
+        {
+          "blockId": 3745,
+          "stringId": 56,
+          "translation": "아니오, 할 수 없소."
+        }
+      ]
+    },
+    {
+      "source": "No, I do not like this deal.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "아니오, 이 거래는 마음에 들지 않소.",
+      "candidateCounts": {
+        "아니오, 이 거래는 마음에 들지 않소.": 35,
+        "아니오. 이 거래는 마음에 들지 않소.": 7,
+        "아니, 이 거래는 마음에 들지 않네.": 1,
+        "아니, 이 거래는 마음에 안 들어.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 155,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3594,
+          "stringId": 45,
+          "translation": "아니, 이 거래는 마음에 안 들어."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 91,
+          "translation": "아니오. 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3603,
+          "stringId": 56,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 77,
+          "translation": "아니오. 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3609,
+          "stringId": 44,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3610,
+          "stringId": 41,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3612,
+          "stringId": 61,
+          "translation": "아니오. 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3672,
+          "stringId": 22,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3673,
+          "stringId": 35,
+          "translation": "아니, 이 거래는 마음에 들지 않네."
+        },
+        {
+          "blockId": 3696,
+          "stringId": 41,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3697,
+          "stringId": 59,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3699,
+          "stringId": 11,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3723,
+          "stringId": 73,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3725,
+          "stringId": 51,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3730,
+          "stringId": 76,
+          "translation": "아니오. 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 76,
+          "translation": "아니오. 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 76,
+          "translation": "아니오. 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 76,
+          "translation": "아니오. 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3768,
+          "stringId": 21,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3769,
+          "stringId": 30,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3770,
+          "stringId": 33,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3771,
+          "stringId": 66,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3772,
+          "stringId": 32,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3773,
+          "stringId": 40,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3774,
+          "stringId": 33,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3775,
+          "stringId": 53,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3778,
+          "stringId": 49,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3792,
+          "stringId": 36,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3793,
+          "stringId": 34,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3795,
+          "stringId": 56,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3796,
+          "stringId": 71,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3798,
+          "stringId": 38,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3799,
+          "stringId": 37,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3800,
+          "stringId": 37,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3801,
+          "stringId": 30,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3802,
+          "stringId": 44,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3803,
+          "stringId": 35,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3804,
+          "stringId": 34,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3805,
+          "stringId": 73,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3806,
+          "stringId": 32,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3860,
+          "stringId": 38,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3862,
+          "stringId": 38,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 27,
+          "translation": "아니오, 이 거래는 마음에 들지 않소."
+        }
+      ]
+    },
+    {
+      "source": "No, I do not.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "아니오, 없소.",
+      "candidateCounts": {
+        "아니오, 없소.": 2,
+        "아니오.": 2,
+        "아니오. 없소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3589,
+          "stringId": 32,
+          "translation": "아니오, 없소."
+        },
+        {
+          "blockId": 3596,
+          "stringId": 31,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 56,
+          "translation": "아니오. 없소."
+        },
+        {
+          "blockId": 3746,
+          "stringId": 41,
+          "translation": "아니오, 없소."
+        },
+        {
+          "blockId": 3801,
+          "stringId": 23,
+          "translation": "아니오."
+        }
+      ]
+    },
+    {
+      "source": "No, I have not.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "아니오. 아직 찾지 못했소.",
+      "candidateCounts": {
+        "아니오, 얻지 못했소.": 1,
+        "아니오, 찾지 못했소.": 1,
+        "아니오. 아직 찾지 못했소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3597,
+          "stringId": 62,
+          "translation": "아니오. 아직 찾지 못했소."
+        },
+        {
+          "blockId": 3745,
+          "stringId": 46,
+          "translation": "아니오, 얻지 못했소."
+        },
+        {
+          "blockId": 3745,
+          "stringId": 64,
+          "translation": "아니오, 찾지 못했소."
+        }
+      ]
+    },
+    {
+      "source": "No, I'm not.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "아니오, 나는 그렇지 않소.",
+      "candidateCounts": {
+        "아니오, 나는 그렇지 않소.": 2,
+        "아니오, 난 그렇지 않소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3599,
+          "stringId": 26,
+          "translation": "아니오, 난 그렇지 않소."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 16,
+          "translation": "아니오, 나는 그렇지 않소."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 16,
+          "translation": "아니오, 나는 그렇지 않소."
+        }
+      ]
+    },
+    {
+      "source": "No, but thank thee.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "아니오, 고맙소.",
+      "candidateCounts": {
+        "아니오, 고맙소.": 3,
+        "아니오. 고맙소.": 2
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 117,
+          "translation": "아니오, 고맙소."
+        },
+        {
+          "blockId": 3586,
+          "stringId": 122,
+          "translation": "아니오, 고맙소."
+        },
+        {
+          "blockId": 3586,
+          "stringId": 132,
+          "translation": "아니오, 고맙소."
+        },
+        {
+          "blockId": 3598,
+          "stringId": 21,
+          "translation": "아니오. 고맙소."
+        },
+        {
+          "blockId": 3598,
+          "stringId": 43,
+          "translation": "아니오. 고맙소."
+        }
+      ]
+    },
+    {
+      "source": "No, let's not fight.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "아니오, 싸우지 맙시다.",
+      "candidateCounts": {
+        "아니, 싸우지는 맙시다.": 1,
+        "아니오, 싸우지 맙시다.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3602,
+          "stringId": 38,
+          "translation": "아니오, 싸우지 맙시다."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 18,
+          "translation": "아니, 싸우지는 맙시다."
+        }
+      ]
+    },
+    {
+      "source": "No, not yet.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "아니오. 아직이오.",
+      "candidateCounts": {
+        "아니오. 아직이오.": 2,
+        "아니오, 아직이오.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3597,
+          "stringId": 70,
+          "translation": "아니오. 아직이오."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 81,
+          "translation": "아니오. 아직이오."
+        },
+        {
+          "blockId": 3769,
+          "stringId": 14,
+          "translation": "아니오, 아직이오."
+        }
+      ]
+    },
+    {
+      "source": "No, please wait!",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "아니, 잠깐 기다려!",
+      "candidateCounts": {
+        "아니, 잠깐 기다려!": 2,
+        "아니, 기다려!": 1,
+        "아니, 제발 기다려!": 1
+      },
+      "locations": [
+        {
+          "blockId": 3793,
+          "stringId": 24,
+          "translation": "아니, 잠깐 기다려!"
+        },
+        {
+          "blockId": 3803,
+          "stringId": 25,
+          "translation": "아니, 잠깐 기다려!"
+        },
+        {
+          "blockId": 3804,
+          "stringId": 24,
+          "translation": "아니, 제발 기다려!"
+        },
+        {
+          "blockId": 3806,
+          "stringId": 22,
+          "translation": "아니, 기다려!"
+        }
+      ]
+    },
+    {
+      "source": "No, thank you.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "아니오, 고맙소.",
+      "candidateCounts": {
+        "아니오, 고맙소.": 2,
+        "아니오, 사양하겠소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 55,
+          "translation": "아니오, 고맙소."
+        },
+        {
+          "blockId": 3586,
+          "stringId": 59,
+          "translation": "아니오, 고맙소."
+        },
+        {
+          "blockId": 3699,
+          "stringId": 3,
+          "translation": "아니오, 사양하겠소."
+        }
+      ]
+    },
+    {
+      "source": "No, thou dost misunderstand me.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "아니오. 내 뜻을 오해했소.",
+      "candidateCounts": {
+        "아니오. 내 뜻을 오해했소.": 36,
+        "아니오, 오해한 것이오.": 5,
+        "아니오, 내 뜻을 오해했소.": 4,
+        "아니오, 오해했소.": 2,
+        "아니, 자네가 오해한 걸세.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 161,
+          "translation": "아니오, 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3594,
+          "stringId": 51,
+          "translation": "아니오, 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 97,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3603,
+          "stringId": 62,
+          "translation": "아니오, 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 83,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3609,
+          "stringId": 50,
+          "translation": "아니오, 오해했소."
+        },
+        {
+          "blockId": 3610,
+          "stringId": 46,
+          "translation": "아니오, 오해했소."
+        },
+        {
+          "blockId": 3612,
+          "stringId": 67,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3672,
+          "stringId": 28,
+          "translation": "아니오, 오해한 것이오."
+        },
+        {
+          "blockId": 3673,
+          "stringId": 41,
+          "translation": "아니, 자네가 오해한 걸세."
+        },
+        {
+          "blockId": 3696,
+          "stringId": 47,
+          "translation": "아니오, 오해한 것이오."
+        },
+        {
+          "blockId": 3697,
+          "stringId": 65,
+          "translation": "아니오, 오해한 것이오."
+        },
+        {
+          "blockId": 3699,
+          "stringId": 16,
+          "translation": "아니오, 오해한 것이오."
+        },
+        {
+          "blockId": 3723,
+          "stringId": 79,
+          "translation": "아니오, 오해한 것이오."
+        },
+        {
+          "blockId": 3725,
+          "stringId": 57,
+          "translation": "아니오, 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3730,
+          "stringId": 82,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 82,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 82,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 82,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3768,
+          "stringId": 27,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3769,
+          "stringId": 36,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3770,
+          "stringId": 38,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3771,
+          "stringId": 72,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3772,
+          "stringId": 38,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3773,
+          "stringId": 46,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3774,
+          "stringId": 39,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3775,
+          "stringId": 59,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3778,
+          "stringId": 55,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3792,
+          "stringId": 42,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3793,
+          "stringId": 40,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3795,
+          "stringId": 62,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3796,
+          "stringId": 77,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3798,
+          "stringId": 44,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3799,
+          "stringId": 43,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3800,
+          "stringId": 43,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3801,
+          "stringId": 36,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3802,
+          "stringId": 50,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3803,
+          "stringId": 41,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3804,
+          "stringId": 40,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3805,
+          "stringId": 79,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3806,
+          "stringId": 38,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3846,
+          "stringId": 30,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3847,
+          "stringId": 30,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3852,
+          "stringId": 32,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3856,
+          "stringId": 32,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3860,
+          "stringId": 44,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3862,
+          "stringId": 44,
+          "translation": "아니오. 내 뜻을 오해했소."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 33,
+          "translation": "아니오. 내 뜻을 오해했소."
+        }
+      ]
+    },
+    {
+      "source": "No.",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "아니오.",
+      "candidateCounts": {
+        "아니오.": 29,
+        "아니.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 148,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3594,
+          "stringId": 2,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3596,
+          "stringId": 50,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3599,
+          "stringId": 48,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3599,
+          "stringId": 83,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3599,
+          "stringId": 96,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 31,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3607,
+          "stringId": 57,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3607,
+          "stringId": 62,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3720,
+          "stringId": 69,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3721,
+          "stringId": 39,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3771,
+          "stringId": 3,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3800,
+          "stringId": 22,
+          "translation": "아니."
+        },
+        {
+          "blockId": 3860,
+          "stringId": 31,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 7,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 11,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 23,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 34,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 51,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 64,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3862,
+          "stringId": 31,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 7,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 11,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 23,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 34,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 51,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 64,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3865,
+          "stringId": 34,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3865,
+          "stringId": 47,
+          "translation": "아니오."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 8,
+          "translation": "아니오."
+        }
+      ]
+    },
+    {
+      "source": "No.  Should I?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "아니오. 꼭 그래야 하오?",
+      "candidateCounts": {
+        "아니오. 그래야 하오?": 1,
+        "아니오. 꼭 그래야 하오?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3591,
+          "stringId": 18,
+          "translation": "아니오. 꼭 그래야 하오?"
+        },
+        {
+          "blockId": 3604,
+          "stringId": 11,
+          "translation": "아니오. 그래야 하오?"
+        }
+      ]
+    },
+    {
+      "source": "None of thy business!",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그대가 알 바 아니오!",
+      "candidateCounts": {
+        "그대가 알 바 아니오!": 4,
+        "그대가 알 바 아니다!": 1
+      },
+      "locations": [
+        {
+          "blockId": 3589,
+          "stringId": 14,
+          "translation": "그대가 알 바 아니오!"
+        },
+        {
+          "blockId": 3590,
+          "stringId": 3,
+          "translation": "그대가 알 바 아니오!"
+        },
+        {
+          "blockId": 3604,
+          "stringId": 4,
+          "translation": "그대가 알 바 아니오!"
+        },
+        {
+          "blockId": 3746,
+          "stringId": 5,
+          "translation": "그대가 알 바 아니오!"
+        },
+        {
+          "blockId": 3796,
+          "stringId": 3,
+          "translation": "그대가 알 바 아니다!"
+        }
+      ]
+    },
+    {
+      "source": "One Knight real mean, he live up north.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "아주 못된 기사 하나가 북쪽에 산다.",
+      "candidateCounts": {
+        "북쪽에 아주 못된 기사 하나 산다.": 1,
+        "아주 못된 기사 하나가 북쪽에 산다.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3602,
+          "stringId": 34,
+          "translation": "아주 못된 기사 하나가 북쪽에 산다."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 14,
+          "translation": "북쪽에 아주 못된 기사 하나 산다."
+        }
+      ]
+    },
+    {
+      "source": "Other...",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그 밖에는...",
+      "candidateCounts": {
+        "그 밖에는...": 5,
+        "그 밖에...": 3,
+        "다른 단어...": 1,
+        "다른 이야기...": 1
+      },
+      "locations": [
+        {
+          "blockId": 3599,
+          "stringId": 74,
+          "translation": "그 밖에는..."
+        },
+        {
+          "blockId": 3605,
+          "stringId": 5,
+          "translation": "그 밖에..."
+        },
+        {
+          "blockId": 3605,
+          "stringId": 15,
+          "translation": "그 밖에..."
+        },
+        {
+          "blockId": 3608,
+          "stringId": 48,
+          "translation": "그 밖에..."
+        },
+        {
+          "blockId": 3611,
+          "stringId": 23,
+          "translation": "그 밖에는..."
+        },
+        {
+          "blockId": 3611,
+          "stringId": 31,
+          "translation": "그 밖에는..."
+        },
+        {
+          "blockId": 3728,
+          "stringId": 13,
+          "translation": "다른 이야기..."
+        },
+        {
+          "blockId": 3771,
+          "stringId": 11,
+          "translation": "다른 단어..."
+        },
+        {
+          "blockId": 3865,
+          "stringId": 24,
+          "translation": "그 밖에는..."
+        },
+        {
+          "blockId": 3865,
+          "stringId": 28,
+          "translation": "그 밖에는..."
+        }
+      ]
+    },
+    {
+      "source": "Pardon, I must be going.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "미안하지만 나는 이만 가봐야겠소.",
+      "candidateCounts": {
+        "미안하지만 나는 이만 가봐야겠소.": 1,
+        "실례하오. 이만 가보겠소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3591,
+          "stringId": 54,
+          "translation": "미안하지만 나는 이만 가봐야겠소."
+        },
+        {
+          "blockId": 3612,
+          "stringId": 17,
+          "translation": "실례하오. 이만 가보겠소."
+        }
+      ]
+    },
+    {
+      "source": "Perhaps this is it.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "이것인지 봐주시오.",
+      "candidateCounts": {
+        "어쩌면 이것일지도 모르오.": 1,
+        "이것인지 봐주시오.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3596,
+          "stringId": 85,
+          "translation": "이것인지 봐주시오."
+        },
+        {
+          "blockId": 3775,
+          "stringId": 41,
+          "translation": "어쩌면 이것일지도 모르오."
+        }
+      ]
+    },
+    {
+      "source": "Perhaps.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그럴지도.",
+      "candidateCounts": {
+        "그럴지도.": 1,
+        "생각해 보겠소.": 1,
+        "어쩌면 그러겠소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3606,
+          "stringId": 4,
+          "translation": "그럴지도."
+        },
+        {
+          "blockId": 3674,
+          "stringId": 12,
+          "translation": "생각해 보겠소."
+        },
+        {
+          "blockId": 3799,
+          "stringId": 22,
+          "translation": "어쩌면 그러겠소."
+        }
+      ]
+    },
+    {
+      "source": "Sethar and his friend live near the big pit.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "세타르와 그의 친구는 큰 구덩이 근처에 산다.",
+      "candidateCounts": {
+        "세타르와 그의 친구는 큰 구덩이 근처에 산다.": 1,
+        "세타르와 친구는 큰 구덩이 근처에 산다.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3602,
+          "stringId": 32,
+          "translation": "세타르와 그의 친구는 큰 구덩이 근처에 산다."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 12,
+          "translation": "세타르와 친구는 큰 구덩이 근처에 산다."
+        }
+      ]
+    },
+    {
+      "source": "Show medallion to pass.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "지나가려면 메달 보여라.",
+      "candidateCounts": {
+        "지나가려면 메달 보여라.": 1,
+        "지나가려면 메달을 보여라.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3804,
+          "stringId": 3,
+          "translation": "지나가려면 메달 보여라."
+        },
+        {
+          "blockId": 3806,
+          "stringId": 1,
+          "translation": "지나가려면 메달을 보여라."
+        }
+      ]
+    },
+    {
+      "source": "Sneak snuck on Sethar, but he tossed him in pit.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "스니크라는 녀석이 세타르에게 몰래 다가갔지만, 세타르는 그를 구덩이에 던졌다.",
+      "candidateCounts": {
+        "스니크가 세타르를 몰래 덮쳤지만, 세타르가 구덩이에 던졌다.": 1,
+        "스니크라는 녀석이 세타르에게 몰래 다가갔지만, 세타르는 그를 구덩이에 던졌다.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3602,
+          "stringId": 33,
+          "translation": "스니크라는 녀석이 세타르에게 몰래 다가갔지만, 세타르는 그를 구덩이에 던졌다."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 13,
+          "translation": "스니크가 세타르를 몰래 덮쳤지만, 세타르가 구덩이에 던졌다."
+        }
+      ]
+    },
+    {
+      "source": "Sseth.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "세스.",
+      "candidateCounts": {
+        "세스.": 5,
+        "세스": 3
+      },
+      "locations": [
+        {
+          "blockId": 3599,
+          "stringId": 15,
+          "translation": "세스."
+        },
+        {
+          "blockId": 3599,
+          "stringId": 89,
+          "translation": "세스."
+        },
+        {
+          "blockId": 3698,
+          "stringId": 2,
+          "translation": "세스"
+        },
+        {
+          "blockId": 3698,
+          "stringId": 5,
+          "translation": "세스"
+        },
+        {
+          "blockId": 3698,
+          "stringId": 8,
+          "translation": "세스"
+        },
+        {
+          "blockId": 3861,
+          "stringId": 57,
+          "translation": "세스."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 57,
+          "translation": "세스."
+        },
+        {
+          "blockId": 3865,
+          "stringId": 40,
+          "translation": "세스."
+        }
+      ]
+    },
+    {
+      "source": "Such as?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "어떤 문제요?",
+      "candidateCounts": {
+        "어떤 문제요?": 1,
+        "예를 들면?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3591,
+          "stringId": 26,
+          "translation": "어떤 문제요?"
+        },
+        {
+          "blockId": 3612,
+          "stringId": 39,
+          "translation": "예를 들면?"
+        }
+      ]
+    },
+    {
+      "source": "Surely thou art joking.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "분명 농담이겠지.",
+      "candidateCounts": {
+        "분명 농담이겠지.": 26,
+        "설마 농담하는 건 아니겠지.": 4,
+        "설마 농담하는 것이오?": 4,
+        "설마 농담하는 것은 아니겠지.": 2,
+        "농담이겠지.": 1,
+        "농담이지?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3594,
+          "stringId": 48,
+          "translation": "농담이지?"
+        },
+        {
+          "blockId": 3597,
+          "stringId": 94,
+          "translation": "설마 농담하는 것이오?"
+        },
+        {
+          "blockId": 3603,
+          "stringId": 59,
+          "translation": "설마 농담하는 것이오?"
+        },
+        {
+          "blockId": 3604,
+          "stringId": 80,
+          "translation": "설마 농담하는 것이오?"
+        },
+        {
+          "blockId": 3609,
+          "stringId": 47,
+          "translation": "농담이겠지."
+        },
+        {
+          "blockId": 3612,
+          "stringId": 64,
+          "translation": "설마 농담하는 것이오?"
+        },
+        {
+          "blockId": 3672,
+          "stringId": 25,
+          "translation": "설마 농담하는 건 아니겠지."
+        },
+        {
+          "blockId": 3673,
+          "stringId": 38,
+          "translation": "설마 농담하는 건 아니겠지."
+        },
+        {
+          "blockId": 3696,
+          "stringId": 44,
+          "translation": "설마 농담하는 건 아니겠지."
+        },
+        {
+          "blockId": 3697,
+          "stringId": 62,
+          "translation": "설마 농담하는 건 아니겠지."
+        },
+        {
+          "blockId": 3723,
+          "stringId": 76,
+          "translation": "설마 농담하는 것은 아니겠지."
+        },
+        {
+          "blockId": 3725,
+          "stringId": 54,
+          "translation": "설마 농담하는 것은 아니겠지."
+        },
+        {
+          "blockId": 3730,
+          "stringId": 79,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 79,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 79,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 79,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3768,
+          "stringId": 24,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3769,
+          "stringId": 33,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3771,
+          "stringId": 69,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3772,
+          "stringId": 35,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3773,
+          "stringId": 43,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3774,
+          "stringId": 36,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3775,
+          "stringId": 56,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3778,
+          "stringId": 52,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3792,
+          "stringId": 39,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3793,
+          "stringId": 37,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3795,
+          "stringId": 59,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3796,
+          "stringId": 74,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3798,
+          "stringId": 41,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3799,
+          "stringId": 40,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3800,
+          "stringId": 40,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3801,
+          "stringId": 33,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3802,
+          "stringId": 47,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3803,
+          "stringId": 38,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3804,
+          "stringId": 37,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3805,
+          "stringId": 76,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3806,
+          "stringId": 35,
+          "translation": "분명 농담이겠지."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 30,
+          "translation": "분명 농담이겠지."
+        }
+      ]
+    },
+    {
+      "source": "Tell me of this wizard.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그 마법사에 대해 말해주시오.",
+      "candidateCounts": {
+        "그 마법사에 관해 말해주시오.": 1,
+        "그 마법사에 대해 말해주시오.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3588,
+          "stringId": 58,
+          "translation": "그 마법사에 대해 말해주시오."
+        },
+        {
+          "blockId": 3792,
+          "stringId": 20,
+          "translation": "그 마법사에 관해 말해주시오."
+        }
+      ]
+    },
+    {
+      "source": "Thank thee for the advice.",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "충고에 감사하오.",
+      "candidateCounts": {
+        "충고에 감사하오.": 2,
+        "조언에 감사하오.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3596,
+          "stringId": 67,
+          "translation": "조언에 감사하오."
+        },
+        {
+          "blockId": 3649,
+          "stringId": 16,
+          "translation": "충고에 감사하오."
+        },
+        {
+          "blockId": 3649,
+          "stringId": 35,
+          "translation": "충고에 감사하오."
+        }
+      ]
+    },
+    {
+      "source": "Thank thee, and farewell.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "고맙소. 잘 있으시오.",
+      "candidateCounts": {
+        "고맙소. 잘 있으시오.": 4,
+        "고맙소. 잘 있소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3596,
+          "stringId": 129,
+          "translation": "고맙소. 잘 있으시오."
+        },
+        {
+          "blockId": 3596,
+          "stringId": 133,
+          "translation": "고맙소. 잘 있으시오."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 78,
+          "translation": "고맙소. 잘 있으시오."
+        },
+        {
+          "blockId": 3598,
+          "stringId": 58,
+          "translation": "고맙소. 잘 있으시오."
+        },
+        {
+          "blockId": 3797,
+          "stringId": 22,
+          "translation": "고맙소. 잘 있소."
+        }
+      ]
+    },
+    {
+      "source": "Thank you, kind goblin.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "고맙소, 친절한 고블린.",
+      "candidateCounts": {
+        "고맙소, 친절한 고블린.": 3,
+        "고맙소, 친절한 고블린이여.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3793,
+          "stringId": 27,
+          "translation": "고맙소, 친절한 고블린이여."
+        },
+        {
+          "blockId": 3803,
+          "stringId": 28,
+          "translation": "고맙소, 친절한 고블린."
+        },
+        {
+          "blockId": 3804,
+          "stringId": 27,
+          "translation": "고맙소, 친절한 고블린."
+        },
+        {
+          "blockId": 3806,
+          "stringId": 25,
+          "translation": "고맙소, 친절한 고블린."
+        }
+      ]
+    },
+    {
+      "source": "That no medallion... show me medallion or die!",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그건 메달 아니다... 메달 보여주거나 죽어라!",
+      "candidateCounts": {
+        "그건 메달 아니다... 메달 보여주거나 죽어라!": 2,
+        "그거 메달 아니다... 메달 보여주거나 죽어라!": 1
+      },
+      "locations": [
+        {
+          "blockId": 3793,
+          "stringId": 11,
+          "translation": "그거 메달 아니다... 메달 보여주거나 죽어라!"
+        },
+        {
+          "blockId": 3803,
+          "stringId": 11,
+          "translation": "그건 메달 아니다... 메달 보여주거나 죽어라!"
+        },
+        {
+          "blockId": 3804,
+          "stringId": 10,
+          "translation": "그건 메달 아니다... 메달 보여주거나 죽어라!"
+        }
+      ]
+    },
+    {
+      "source": "Thou art welcome.  Farewell.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "별말씀을. 잘 가시오.",
+      "candidateCounts": {
+        "별말씀을. 잘 가시오.": 1,
+        "천만에. 잘 있소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3587,
+          "stringId": 95,
+          "translation": "별말씀을. 잘 가시오."
+        },
+        {
+          "blockId": 3794,
+          "stringId": 34,
+          "translation": "천만에. 잘 있소."
+        }
+      ]
+    },
+    {
+      "source": "We shall see.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "두고 보면 알겠지.",
+      "candidateCounts": {
+        "두고 보면 알겠지.": 3,
+        "두고 보겠소.": 1,
+        "두고 보자.": 1,
+        "두고 봅시다.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3587,
+          "stringId": 57,
+          "translation": "두고 봅시다."
+        },
+        {
+          "blockId": 3596,
+          "stringId": 114,
+          "translation": "두고 보면 알겠지."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 65,
+          "translation": "두고 보겠소."
+        },
+        {
+          "blockId": 3610,
+          "stringId": 17,
+          "translation": "두고 보면 알겠지."
+        },
+        {
+          "blockId": 3777,
+          "stringId": 17,
+          "translation": "두고 보면 알겠지."
+        },
+        {
+          "blockId": 3804,
+          "stringId": 25,
+          "translation": "두고 보자."
+        }
+      ]
+    },
+    {
+      "source": "What dost thou mean?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "무슨 뜻이오?",
+      "candidateCounts": {
+        "무슨 뜻이오?": 3,
+        "무슨 뜻이지?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3590,
+          "stringId": 27,
+          "translation": "무슨 뜻이오?"
+        },
+        {
+          "blockId": 3603,
+          "stringId": 7,
+          "translation": "무슨 뜻이오?"
+        },
+        {
+          "blockId": 3648,
+          "stringId": 14,
+          "translation": "무슨 뜻이오?"
+        },
+        {
+          "blockId": 3805,
+          "stringId": 3,
+          "translation": "무슨 뜻이지?"
+        }
+      ]
+    },
+    {
+      "source": "What dost thou want?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "무엇을 원하오?",
+      "candidateCounts": {
+        "무엇을 원하오?": 3,
+        "무슨 일로 왔소?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3588,
+          "stringId": 132,
+          "translation": "무엇을 원하오?"
+        },
+        {
+          "blockId": 3599,
+          "stringId": 24,
+          "translation": "무엇을 원하오?"
+        },
+        {
+          "blockId": 3723,
+          "stringId": 43,
+          "translation": "무슨 일로 왔소?"
+        },
+        {
+          "blockId": 3746,
+          "stringId": 23,
+          "translation": "무엇을 원하오?"
+        }
+      ]
+    },
+    {
+      "source": "What?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "뭐라고 했소?",
+      "candidateCounts": {
+        "뭐라고 했소?": 4,
+        "뭐라고?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3605,
+          "stringId": 14,
+          "translation": "뭐라고?"
+        },
+        {
+          "blockId": 3861,
+          "stringId": 4,
+          "translation": "뭐라고 했소?"
+        },
+        {
+          "blockId": 3861,
+          "stringId": 8,
+          "translation": "뭐라고 했소?"
+        },
+        {
+          "blockId": 3864,
+          "stringId": 4,
+          "translation": "뭐라고 했소?"
+        },
+        {
+          "blockId": 3864,
+          "stringId": 8,
+          "translation": "뭐라고 했소?"
+        }
+      ]
+    },
+    {
+      "source": "What?... you think me stupid. I see no medallion.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "뭐?... 나 바보라고 생각하나. 메달 안 보인다.",
+      "candidateCounts": {
+        "뭐?... 나 바보라고 생각하나. 메달 안 보인다.": 1,
+        "뭐라고?... 나를 멍청이로 아냐. 메달 안 보인다.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3793,
+          "stringId": 16,
+          "translation": "뭐?... 나 바보라고 생각하나. 메달 안 보인다."
+        },
+        {
+          "blockId": 3803,
+          "stringId": 16,
+          "translation": "뭐라고?... 나를 멍청이로 아냐. 메달 안 보인다."
+        }
+      ]
+    },
+    {
+      "source": "Where is thy leader?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그대들의 지도자는 어디 있소?",
+      "candidateCounts": {
+        "그대들의 지도자는 어디 있소?": 4,
+        "그대의 지도자는 어디에 있소?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3727,
+          "stringId": 70,
+          "translation": "그대의 지도자는 어디에 있소?"
+        },
+        {
+          "blockId": 3846,
+          "stringId": 4,
+          "translation": "그대들의 지도자는 어디 있소?"
+        },
+        {
+          "blockId": 3846,
+          "stringId": 8,
+          "translation": "그대들의 지도자는 어디 있소?"
+        },
+        {
+          "blockId": 3847,
+          "stringId": 4,
+          "translation": "그대들의 지도자는 어디 있소?"
+        },
+        {
+          "blockId": 3847,
+          "stringId": 8,
+          "translation": "그대들의 지도자는 어디 있소?"
+        }
+      ]
+    },
+    {
+      "source": "Who art thou?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그대는 누구요?",
+      "candidateCounts": {
+        "그대는 누구요?": 4,
+        "그대는 누구인가?": 3
+      },
+      "locations": [
+        {
+          "blockId": 3596,
+          "stringId": 2,
+          "translation": "그대는 누구요?"
+        },
+        {
+          "blockId": 3604,
+          "stringId": 1,
+          "translation": "그대는 누구요?"
+        },
+        {
+          "blockId": 3727,
+          "stringId": 49,
+          "translation": "그대는 누구요?"
+        },
+        {
+          "blockId": 3801,
+          "stringId": 2,
+          "translation": "그대는 누구요?"
+        },
+        {
+          "blockId": 3805,
+          "stringId": 2,
+          "translation": "그대는 누구인가?"
+        },
+        {
+          "blockId": 3805,
+          "stringId": 14,
+          "translation": "그대는 누구인가?"
+        },
+        {
+          "blockId": 3805,
+          "stringId": 47,
+          "translation": "그대는 누구인가?"
+        }
+      ]
+    },
+    {
+      "source": "Why you here?  You got medallion, eh?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "왜 여기 있어? 메달 있나?",
+      "candidateCounts": {
+        "왜 여기 있냐? 메달 가졌냐?": 1,
+        "왜 여기 있어? 메달 있나?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3793,
+          "stringId": 2,
+          "translation": "왜 여기 있어? 메달 있나?"
+        },
+        {
+          "blockId": 3803,
+          "stringId": 2,
+          "translation": "왜 여기 있냐? 메달 가졌냐?"
+        }
+      ]
+    },
+    {
+      "source": "Wouldst thou care to exchange items?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "물건을 서로 교환하겠소?",
+      "candidateCounts": {
+        "물건을 서로 교환하겠소?": 4,
+        "물건을 교환하겠소?": 2
+      },
+      "locations": [
+        {
+          "blockId": 3730,
+          "stringId": 24,
+          "translation": "물건을 서로 교환하겠소?"
+        },
+        {
+          "blockId": 3731,
+          "stringId": 24,
+          "translation": "물건을 서로 교환하겠소?"
+        },
+        {
+          "blockId": 3732,
+          "stringId": 24,
+          "translation": "물건을 서로 교환하겠소?"
+        },
+        {
+          "blockId": 3733,
+          "stringId": 24,
+          "translation": "물건을 서로 교환하겠소?"
+        },
+        {
+          "blockId": 3860,
+          "stringId": 10,
+          "translation": "물건을 교환하겠소?"
+        },
+        {
+          "blockId": 3862,
+          "stringId": 10,
+          "translation": "물건을 교환하겠소?"
+        }
+      ]
+    },
+    {
+      "source": "Yes",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "예",
+      "candidateCounts": {
+        "그렇소.": 1,
+        "예": 1
+      },
+      "locations": [
+        {
+          "blockId": 2,
+          "stringId": 15,
+          "translation": "예"
+        },
+        {
+          "blockId": 3590,
+          "stringId": 63,
+          "translation": "그렇소."
+        }
+      ]
+    },
+    {
+      "source": "Yes, I do think thou'rt stupid!",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그래, 네가 멍청하다고 생각한다!",
+      "candidateCounts": {
+        "그래, 네가 멍청하다고 생각한다!": 2,
+        "그래, 네놈이 멍청하다고 생각한다!": 1,
+        "그렇다, 네가 멍청하다고 생각한다!": 1
+      },
+      "locations": [
+        {
+          "blockId": 3793,
+          "stringId": 19,
+          "translation": "그렇다, 네가 멍청하다고 생각한다!"
+        },
+        {
+          "blockId": 3803,
+          "stringId": 20,
+          "translation": "그래, 네놈이 멍청하다고 생각한다!"
+        },
+        {
+          "blockId": 3804,
+          "stringId": 19,
+          "translation": "그래, 네가 멍청하다고 생각한다!"
+        },
+        {
+          "blockId": 3806,
+          "stringId": 17,
+          "translation": "그래, 네가 멍청하다고 생각한다!"
+        }
+      ]
+    },
+    {
+      "source": "Yes, I have.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그렇소. 가보았소.",
+      "candidateCounts": {
+        "그렇소, 얻었소.": 1,
+        "그렇소, 찾았소.": 1,
+        "그렇소.": 1,
+        "그렇소. 가보았소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3651,
+          "stringId": 40,
+          "translation": "그렇소. 가보았소."
+        },
+        {
+          "blockId": 3745,
+          "stringId": 45,
+          "translation": "그렇소, 얻었소."
+        },
+        {
+          "blockId": 3745,
+          "stringId": 63,
+          "translation": "그렇소, 찾았소."
+        },
+        {
+          "blockId": 3773,
+          "stringId": 2,
+          "translation": "그렇소."
+        }
+      ]
+    },
+    {
+      "source": "Yes, I must.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그렇소. 그래야만 하오.",
+      "candidateCounts": {
+        "그렇소. 그래야만 하오.": 33,
+        "그렇소. 꼭 그래야겠소.": 7,
+        "그렇소, 꼭 그래야겠소.": 6,
+        "그렇소. 꼭 그래야 하오.": 2,
+        "그렇네. 꼭 가져야겠어.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 160,
+          "translation": "그렇소. 꼭 그래야겠소."
+        },
+        {
+          "blockId": 3590,
+          "stringId": 76,
+          "translation": "그렇소. 꼭 그래야겠소."
+        },
+        {
+          "blockId": 3594,
+          "stringId": 50,
+          "translation": "그렇소. 꼭 그래야겠소."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 96,
+          "translation": "그렇소. 꼭 그래야겠소."
+        },
+        {
+          "blockId": 3603,
+          "stringId": 61,
+          "translation": "그렇소. 꼭 그래야겠소."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 82,
+          "translation": "그렇소. 꼭 그래야 하오."
+        },
+        {
+          "blockId": 3609,
+          "stringId": 49,
+          "translation": "그렇소. 꼭 그래야겠소."
+        },
+        {
+          "blockId": 3610,
+          "stringId": 45,
+          "translation": "그렇소. 꼭 그래야겠소."
+        },
+        {
+          "blockId": 3612,
+          "stringId": 66,
+          "translation": "그렇소. 꼭 그래야 하오."
+        },
+        {
+          "blockId": 3672,
+          "stringId": 27,
+          "translation": "그렇소, 꼭 그래야겠소."
+        },
+        {
+          "blockId": 3673,
+          "stringId": 40,
+          "translation": "그렇네. 꼭 가져야겠어."
+        },
+        {
+          "blockId": 3696,
+          "stringId": 46,
+          "translation": "그렇소, 꼭 그래야겠소."
+        },
+        {
+          "blockId": 3697,
+          "stringId": 64,
+          "translation": "그렇소, 꼭 그래야겠소."
+        },
+        {
+          "blockId": 3699,
+          "stringId": 15,
+          "translation": "그렇소, 꼭 그래야겠소."
+        },
+        {
+          "blockId": 3723,
+          "stringId": 78,
+          "translation": "그렇소, 꼭 그래야겠소."
+        },
+        {
+          "blockId": 3725,
+          "stringId": 56,
+          "translation": "그렇소, 꼭 그래야겠소."
+        },
+        {
+          "blockId": 3730,
+          "stringId": 81,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3731,
+          "stringId": 81,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3732,
+          "stringId": 81,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3733,
+          "stringId": 81,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3768,
+          "stringId": 26,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3769,
+          "stringId": 35,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3770,
+          "stringId": 37,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3771,
+          "stringId": 71,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3772,
+          "stringId": 37,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3773,
+          "stringId": 45,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3774,
+          "stringId": 38,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3775,
+          "stringId": 58,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3778,
+          "stringId": 54,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3792,
+          "stringId": 41,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3793,
+          "stringId": 39,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3795,
+          "stringId": 61,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3796,
+          "stringId": 76,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3798,
+          "stringId": 43,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3799,
+          "stringId": 42,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3800,
+          "stringId": 42,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3801,
+          "stringId": 35,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3802,
+          "stringId": 49,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3803,
+          "stringId": 40,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3804,
+          "stringId": 39,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3805,
+          "stringId": 78,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3806,
+          "stringId": 37,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3846,
+          "stringId": 29,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3847,
+          "stringId": 29,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3852,
+          "stringId": 31,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3856,
+          "stringId": 31,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3860,
+          "stringId": 43,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3862,
+          "stringId": 43,
+          "translation": "그렇소. 그래야만 하오."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 32,
+          "translation": "그렇소. 그래야만 하오."
+        }
+      ]
+    },
+    {
+      "source": "Yes, I'm sorry, here it is...",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그렇소. 미안하오, 여기 있소...",
+      "candidateCounts": {
+        "그렇소. 미안하오, 여기 있소...": 2,
+        "그렇소, 미안하오. 여기 있소...": 1
+      },
+      "locations": [
+        {
+          "blockId": 3587,
+          "stringId": 31,
+          "translation": "그렇소. 미안하오, 여기 있소..."
+        },
+        {
+          "blockId": 3587,
+          "stringId": 92,
+          "translation": "그렇소. 미안하오, 여기 있소..."
+        },
+        {
+          "blockId": 3816,
+          "stringId": 40,
+          "translation": "그렇소, 미안하오. 여기 있소..."
+        }
+      ]
+    },
+    {
+      "source": "Yes, come and get it...",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그래, 와서 먹어봐라...",
+      "candidateCounts": {
+        "그래, 와서 먹어봐라...": 1,
+        "그래, 와서 잡아먹어 보시지...": 1
+      },
+      "locations": [
+        {
+          "blockId": 3602,
+          "stringId": 37,
+          "translation": "그래, 와서 먹어봐라..."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 17,
+          "translation": "그래, 와서 잡아먹어 보시지..."
+        }
+      ]
+    },
+    {
+      "source": "Yes, here it is.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그렇소. 여기 있소.",
+      "candidateCounts": {
+        "그렇소. 여기 있소.": 4,
+        "그렇소, 여기 있소.": 2
+      },
+      "locations": [
+        {
+          "blockId": 3597,
+          "stringId": 17,
+          "translation": "그렇소. 여기 있소."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 20,
+          "translation": "그렇소. 여기 있소."
+        },
+        {
+          "blockId": 3597,
+          "stringId": 55,
+          "translation": "그렇소. 여기 있소."
+        },
+        {
+          "blockId": 3601,
+          "stringId": 22,
+          "translation": "그렇소. 여기 있소."
+        },
+        {
+          "blockId": 3775,
+          "stringId": 34,
+          "translation": "그렇소, 여기 있소."
+        },
+        {
+          "blockId": 3778,
+          "stringId": 25,
+          "translation": "그렇소, 여기 있소."
+        }
+      ]
+    },
+    {
+      "source": "Yes, please do.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그렇소, 부탁하오.",
+      "candidateCounts": {
+        "그래, 부디 열어다오.": 1,
+        "그렇소, 부탁하오.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 88,
+          "translation": "그렇소, 부탁하오."
+        },
+        {
+          "blockId": 3800,
+          "stringId": 25,
+          "translation": "그래, 부디 열어다오."
+        }
+      ]
+    },
+    {
+      "source": "Yes, please.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그렇네. 부탁하겠네.",
+      "candidateCounts": {
+        "그렇네. 부탁하겠네.": 1,
+        "그렇소, 부탁하오.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3728,
+          "stringId": 32,
+          "translation": "그렇네. 부탁하겠네."
+        },
+        {
+          "blockId": 3798,
+          "stringId": 12,
+          "translation": "그렇소, 부탁하오."
+        }
+      ]
+    },
+    {
+      "source": "Yes.",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "그렇소.",
+      "candidateCounts": {
+        "그렇소.": 30,
+        "그래.": 1,
+        "그러겠소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 147,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3594,
+          "stringId": 3,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3596,
+          "stringId": 49,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3599,
+          "stringId": 64,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3599,
+          "stringId": 82,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3599,
+          "stringId": 95,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 13,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3604,
+          "stringId": 30,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3720,
+          "stringId": 68,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3721,
+          "stringId": 38,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3745,
+          "stringId": 55,
+          "translation": "그러겠소."
+        },
+        {
+          "blockId": 3771,
+          "stringId": 2,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3774,
+          "stringId": 18,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3774,
+          "stringId": 21,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3800,
+          "stringId": 21,
+          "translation": "그래."
+        },
+        {
+          "blockId": 3860,
+          "stringId": 30,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 6,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 10,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 24,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 33,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 50,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3861,
+          "stringId": 63,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3862,
+          "stringId": 30,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 6,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 10,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 24,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 33,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 50,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3864,
+          "stringId": 63,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3865,
+          "stringId": 33,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3865,
+          "stringId": 46,
+          "translation": "그렇소."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 7,
+          "translation": "그렇소."
+        }
+      ]
+    },
+    {
+      "source": "Yes?",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "그래?",
+      "candidateCounts": {
+        "그래?": 1,
+        "무슨 일이냐?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3593,
+          "stringId": 1,
+          "translation": "무슨 일이냐?"
+        },
+        {
+          "blockId": 3598,
+          "stringId": 16,
+          "translation": "그래?"
+        }
+      ]
+    },
+    {
+      "source": "You confuse me, first want fight and then not want fight.",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "처음에는 싸운다더니 이제 안 싸운다니, 너는 사람을 헷갈리게 한다.",
+      "candidateCounts": {
+        "너 혼란스럽게 한다. 싸운다고 했다가 안 싸운다고 한다.": 1,
+        "처음에는 싸운다더니 이제 안 싸운다니, 너는 사람을 헷갈리게 한다.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3602,
+          "stringId": 40,
+          "translation": "처음에는 싸운다더니 이제 안 싸운다니, 너는 사람을 헷갈리게 한다."
+        },
+        {
+          "blockId": 3872,
+          "stringId": 20,
+          "translation": "너 혼란스럽게 한다. 싸운다고 했다가 안 싸운다고 한다."
+        }
+      ]
+    },
+    {
+      "source": "You food, puny human?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "네가 먹을거리냐, 약한 인간?",
+      "candidateCounts": {
+        "너 먹을 것이냐, 보잘것없는 인간?": 1,
+        "네가 먹을거리냐, 약한 인간?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3602,
+          "stringId": 36,
+          "translation": "네가 먹을거리냐, 약한 인간?"
+        },
+        {
+          "blockId": 3872,
+          "stringId": 16,
+          "translation": "너 먹을 것이냐, 보잘것없는 인간?"
+        }
+      ]
+    },
+    {
+      "source": "You think me stupid?",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "나를 멍청이로 아나?",
+      "candidateCounts": {
+        "나를 멍청이로 아나?": 4,
+        "나를 바보로 알아?": 1
+      },
+      "locations": [
+        {
+          "blockId": 3590,
+          "stringId": 72,
+          "translation": "나를 바보로 알아?"
+        },
+        {
+          "blockId": 3846,
+          "stringId": 25,
+          "translation": "나를 멍청이로 아나?"
+        },
+        {
+          "blockId": 3847,
+          "stringId": 25,
+          "translation": "나를 멍청이로 아나?"
+        },
+        {
+          "blockId": 3852,
+          "stringId": 27,
+          "translation": "나를 멍청이로 아나?"
+        },
+        {
+          "blockId": 3856,
+          "stringId": 27,
+          "translation": "나를 멍청이로 아나?"
+        }
+      ]
+    },
+    {
+      "source": "Your pardon, I must be going.",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "실례지만, 이만 가봐야겠소.",
+      "candidateCounts": {
+        "미안하오. 이제 가봐야겠소.": 1,
+        "실례지만, 이만 가봐야겠소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3590,
+          "stringId": 19,
+          "translation": "실례지만, 이만 가봐야겠소."
+        },
+        {
+          "blockId": 3600,
+          "stringId": 41,
+          "translation": "미안하오. 이제 가봐야겠소."
+        }
+      ]
+    },
+    {
+      "source": "a_crossbow bolt",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "쇠뇌 화살",
+      "candidateCounts": {
+        "쇠뇌 화살": 1,
+        "쇠뇌용 화살": 1
+      },
+      "locations": [
+        {
+          "blockId": 4,
+          "stringId": 17,
+          "translation": "쇠뇌용 화살"
+        },
+        {
+          "blockId": 4,
+          "stringId": 338,
+          "translation": "쇠뇌 화살"
+        }
+      ]
+    },
+    {
+      "source": "full",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "가득 찬",
+      "candidateCounts": {
+        "가득 찬": 2,
+        "배부름": 1
+      },
+      "locations": [
+        {
+          "blockId": 1,
+          "stringId": 111,
+          "translation": "배부름"
+        },
+        {
+          "blockId": 5,
+          "stringId": 70,
+          "translation": "가득 찬"
+        },
+        {
+          "blockId": 5,
+          "stringId": 71,
+          "translation": "가득 찬"
+        }
+      ]
+    },
+    {
+      "source": "her",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그녀",
+      "candidateCounts": {
+        "그녀": 2,
+        "그 사람의": 1
+      },
+      "locations": [
+        {
+          "blockId": 3596,
+          "stringId": 46,
+          "translation": "그 사람의"
+        },
+        {
+          "blockId": 3597,
+          "stringId": 33,
+          "translation": "그녀"
+        },
+        {
+          "blockId": 3597,
+          "stringId": 41,
+          "translation": "그녀"
+        }
+      ]
+    },
+    {
+      "source": "herself",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "그 자신",
+      "candidateCounts": {
+        "그 자신": 1,
+        "그녀 자신": 1
+      },
+      "locations": [
+        {
+          "blockId": 3586,
+          "stringId": 40,
+          "translation": "그 자신"
+        },
+        {
+          "blockId": 3594,
+          "stringId": 12,
+          "translation": "그녀 자신"
+        }
+      ]
+    },
+    {
+      "source": "man",
+      "rule": "top-frequency-earliest-location",
+      "chosen": "남자",
+      "candidateCounts": {
+        "남자": 2,
+        "젊은이": 2
+      },
+      "locations": [
+        {
+          "blockId": 3607,
+          "stringId": 58,
+          "translation": "남자"
+        },
+        {
+          "blockId": 3610,
+          "stringId": 1,
+          "translation": "젊은이"
+        },
+        {
+          "blockId": 3610,
+          "stringId": 13,
+          "translation": "젊은이"
+        },
+        {
+          "blockId": 3724,
+          "stringId": 34,
+          "translation": "남자"
+        }
+      ]
+    },
+    {
+      "source": "murgo",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "무르고",
+      "candidateCounts": {
+        "무르고": 2,
+        "우르고": 1
+      },
+      "locations": [
+        {
+          "blockId": 3599,
+          "stringId": 78,
+          "translation": "무르고"
+        },
+        {
+          "blockId": 3697,
+          "stringId": 31,
+          "translation": "우르고"
+        },
+        {
+          "blockId": 3865,
+          "stringId": 12,
+          "translation": "무르고"
+        }
+      ]
+    }
+  ],
+  "validationIssueCount": 0,
+  "validationIssues": []
+}
