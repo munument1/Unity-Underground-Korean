@@ -219,7 +219,7 @@
   "changedBlockEntryCount": 0,
   "globalMapKeyCount": 5181,
   "resolvedGlobalKeyCount": 4978,
-  "changedGlobalEntryCount": 110,
+  "changedGlobalEntryCount": 0,
   "resolutionCounts": {
     "compact": 12,
     "dynamic-skip": 48,
@@ -5795,7 +5795,7 @@
     },
     {
       "source": "Sorry, here it is.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "미안하오. 여기 있소. ",
       "candidateCounts": {
         "미안하오. 여기 있소. ": 2,
