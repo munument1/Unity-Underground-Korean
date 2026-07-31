@@ -38,17 +38,20 @@ jobs:
       - name: Compile application tool
         run: python -m py_compile tools/apply_completed_retranslations.py
 
-      - name: Parse every completed bundle
+      - name: Repair and parse every completed bundle
         run: |
           python - <<'PY'
           import json
+          import re
           from pathlib import Path
+          invalid_control = re.compile(r'(?<!\\)\\(?=[mp0-9])')
           for path in sorted(Path('retranslation/completed').glob('bundle_*_translations.json')):
-              try:
-                  json.loads(path.read_text(encoding='utf-8'))
-              except Exception as exc:
-                  print(f'INVALID_JSON {path}: {exc}')
-                  raise
+              text = path.read_text(encoding='utf-8')
+              repaired = invalid_control.sub(lambda match: '\\' + match.group(0), text)
+              if repaired != text:
+                  path.write_text(repaired, encoding='utf-8')
+                  print(f'REPAIRED {path}')
+              json.loads(repaired)
               print(f'OK {path}')
           PY
 
