@@ -47,8 +47,14 @@ New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
 $arguments = @(
     $compiler,
     '/nologo',
+    '/noconfig',
+    '/nostdlib+',
     '/target:library',
+    '/platform:anycpu',
     '/langversion:7.3',
+    '/optimize+',
+    '/deterministic+',
+    '/debug-',
     "/out:$output"
 ) + ($references | ForEach-Object { "/reference:$_" }) + $source
 
@@ -57,4 +63,9 @@ if ($LASTEXITCODE -ne 0) {
     throw "빌드 실패: 종료 코드 $LASTEXITCODE"
 }
 
+if (-not (Test-Path -LiteralPath $output) -or (Get-Item -LiteralPath $output).Length -eq 0) {
+    throw "빌드 결과 DLL이 생성되지 않았습니다: $output"
+}
+
 Write-Host "빌드 완료: $output"
+Write-Host "DLL 크기: $((Get-Item -LiteralPath $output).Length) bytes"

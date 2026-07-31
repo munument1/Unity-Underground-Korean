@@ -35,6 +35,7 @@ DYNAMIC_SOURCES = {
     "Make an attempt? ", " is angered by your action.",
     " is annoyed by your action.", " notes your action.",
     "Your Rune of Warding has been set off ", "You see ",
+    "Restoring Game ", "Saving Game ",
 }
 
 
@@ -69,7 +70,6 @@ def is_dynamic_source(source: str) -> bool:
         source in DYNAMIC_SOURCES
         or "%s" in source
         or "{0}" in source
-        or source != source.strip()
     )
 
 
