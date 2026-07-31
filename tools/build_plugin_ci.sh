@@ -14,20 +14,20 @@ harmony_dll="$work_dir/bepinex/BepInEx/core/0Harmony.dll"
 test -f "$bepinex_dll"
 test -f "$harmony_dll"
 
-cat > plugin/UnityUndergroundKorean.csproj <<EOF
+cat > plugin/UnityUndergroundKorean.Runtime.csproj <<EOF
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
-    <AssemblyName>UnityUndergroundKorean</AssemblyName>
-    <RootNamespace>UnityUndergroundKorean</RootNamespace>
+    <AssemblyName>UnityUndergroundKorean.Runtime</AssemblyName>
+    <RootNamespace>UnityUndergroundKoreanRuntime</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <OutputPath>../BepInEx/plugins/</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="UnityUndergroundKorean.cs" />
+    <Compile Include="UnityUndergroundKoreanRuntime.cs" />
     <Reference Include="BepInEx">
       <HintPath>$bepinex_dll</HintPath>
       <Private>false</Private>
@@ -36,12 +36,11 @@ cat > plugin/UnityUndergroundKorean.csproj <<EOF
       <HintPath>$harmony_dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" PrivateAssets="all" />
     <PackageReference Include="OpenMod.UnityEngine.Redist" Version="2021.3.29.1" PrivateAssets="all" />
   </ItemGroup>
 </Project>
 EOF
 
-dotnet build plugin/UnityUndergroundKorean.csproj -c Release
-test -f BepInEx/plugins/UnityUndergroundKorean.dll
-rm -f plugin/UnityUndergroundKorean.csproj
+dotnet build plugin/UnityUndergroundKorean.Runtime.csproj -c Release
+test -f BepInEx/plugins/UnityUndergroundKorean.Runtime.dll
+rm -f plugin/UnityUndergroundKorean.Runtime.csproj
