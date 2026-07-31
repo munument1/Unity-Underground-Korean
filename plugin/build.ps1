@@ -10,6 +10,7 @@ $bepInEx = Join-Path $game 'BepInEx\core'
 $source = Join-Path $PSScriptRoot 'UnityUndergroundKorean.cs'
 $outputDir = Join-Path (Split-Path -Parent $PSScriptRoot) 'BepInEx\plugins'
 $output = Join-Path $outputDir 'UnityUndergroundKorean.dll'
+$assemblyInfo = Join-Path $PSScriptRoot '.UnityUndergroundKorean.AssemblyInfo.cs'
 $dotnet = (Get-Command dotnet -ErrorAction Stop).Source
 $sdkVersion = (& $dotnet --version).Trim()
 $dotnetRoot = Split-Path -Parent $dotnet
@@ -43,29 +44,39 @@ foreach ($reference in $references) {
 }
 
 New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
+@'
+using System.Reflection;
+[assembly: AssemblyVersion("1.1.0.0")]
+[assembly: AssemblyFileVersion("1.1.0.0")]
+[assembly: AssemblyInformationalVersion("1.1.0")]
+'@ | Set-Content -LiteralPath $assemblyInfo -Encoding UTF8
 
-$arguments = @(
-    $compiler,
-    '/nologo',
-    '/noconfig',
-    '/nostdlib+',
-    '/target:library',
-    '/platform:anycpu',
-    '/langversion:7.3',
-    '/optimize+',
-    '/deterministic+',
-    '/debug-',
-    "/out:$output"
-) + ($references | ForEach-Object { "/reference:$_" }) + $source
+try {
+    $arguments = @(
+        $compiler,
+        '/nologo',
+        '/target:library',
+        '/langversion:7.3',
+        '/nostdlib+',
+        '/deterministic+',
+        '/optimize+',
+        '/debug-',
+        "/out:$output"
+    ) + ($references | ForEach-Object { "/reference:$_" }) + @(
+        $assemblyInfo,
+        $source
+    )
 
-& $dotnet @arguments
-if ($LASTEXITCODE -ne 0) {
-    throw "빌드 실패: 종료 코드 $LASTEXITCODE"
+    & $dotnet @arguments
+    if ($LASTEXITCODE -ne 0) {
+        throw "빌드 실패: 종료 코드 $LASTEXITCODE"
+    }
+}
+finally {
+    Remove-Item -LiteralPath $assemblyInfo -Force -ErrorAction SilentlyContinue
 }
 
-if (-not (Test-Path -LiteralPath $output) -or (Get-Item -LiteralPath $output).Length -eq 0) {
-    throw "빌드 결과 DLL이 생성되지 않았습니다: $output"
-}
-
+$hash = (Get-FileHash -LiteralPath $output -Algorithm SHA256).Hash.ToLowerInvariant()
 Write-Host "빌드 완료: $output"
-Write-Host "DLL 크기: $((Get-Item -LiteralPath $output).Length) bytes"
+Write-Host "크기: $((Get-Item -LiteralPath $output).Length) bytes"
+Write-Host "SHA-256: $hash"

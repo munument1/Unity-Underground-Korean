@@ -1,0 +1,134 @@
+name: Apply actual-game v1.1.0 DLL
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/apply-actual-dll-v1.1.0.yml
+      - retranslation/.final_dll.b64.*
+      - plugin/build.ps1
+      - retranslation/RUNTIME_FINALIZATION.md
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apply-actual-game-v1.1.0-dll
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: ${{ github.event.pull_request.head.ref == 'agent/finalize-v1.1.0-runtime' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out existing finalization branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/finalize-v1.1.0-runtime
+          fetch-depth: 0
+
+      - name: Restore verified actual-game DLL
+        run: |
+          set -euo pipefail
+          cat retranslation/.final_dll.b64.* | base64 --decode > BepInEx/plugins/UnityUndergroundKorean.dll
+          test "$(stat -c %s BepInEx/plugins/UnityUndergroundKorean.dll)" = "24576"
+          echo 'eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20  BepInEx/plugins/UnityUndergroundKorean.dll' | sha256sum --check
+
+      - name: Correct no-effect sentence assembly
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('plugin/UnityUndergroundKorean.cs')
+          text = path.read_text(encoding='utf-8')
+          old = '''            if (TryTranslateObjectPrefix(value, "Your attempt has no effect on the ", "에는 아무런 효과가 없습니다.", out fragment))
+                return "시도했지만 " + fragment;
+'''
+          new = '''            if (TryTakePrefix(value, "Your attempt has no effect on the ", out fragment))
+            {
+                string item = StripLeadingEnglishArticle(
+                    TranslateKnownFragment(fragment)).TrimEnd('.');
+                if (ContainsKorean(item))
+                    return "시도했지만 " + item + "에는 아무런 효과가 없습니다.";
+            }
+'''
+          if old in text:
+              text = text.replace(old, new, 1)
+          elif new not in text:
+              raise SystemExit('no-effect sentence assembly pattern not found')
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Validate final DLL, data, and deterministic ZIP
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          import zipfile
+          from pathlib import Path
+
+          report = json.loads(Path('retranslation/APPLY_REPORT.json').read_text(encoding='utf-8'))
+          assert report['reviewedLocationCount'] == 7092
+          assert report['dynamicSkipCount'] == 48
+          assert report['unresolvedCount'] == 0
+          assert report['validationIssueCount'] == 0
+
+          translations = sorted(Path('translations').glob('*.json'))
+          assert len(translations) == 124
+          for path in translations:
+              json.loads(path.read_text(encoding='utf-8'))
+
+          source = Path('plugin/UnityUndergroundKorean.cs').read_text(encoding='utf-8')
+          assert '[BepInPlugin("kr.ultima-underworld.korean", "Unity Underground Korean", "1.1.0")]' in source
+          assert 'return "시도했지만 " + item + "에는 아무런 효과가 없습니다.";' in source
+          assert 'TryTranslateObjectPrefix(value, "Your attempt has no effect on the "' not in source
+
+          dll = Path('BepInEx/plugins/UnityUndergroundKorean.dll')
+          assert dll.stat().st_size == 24576
+          assert hashlib.sha256(dll.read_bytes()).hexdigest() == 'eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20'
+
+          archive = Path('/tmp/Unity-Underground-Korean-v1.1.0.zip')
+          fixed_time = (2026, 7, 31, 0, 0, 0)
+          files = [(dll, 'BepInEx/plugins/UnityUndergroundKorean.dll')]
+          files.extend((path, 'translations/' + path.name) for path in translations)
+          assert len(files) == 125
+          with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
+              for source_path, target in files:
+                  info = zipfile.ZipInfo(target, fixed_time)
+                  info.compress_type = zipfile.ZIP_DEFLATED
+                  info.external_attr = 0o100644 << 16
+                  zf.writestr(info, source_path.read_bytes(), compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
+          with zipfile.ZipFile(archive) as zf:
+              names = zf.namelist()
+              assert len(names) == 125
+              assert len(set(names)) == 125
+              assert zf.testzip() is None
+          assert archive.stat().st_size == 456460
+          assert hashlib.sha256(archive.read_bytes()).hexdigest() == '7ab034e4072dd466bcbda65d5ed4d1116ec8e318ae6fff619b8c3ad37e9c71cd'
+          PY
+          grep -F '/nostdlib+' plugin/build.ps1
+          grep -F 'AssemblyVersion("1.1.0.0")' plugin/build.ps1
+          git diff --check
+
+      - name: Remove temporary transfer and diagnostic files
+        run: |
+          set -euo pipefail
+          rm -f retranslation/.final_dll.b64.*
+          rm -f .github/workflows/apply-actual-dll-v1.1.0.yml
+          rm -f .github/workflows/export-v1.1.0-build-kit.yml
+          rm -f .github/workflows/fix-no-effect-v1.1.0.yml
+          rm -f .github/workflows/validate-v1.1.0-release.yml
+          rm -f retranslation/RUNTIME_BUILD_LOG.txt
+          rm -f tools/finalize_v1_1_runtime.py
+
+      - name: Commit final actual-game build
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m '실제 게임 DLL 참조 빌드로 최종 교체 [actual-dll-applied]'
+          git push origin HEAD:agent/finalize-v1.1.0-runtime
