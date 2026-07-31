@@ -1,0 +1,65 @@
+name: Retranslation Apply Audit
+
+on:
+  push:
+    branches:
+      - agent/apply-retranslation-v1.1.0
+    paths:
+      - tools/apply_completed_retranslations.py
+      - retranslation/completed/**
+      - translations/**
+      - .github/workflows/retranslation-apply-audit.yml
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Download location-aware English source list
+        run: |
+          mkdir -p tools/output
+          curl --fail --location --retry 3 \
+            https://raw.githubusercontent.com/hankmorgan/UnderworldExporter/master/uw1_stringsclean.txt \
+            --output tools/output/uw1_stringsclean.txt
+
+      - name: Compile application tool
+        run: python -m py_compile tools/apply_completed_retranslations.py
+
+      - name: Audit completed retranslations
+        run: |
+          python tools/apply_completed_retranslations.py \
+            --source-list tools/output/uw1_stringsclean.txt \
+            --report retranslation/apply_audit_report.json \
+            --dry-run
+
+      - name: Print audit summary
+        if: always()
+        run: |
+          if [ -f retranslation/apply_audit_report.json ]; then
+            python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('retranslation/apply_audit_report.json').read_text(encoding='utf-8'))
+          keys = [
+              'reviewedLocationCount', 'sourceLocationCount',
+              'sourceMissingLocationCount', 'changedBlockFileCount',
+              'changedBlockEntryCount', 'resolvedGlobalKeyCount',
+              'changedGlobalEntryCount', 'dynamicSkipCount', 'unresolvedCount',
+              'duplicateSourceConflictCount', 'validationIssueCount',
+          ]
+          print('\n'.join(f'{key}: {report[key]}' for key in keys))
+          PY
+          fi
+
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: retranslation-apply-audit
+          path: retranslation/apply_audit_report.json
+          if-no-files-found: error
