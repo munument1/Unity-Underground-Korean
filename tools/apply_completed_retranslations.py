@@ -35,6 +35,7 @@ DYNAMIC_SOURCES = {
     "Make an attempt? ", " is angered by your action.",
     " is annoyed by your action.", " notes your action.",
     "Your Rune of Warding has been set off ", "You see ",
+    "Restoring Game ", "Saving Game ",
 }
 
 

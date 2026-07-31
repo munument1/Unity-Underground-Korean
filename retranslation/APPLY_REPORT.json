@@ -219,17 +219,16 @@
   "changedBlockEntryCount": 0,
   "globalMapKeyCount": 5181,
   "resolvedGlobalKeyCount": 4978,
-  "changedGlobalEntryCount": 110,
+  "changedGlobalEntryCount": 0,
   "resolutionCounts": {
     "compact": 12,
-    "dynamic-skip": 46,
+    "dynamic-skip": 48,
     "exact": 6817,
     "literal-block-only": 6,
-    "missing": 2,
     "normalized": 207,
     "source-missing-block-only": 2
   },
-  "dynamicSkipCount": 46,
+  "dynamicSkipCount": 48,
   "dynamicSkips": [
     {
       "blockId": 1,
@@ -413,6 +412,18 @@
     },
     {
       "blockId": 1,
+      "stringId": 166,
+      "source": "Restoring Game ",
+      "proposedTranslation": "게임 불러오는 중: %s"
+    },
+    {
+      "blockId": 1,
+      "stringId": 167,
+      "source": "Saving Game ",
+      "proposedTranslation": "게임 저장 중: %s"
+    },
+    {
+      "blockId": 1,
       "stringId": 172,
       "source": " tasted putrid.",
       "proposedTranslation": "맛이 썩 좋지 않았다.\n"
@@ -508,23 +519,8 @@
       "proposedTranslation": "당신은 다음을 봅니다:"
     }
   ],
-  "unresolvedCount": 2,
-  "unresolved": [
-    {
-      "blockId": 1,
-      "stringId": 166,
-      "source": "Restoring Game ",
-      "reason": "missing",
-      "candidateGlobalKeyCount": 0
-    },
-    {
-      "blockId": 1,
-      "stringId": 167,
-      "source": "Saving Game ",
-      "reason": "missing",
-      "candidateGlobalKeyCount": 0
-    }
-  ],
+  "unresolvedCount": 0,
+  "unresolved": [],
   "duplicateSourceConflictCount": 117,
   "duplicateSourceConflicts": [
     {
@@ -5799,7 +5795,7 @@
     },
     {
       "source": "Sorry, here it is.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "미안하오. 여기 있소. ",
       "candidateCounts": {
         "미안하오. 여기 있소. ": 2,
