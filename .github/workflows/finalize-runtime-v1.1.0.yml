@@ -22,12 +22,10 @@ jobs:
           ref: agent/apply-retranslation-v1.1.0
           fetch-depth: 0
 
-      - name: Finalize source and translation map rules
+      - name: Refine translation map rules
         run: |
-          python -m py_compile tools/finalize_v1_1_0_runtime.py
-          python -m py_compile tools/add_v1_1_0_dynamic_sources.py
-          python tools/finalize_v1_1_0_runtime.py
-          python tools/add_v1_1_0_dynamic_sources.py
+          python -m py_compile tools/refine_v1_1_0_map.py
+          python tools/refine_v1_1_0_map.py
           mkdir -p tools/output
           curl --fail --location --retry 3 \
             https://raw.githubusercontent.com/hankmorgan/UnderworldExporter/master/uw1_stringsclean.txt \
@@ -38,7 +36,7 @@ jobs:
             --report retranslation/APPLY_REPORT.json \
             --max-unresolved 0
 
-      - name: Build runtime plugin
+      - name: Build dynamic sentence companion plugin
         run: bash tools/build_plugin_ci.sh
 
       - name: Validate finalized output
@@ -50,19 +48,21 @@ jobs:
           assert report['reviewedLocationCount'] == 7092
           assert report['unresolvedCount'] == 0
           assert report['validationIssueCount'] == 0
-          assert report['dynamicSkipCount'] < 100
+          assert report['dynamicSkipCount'] == 48
           files = sorted(Path('translations').glob('*.json'))
           assert len(files) == 124
           for path in files:
               json.loads(path.read_text(encoding='utf-8'))
-          source = Path('plugin/UnityUndergroundKorean.cs').read_text(encoding='utf-8')
+          source = Path('plugin/UnityUndergroundKoreanRuntime.cs').read_text(encoding='utf-8')
           assert '"1.1.0"' in source
-          assert 'TranslateAssembledGameText' in source
+          assert 'TranslateAssembled' in source
+          runtime_dll = Path('BepInEx/plugins/UnityUndergroundKorean.Runtime.dll')
+          assert runtime_dll.is_file()
           print(json.dumps({
               'dynamicSkipCount': report['dynamicSkipCount'],
               'changedGlobalEntryCount': report['changedGlobalEntryCount'],
               'translationJsonCount': len(files),
-              'pluginBytes': Path('BepInEx/plugins/UnityUndergroundKorean.dll').stat().st_size,
+              'runtimePluginBytes': runtime_dll.stat().st_size,
           }, ensure_ascii=False, indent=2))
           PY
           git diff --check
@@ -72,10 +72,10 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           rm -f translations/.runtime-finalization-trigger
-          git add plugin/UnityUndergroundKorean.cs BepInEx/plugins/UnityUndergroundKorean.dll \
-            tools/apply_completed_retranslations.py tools/finalize_v1_1_0_runtime.py \
-            tools/add_v1_1_0_dynamic_sources.py tools/build_plugin_ci.sh \
-            retranslation/APPLY_REPORT.json translations
+          git add plugin/UnityUndergroundKoreanRuntime.cs \
+            BepInEx/plugins/UnityUndergroundKorean.Runtime.dll \
+            tools/apply_completed_retranslations.py tools/refine_v1_1_0_map.py \
+            tools/build_plugin_ci.sh retranslation/APPLY_REPORT.json translations
           if git diff --cached --quiet; then
             echo 'No finalization changes to commit.'
             exit 0
