@@ -1,12 +1,13 @@
-name: Apply actual-game v1.1.0 DLL
+name: Apply verified v1.1.0 runtime
 
 on:
   pull_request:
     branches:
       - main
     paths:
-      - .github/workflows/apply-actual-dll-v1.1.0.yml
-      - retranslation/.final_dll.b64.*
+      - .github/workflows/patch-final-v1.1.0.yml
+      - BepInEx/plugins/UnityUndergroundKorean.dll
+      - plugin/UnityUndergroundKorean.cs
       - plugin/build.ps1
       - retranslation/RUNTIME_FINALIZATION.md
 
@@ -14,11 +15,11 @@ permissions:
   contents: write
 
 concurrency:
-  group: apply-actual-game-v1.1.0-dll
+  group: patch-final-v1.1.0
   cancel-in-progress: false
 
 jobs:
-  apply:
+  patch:
     if: ${{ github.event.pull_request.head.ref == 'agent/finalize-v1.1.0-runtime' }}
     runs-on: ubuntu-latest
     steps:
@@ -28,14 +29,7 @@ jobs:
           ref: agent/finalize-v1.1.0-runtime
           fetch-depth: 0
 
-      - name: Restore verified actual-game DLL
-        run: |
-          set -euo pipefail
-          cat retranslation/.final_dll.b64.* | base64 --decode > BepInEx/plugins/UnityUndergroundKorean.dll
-          test "$(stat -c %s BepInEx/plugins/UnityUndergroundKorean.dll)" = "24576"
-          echo 'eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20  BepInEx/plugins/UnityUndergroundKorean.dll' | sha256sum --check
-
-      - name: Correct no-effect sentence assembly
+      - name: Apply source fix
         run: |
           set -euo pipefail
           python - <<'PY'
@@ -44,7 +38,7 @@ jobs:
           path = Path('plugin/UnityUndergroundKorean.cs')
           text = path.read_text(encoding='utf-8')
           old = '''            if (TryTranslateObjectPrefix(value, "Your attempt has no effect on the ", "에는 아무런 효과가 없습니다.", out fragment))
-                return "시도했지만 " + fragment;
+              return "시도했지만 " + fragment;
 '''
           new = '''            if (TryTakePrefix(value, "Your attempt has no effect on the ", out fragment))
             {
@@ -55,13 +49,12 @@ jobs:
             }
 '''
           if old in text:
-              text = text.replace(old, new, 1)
+              path.write_text(text.replace(old, new, 1), encoding='utf-8')
           elif new not in text:
               raise SystemExit('no-effect sentence assembly pattern not found')
-          path.write_text(text, encoding='utf-8')
           PY
 
-      - name: Validate final DLL, data, and deterministic ZIP
+      - name: Validate final runtime and deterministic ZIP
         run: |
           set -euo pipefail
           python - <<'PY'
@@ -86,6 +79,11 @@ jobs:
           assert 'return "시도했지만 " + item + "에는 아무런 효과가 없습니다.";' in source
           assert 'TryTranslateObjectPrefix(value, "Your attempt has no effect on the "' not in source
 
+          build = Path('plugin/build.ps1').read_text(encoding='utf-8')
+          assert '/nostdlib+' in build
+          assert 'AssemblyVersion("1.1.0.0")' in build
+          assert 'Exiled.Dev.References' not in build
+
           dll = Path('BepInEx/plugins/UnityUndergroundKorean.dll')
           assert dll.stat().st_size == 24576
           assert hashlib.sha256(dll.read_bytes()).hexdigest() == 'eabccfe2ebe21e2b882ca22c45177291d69db88b063df3fcad5a50c3e008eb20'
@@ -109,26 +107,15 @@ jobs:
           assert archive.stat().st_size == 456460
           assert hashlib.sha256(archive.read_bytes()).hexdigest() == '7ab034e4072dd466bcbda65d5ed4d1116ec8e318ae6fff619b8c3ad37e9c71cd'
           PY
-          grep -F '/nostdlib+' plugin/build.ps1
-          grep -F 'AssemblyVersion("1.1.0.0")' plugin/build.ps1
           git diff --check
 
-      - name: Remove temporary transfer and diagnostic files
+      - name: Commit source fix and remove one-time workflow
         run: |
           set -euo pipefail
-          rm -f retranslation/.final_dll.b64.*
-          rm -f .github/workflows/apply-actual-dll-v1.1.0.yml
-          rm -f .github/workflows/export-v1.1.0-build-kit.yml
-          rm -f .github/workflows/fix-no-effect-v1.1.0.yml
-          rm -f .github/workflows/validate-v1.1.0-release.yml
-          rm -f retranslation/RUNTIME_BUILD_LOG.txt
-          rm -f tools/finalize_v1_1_runtime.py
-
-      - name: Commit final actual-game build
-        run: |
-          set -euo pipefail
+          rm -f .github/workflows/patch-final-v1.1.0.yml
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add -A
-          git commit -m '실제 게임 DLL 참조 빌드로 최종 교체 [actual-dll-applied]'
+          git diff --cached --check
+          git commit -m 'v1.1.0 동적 문장 조사 결합 수정 및 최종 검증'
           git push origin HEAD:agent/finalize-v1.1.0-runtime
