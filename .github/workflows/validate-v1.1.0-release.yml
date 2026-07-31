@@ -1,0 +1,116 @@
+name: Validate v1.1.0 Release
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - agent/apply-retranslation-v1.1.0
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Download location-aware English source list
+        run: |
+          mkdir -p tools/output
+          curl --fail --location --retry 3 \
+            https://raw.githubusercontent.com/hankmorgan/UnderworldExporter/master/uw1_stringsclean.txt \
+            --output tools/output/uw1_stringsclean.txt
+
+      - name: Verify applied retranslations are idempotent
+        run: |
+          python -m py_compile tools/prepare_retranslation_application.py
+          python -m py_compile tools/apply_completed_retranslations.py
+          python tools/prepare_retranslation_application.py
+          python tools/apply_completed_retranslations.py \
+            --source-list tools/output/uw1_stringsclean.txt \
+            --report retranslation/POST_APPLY_CHECK.json \
+            --max-unresolved 0 \
+            --dry-run
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('retranslation/POST_APPLY_CHECK.json').read_text(encoding='utf-8'))
+          expected = {
+              'reviewedLocationCount': 7092,
+              'changedBlockFileCount': 0,
+              'changedBlockEntryCount': 0,
+              'changedGlobalEntryCount': 0,
+              'unresolvedCount': 0,
+              'validationIssueCount': 0,
+          }
+          for key, value in expected.items():
+              if report.get(key) != value:
+                  raise SystemExit(f'{key}: {report.get(key)} != {value}')
+          committed = json.loads(Path('retranslation/APPLY_REPORT.json').read_text(encoding='utf-8'))
+          original_expected = {
+              'reviewedLocationCount': 7092,
+              'changedBlockFileCount': 122,
+              'changedBlockEntryCount': 5644,
+              'changedGlobalEntryCount': 3989,
+              'unresolvedCount': 0,
+              'validationIssueCount': 0,
+          }
+          for key, value in original_expected.items():
+              if committed.get(key) != value:
+                  raise SystemExit(f'committed {key}: {committed.get(key)} != {value}')
+          PY
+
+      - name: Validate translation JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          paths = sorted(Path('translations').glob('*.json'))
+          if len(paths) != 124:
+              raise SystemExit(f'Expected 124 JSON files, found {len(paths)}')
+          for path in paths:
+              json.loads(path.read_text(encoding='utf-8'))
+          print(f'Validated {len(paths)} translation JSON files.')
+          PY
+          git diff --check
+
+      - name: Build release candidate
+        run: |
+          python - <<'PY'
+          import hashlib
+          import zipfile
+          from pathlib import Path
+
+          output = Path('Unity-Underground-Korean-v1.1.0.zip')
+          files = [Path('BepInEx/plugins/UnityUndergroundKorean.dll')]
+          files.extend(sorted(Path('translations').glob('*.json')))
+          if len(files) != 125:
+              raise SystemExit(f'Expected DLL plus 124 JSON files, found {len(files)}')
+          with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
+              for path in files:
+                  archive.write(path, path.as_posix())
+          with zipfile.ZipFile(output) as archive:
+              bad = archive.testzip()
+              if bad is not None:
+                  raise SystemExit(f'Corrupt ZIP member: {bad}')
+              if len(archive.namelist()) != 125:
+                  raise SystemExit('Unexpected ZIP member count')
+          digest = hashlib.sha256(output.read_bytes()).hexdigest()
+          Path(str(output) + '.sha256').write_text(
+              f'{digest}  {output.name}\n', encoding='utf-8'
+          )
+          print(f'{output}: {output.stat().st_size} bytes, SHA-256 {digest}')
+          PY
+
+      - name: Upload release candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: Unity-Underground-Korean-v1.1.0
+          path: |
+            Unity-Underground-Korean-v1.1.0.zip
+            Unity-Underground-Korean-v1.1.0.zip.sha256
+          if-no-files-found: error
