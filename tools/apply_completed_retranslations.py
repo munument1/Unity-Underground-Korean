@@ -69,7 +69,6 @@ def is_dynamic_source(source: str) -> bool:
         source in DYNAMIC_SOURCES
         or "%s" in source
         or "{0}" in source
-        or source != source.strip()
     )
 
 

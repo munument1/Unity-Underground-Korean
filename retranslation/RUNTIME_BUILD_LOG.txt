@@ -1,29 +1,48 @@
 v1.1.0 runtime source finalization prepared
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  368k  100  368k    0     0  1622k      0 --:--:-- --:--:-- --:--:-- 1630k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  368k  100  368k    0     0  2376k      0 --:--:-- --:--:-- --:--:-- 2392k
 {
   "repairedBundleFiles": [],
   "applicationToolChanged": false
 }
-error: Unresolved location count 2 exceeds 0
-  Determining projects to restore...
-/home/runner/work/Unity-Underground-Korean/Unity-Underground-Korean/plugin/UnityUndergroundKorean.csproj : error NU1101: Unable to find package BepInEx.Core. No packages exist with this id in source(s): nuget.org
-/home/runner/work/Unity-Underground-Korean/Unity-Underground-Korean/plugin/UnityUndergroundKorean.csproj : warning NU1701: Package 'Exiled.Dev.References 1.0.4' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.
-  Failed to restore /home/runner/work/Unity-Underground-Korean/Unity-Underground-Korean/plugin/UnityUndergroundKorean.csproj (in 3.05 sec).
+{
+  "reviewedLocationCount": 7092,
+  "sourceLocationCount": 7090,
+  "sourceMissingLocationCount": 2,
+  "changedBlockFileCount": 0,
+  "changedBlockEntryCount": 0,
+  "resolvedGlobalKeyCount": 4978,
+  "changedGlobalEntryCount": 110,
+  "dynamicSkipCount": 46,
+  "unresolvedCount": 2,
+  "duplicateSourceConflictCount": 117,
+  "validationIssueCount": 0
+}
+error: File '/home/runner/work/Unity-Underground-Korean/Unity-Underground-Korean/NuGet.Config' does not exist.
+{
+  "dynamicSkipCount": 46,
+  "changedGlobalEntryCount": 110,
+  "unresolved": [
+    {
+      "blockId": 1,
+      "stringId": 166,
+      "source": "Restoring Game ",
+      "reason": "missing",
+      "candidateGlobalKeyCount": 0
+    },
+    {
+      "blockId": 1,
+      "stringId": 167,
+      "source": "Saving Game ",
+      "reason": "missing",
+      "candidateGlobalKeyCount": 0
+    }
+  ],
+  "translationJsonCount": 124,
+  "pluginBytes": 20480
+}
 
-Build FAILED.
-
-/home/runner/work/Unity-Underground-Korean/Unity-Underground-Korean/plugin/UnityUndergroundKorean.csproj : warning NU1701: Package 'Exiled.Dev.References 1.0.4' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.
-/home/runner/work/Unity-Underground-Korean/Unity-Underground-Korean/plugin/UnityUndergroundKorean.csproj : error NU1101: Unable to find package BepInEx.Core. No packages exist with this id in source(s): nuget.org
-    1 Warning(s)
-    1 Error(s)
-
-Time Elapsed 00:00:04.03
-Traceback (most recent call last):
-  File "<stdin>", line 7, in <module>
-AssertionError
-
-prepare=failure
+prepare=success
 build=failure
-validate=failure
+validate=success
