@@ -215,20 +215,20 @@
       "stringId": 26
     }
   ],
-  "changedBlockFileCount": 122,
-  "changedBlockEntryCount": 5644,
+  "changedBlockFileCount": 0,
+  "changedBlockEntryCount": 0,
   "globalMapKeyCount": 5181,
-  "resolvedGlobalKeyCount": 4868,
-  "changedGlobalEntryCount": 3989,
+  "resolvedGlobalKeyCount": 4978,
+  "changedGlobalEntryCount": 110,
   "resolutionCounts": {
-    "compact": 11,
-    "dynamic-skip": 178,
-    "exact": 6812,
+    "compact": 12,
+    "dynamic-skip": 48,
+    "exact": 6817,
     "literal-block-only": 6,
-    "normalized": 83,
+    "normalized": 207,
     "source-missing-block-only": 2
   },
-  "dynamicSkipCount": 178,
+  "dynamicSkipCount": 48,
   "dynamicSkips": [
     {
       "blockId": 1,
@@ -508,12 +508,6 @@
     },
     {
       "blockId": 1,
-      "stringId": 244,
-      "source": "You found a trap!  Do you wish to try to disarm it? ",
-      "proposedTranslation": "함정을 발견했습니다! 해제하시겠습니까?"
-    },
-    {
-      "blockId": 1,
       "stringId": 245,
       "source": "Your Rune of Warding has been set off ",
       "proposedTranslation": "당신의 수호 룬이 발동되었습니다 %s "
@@ -523,789 +517,15 @@
       "stringId": 260,
       "source": "You see ",
       "proposedTranslation": "당신은 다음을 봅니다:"
-    },
-    {
-      "blockId": 1,
-      "stringId": 370,
-      "source": " a denizen of the area",
-      "proposedTranslation": " 이 지역의 주민"
-    },
-    {
-      "blockId": 1,
-      "stringId": 371,
-      "source": " a rotworm",
-      "proposedTranslation": " 썩은벌레"
-    },
-    {
-      "blockId": 1,
-      "stringId": 372,
-      "source": " a slug",
-      "proposedTranslation": " 민달팽이"
-    },
-    {
-      "blockId": 1,
-      "stringId": 373,
-      "source": " a bat",
-      "proposedTranslation": " 박쥐"
-    },
-    {
-      "blockId": 1,
-      "stringId": 374,
-      "source": " a rat",
-      "proposedTranslation": " 쥐"
-    },
-    {
-      "blockId": 1,
-      "stringId": 375,
-      "source": " a spider",
-      "proposedTranslation": " 거미"
-    },
-    {
-      "blockId": 1,
-      "stringId": 376,
-      "source": " a green goblin",
-      "proposedTranslation": " 초록 고블린"
-    },
-    {
-      "blockId": 1,
-      "stringId": 377,
-      "source": " a skeleton",
-      "proposedTranslation": " 해골"
-    },
-    {
-      "blockId": 1,
-      "stringId": 378,
-      "source": " an imp",
-      "proposedTranslation": " 임프"
-    },
-    {
-      "blockId": 1,
-      "stringId": 379,
-      "source": " a gray goblin",
-      "proposedTranslation": " 회색 고블린"
-    },
-    {
-      "blockId": 1,
-      "stringId": 380,
-      "source": " a mountainman",
-      "proposedTranslation": " 산악인"
-    },
-    {
-      "blockId": 1,
-      "stringId": 381,
-      "source": " a lizardman",
-      "proposedTranslation": " 리자드맨"
-    },
-    {
-      "blockId": 1,
-      "stringId": 382,
-      "source": " a lurker",
-      "proposedTranslation": " 잠복자"
-    },
-    {
-      "blockId": 1,
-      "stringId": 383,
-      "source": " a knight",
-      "proposedTranslation": " 기사"
-    },
-    {
-      "blockId": 1,
-      "stringId": 384,
-      "source": " a headless",
-      "proposedTranslation": " 목 없는 자"
-    },
-    {
-      "blockId": 1,
-      "stringId": 385,
-      "source": " a troll",
-      "proposedTranslation": " 트롤"
-    },
-    {
-      "blockId": 1,
-      "stringId": 386,
-      "source": " a ghost",
-      "proposedTranslation": " 유령"
-    },
-    {
-      "blockId": 1,
-      "stringId": 387,
-      "source": " a ghoul",
-      "proposedTranslation": " 구울"
-    },
-    {
-      "blockId": 1,
-      "stringId": 388,
-      "source": " a gazer",
-      "proposedTranslation": " 게이저"
-    },
-    {
-      "blockId": 1,
-      "stringId": 389,
-      "source": " a mage",
-      "proposedTranslation": " 마법사"
-    },
-    {
-      "blockId": 1,
-      "stringId": 390,
-      "source": " a golem",
-      "proposedTranslation": " 골렘"
-    },
-    {
-      "blockId": 1,
-      "stringId": 391,
-      "source": " a shadow beast",
-      "proposedTranslation": " 그림자 야수"
-    },
-    {
-      "blockId": 1,
-      "stringId": 392,
-      "source": " a reaper",
-      "proposedTranslation": " 사신"
-    },
-    {
-      "blockId": 1,
-      "stringId": 393,
-      "source": " a fire elemental",
-      "proposedTranslation": " 화염 정령"
-    },
-    {
-      "blockId": 1,
-      "stringId": 394,
-      "source": " a wisp",
-      "proposedTranslation": " 위습"
-    },
-    {
-      "blockId": 1,
-      "stringId": 395,
-      "source": " Tyball",
-      "proposedTranslation": " 타이볼"
-    },
-    {
-      "blockId": 1,
-      "stringId": 396,
-      "source": " the Slasher of Veils",
-      "proposedTranslation": " 장막을 가르는 자"
-    },
-    {
-      "blockId": 1,
-      "stringId": 397,
-      "source": " an outcast",
-      "proposedTranslation": " 추방자"
-    },
-    {
-      "blockId": 1,
-      "stringId": 398,
-      "source": " a creature",
-      "proposedTranslation": " 생명체"
-    },
-    {
-      "blockId": 2,
-      "stringId": 7,
-      "source": "Name: ",
-      "proposedTranslation": "이름: "
-    },
-    {
-      "blockId": 7,
-      "stringId": 2,
-      "source": " that I am getting ",
-      "proposedTranslation": " 내가 받게 될 거래는 "
-    },
-    {
-      "blockId": 8,
-      "stringId": 352,
-      "source": "The gravestone reads: ",
-      "proposedTranslation": "묘비에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 8,
-      "stringId": 353,
-      "source": "The tombstone reads: ",
-      "proposedTranslation": "비석에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 8,
-      "stringId": 368,
-      "source": "The plaque reads: ",
-      "proposedTranslation": "명판에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 8,
-      "stringId": 369,
-      "source": "The plaque reads: ",
-      "proposedTranslation": "명판에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 8,
-      "stringId": 370,
-      "source": "An ancient rune: ",
-      "proposedTranslation": "고대 룬에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 8,
-      "stringId": 371,
-      "source": "An ancient rune: ",
-      "proposedTranslation": "고대 룬에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 8,
-      "stringId": 372,
-      "source": "The sign reads: ",
-      "proposedTranslation": "표지판에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 8,
-      "stringId": 373,
-      "source": "The sign reads: ",
-      "proposedTranslation": "표지판에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 8,
-      "stringId": 374,
-      "source": "The sign reads: ",
-      "proposedTranslation": "표지판에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 8,
-      "stringId": 375,
-      "source": "The sign reads: ",
-      "proposedTranslation": "표지판에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 8,
-      "stringId": 376,
-      "source": "The writing reads: ",
-      "proposedTranslation": "글에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 8,
-      "stringId": 377,
-      "source": "The writing reads: ",
-      "proposedTranslation": "글에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 8,
-      "stringId": 378,
-      "source": "An ancient rune: ",
-      "proposedTranslation": "고대 룬에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 8,
-      "stringId": 379,
-      "source": "An ancient rune: ",
-      "proposedTranslation": "고대 룬에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 8,
-      "stringId": 380,
-      "source": "The writing reads: ",
-      "proposedTranslation": "글에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 8,
-      "stringId": 382,
-      "source": "The runes read: ",
-      "proposedTranslation": "룬에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 8,
-      "stringId": 383,
-      "source": "The writing reads: ",
-      "proposedTranslation": "글에는 이렇게 쓰여 있다: "
-    },
-    {
-      "blockId": 24,
-      "stringId": 0,
-      "source": " for level ",
-      "proposedTranslation": " / 레벨 "
-    },
-    {
-      "blockId": 24,
-      "stringId": 4,
-      "source": " critters on the level",
-      "proposedTranslation": "개 생명체가 이 레벨에 있음\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 7,
-      "source": " animation objects on the level",
-      "proposedTranslation": "개 애니메이션 오브젝트가 이 레벨에 있음\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 10,
-      "source": " book objects on the level",
-      "proposedTranslation": "개 책 오브젝트가 이 레벨에 있음\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 12,
-      "source": " is the number of animcount objects according to anim_o",
-      "proposedTranslation": "은 anim_o 기준 animcount 오브젝트 수\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 13,
-      "source": " X, Y l: _______Name_____ ___Goal__ A L _Whoami _HP/MHP HIP",
-      "proposedTranslation": " X, Y l: _______이름_____ ___목표__ A L _정체___ _HP/MHP HIP\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 18,
-      "source": " runes on the level",
-      "proposedTranslation": "개 룬이 이 레벨에 있음\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 22,
-      "source": " Hostile Non-Loner!",
-      "proposedTranslation": " 적대적 집단형!"
-    },
-    {
-      "blockId": 24,
-      "stringId": 26,
-      "source": " UnLocked",
-      "proposedTranslation": " 잠금 해제"
-    },
-    {
-      "blockId": 24,
-      "stringId": 27,
-      "source": " Locked",
-      "proposedTranslation": " 잠김"
-    },
-    {
-      "blockId": 24,
-      "stringId": 28,
-      "source": " Not Reset",
-      "proposedTranslation": " 리셋되지 않음"
-    },
-    {
-      "blockId": 24,
-      "stringId": 29,
-      "source": " Reset",
-      "proposedTranslation": " 리셋됨"
-    },
-    {
-      "blockId": 24,
-      "stringId": 32,
-      "source": " in an Invalid Position",
-      "proposedTranslation": " 위치가 유효하지 않음\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 34,
-      "source": " Mobile Objects are not creatures",
-      "proposedTranslation": "개 이동 오브젝트가 생명체가 아님\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 35,
-      "source": " Mobile Objects are in invalid positions",
-      "proposedTranslation": "개 이동 오브젝트가 잘못된 위치에 있음\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 37,
-      "source": " total traps.==== TRIGGERS ====",
-      "proposedTranslation": "개 함정.\n==== 트리거 ===="
-    },
-    {
-      "blockId": 24,
-      "stringId": 38,
-      "source": " total triggers.",
-      "proposedTranslation": "개 트리거.\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 39,
-      "source": "  TrapErr: too many trigers?",
-      "proposedTranslation": "\n 함정 오류: 트리거가 너무 많음?"
-    },
-    {
-      "blockId": 24,
-      "stringId": 40,
-      "source": "  TrapErr: no triggers?",
-      "proposedTranslation": "\n 함정 오류: 트리거가 없음?"
-    },
-    {
-      "blockId": 24,
-      "stringId": 41,
-      "source": "    TrapErr: doesnt point to a trap",
-      "proposedTranslation": "  함정 오류: 함정을 가리키지 않음\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 43,
-      "source": "    TrapErr:  bad terrain",
-      "proposedTranslation": "  함정 오류: 잘못된 지형\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 44,
-      "source": "    TrapErr:  no del trap obj",
-      "proposedTranslation": "  함정 오류: 삭제 대상 함정 오브젝트 없음\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 45,
-      "source": "    TrapErr:  no text strnum ",
-      "proposedTranslation": "  함정 오류: 텍스트 문자열 번호 없음 "
-    },
-    {
-      "blockId": 24,
-      "stringId": 47,
-      "source": " Pumped!",
-      "proposedTranslation": " 강화형!"
-    },
-    {
-      "blockId": 24,
-      "stringId": 48,
-      "source": " Wimpy!",
-      "proposedTranslation": " 약화형!"
-    },
-    {
-      "blockId": 24,
-      "stringId": 50,
-      "source": " is Mobile",
-      "proposedTranslation": " 이동 오브젝트임\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 51,
-      "source": " is a Flying Creature on the ground.",
-      "proposedTranslation": " 지상에 있는 비행 생명체임.\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 54,
-      "source": " impassable diagonal",
-      "proposedTranslation": " 통과 불가능한 대각선\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 55,
-      "source": " crossing slopes",
-      "proposedTranslation": " 교차하는 경사면\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 57,
-      "source": " door on a slope",
-      "proposedTranslation": " 경사면 위의 문\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 58,
-      "source": " door in an odd position (theta/pos)",
-      "proposedTranslation": " 비정상 위치의 문(theta/pos)\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 59,
-      "source": " door opens out of its square",
-      "proposedTranslation": " 문이 자기 타일 밖으로 열림\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 60,
-      "source": " door(s) were in invalid/bad positions",
-      "proposedTranslation": "개 문이 유효하지 않거나 잘못된 위치에 있음\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 63,
-      "source": " with magic powers",
-      "proposedTranslation": " 마법 능력 보유\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 65,
-      "source": " adventurers bones.  Died while building the level, eh?",
-      "proposedTranslation": "개 모험가 유골. 레벨 만들다 죽었나?\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 66,
-      "source": " object with illegal ObjIID.  What is this?",
-      "proposedTranslation": "개 오브젝트의 ObjIID가 잘못됨. 이건 뭐지?\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 67,
-      "source": " Its a major quest item",
-      "proposedTranslation": " 주요 퀘스트 아이템임\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 68,
-      "source": " active spell",
-      "proposedTranslation": " 활성형 주문"
-    },
-    {
-      "blockId": 24,
-      "stringId": 69,
-      "source": " passive spell",
-      "proposedTranslation": " 지속형 주문"
-    },
-    {
-      "blockId": 24,
-      "stringId": 72,
-      "source": " Transient!",
-      "proposedTranslation": " 일시적 오브젝트!"
-    },
-    {
-      "blockId": 24,
-      "stringId": 75,
-      "source": " with no spell",
-      "proposedTranslation": " 주문 없음"
-    },
-    {
-      "blockId": 24,
-      "stringId": 77,
-      "source": "Total Value of all treasure on level is ",
-      "proposedTranslation": "이 레벨의 모든 보물 총가치: "
-    },
-    {
-      "blockId": 24,
-      "stringId": 78,
-      "source": " count ",
-      "proposedTranslation": " 수량 "
-    },
-    {
-      "blockId": 24,
-      "stringId": 79,
-      "source": " value ",
-      "proposedTranslation": " 가치 "
-    },
-    {
-      "blockId": 24,
-      "stringId": 81,
-      "source": "Monster Generator Chance ",
-      "proposedTranslation": "몬스터 생성 확률 "
-    },
-    {
-      "blockId": 24,
-      "stringId": 82,
-      "source": " No Magic Properties.",
-      "proposedTranslation": " 마법 속성 없음.\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 85,
-      "source": " Tough 0 Dr ",
-      "proposedTranslation": " 내구도 0 문 "
-    },
-    {
-      "blockId": 24,
-      "stringId": 86,
-      "source": " Tough 1 Dr ",
-      "proposedTranslation": " 내구도 1 문 "
-    },
-    {
-      "blockId": 24,
-      "stringId": 87,
-      "source": " Tough 1 Dr ",
-      "proposedTranslation": " 내구도 1 문 "
-    },
-    {
-      "blockId": 24,
-      "stringId": 88,
-      "source": " Tough 2 Dr ",
-      "proposedTranslation": " 내구도 2 문 "
-    },
-    {
-      "blockId": 24,
-      "stringId": 89,
-      "source": " Tough 2 Dr ",
-      "proposedTranslation": " 내구도 2 문 "
-    },
-    {
-      "blockId": 24,
-      "stringId": 90,
-      "source": " Tough 3 Dr ",
-      "proposedTranslation": " 내구도 3 문 "
-    },
-    {
-      "blockId": 24,
-      "stringId": 91,
-      "source": " Portcullis ",
-      "proposedTranslation": " 쇠창살문 "
-    },
-    {
-      "blockId": 24,
-      "stringId": 92,
-      "source": " SecretDoor",
-      "proposedTranslation": " 비밀문 "
-    },
-    {
-      "blockId": 24,
-      "stringId": 94,
-      "source": " door spiked",
-      "proposedTranslation": " 문에 쐐기 박힘"
-    },
-    {
-      "blockId": 24,
-      "stringId": 96,
-      "source": " Passive not active...",
-      "proposedTranslation": " 지속형이지만 활성 상태 아님...\n"
-    },
-    {
-      "blockId": 24,
-      "stringId": 98,
-      "source": " Not Home",
-      "proposedTranslation": " 원위치 아님"
-    },
-    {
-      "blockId": 24,
-      "stringId": 99,
-      "source": " Not in correct position",
-      "proposedTranslation": " 올바른 위치 아님"
-    },
-    {
-      "blockId": 3586,
-      "stringId": 22,
-      "source": "Ach, do I look like I have four arms? I can only fix one thing at a time, you know. ",
-      "proposedTranslation": "내가 팔이 네 개로 보이오? 한 번에 하나씩만 고칠 수 있소."
-    },
-    {
-      "blockId": 3586,
-      "stringId": 99,
-      "source": "Thank thee.  Thou art truly a craftsman. ",
-      "proposedTranslation": "고맙소. 그대는 진정한 장인이오."
-    },
-    {
-      "blockId": 3588,
-      "stringId": 83,
-      "source": "Here is a trick to catch the knave . . .  ",
-      "proposedTranslation": "그 악당을 잡을 묘수가 있소..."
-    },
-    {
-      "blockId": 3588,
-      "stringId": 84,
-      "source": "I think I know a way to make the villain confess . . .  ",
-      "proposedTranslation": "범인이 자백하게 만들 방법을 알 것 같소..."
-    },
-    {
-      "blockId": 3588,
-      "stringId": 88,
-      "source": "I thank thee.  Now, about the troll . . .  ",
-      "proposedTranslation": "고맙소. 이제 그 트롤 이야기를..."
-    },
-    {
-      "blockId": 3589,
-      "stringId": 5,
-      "source": " else",
-      "proposedTranslation": " 그 밖에"
-    },
-    {
-      "blockId": 3595,
-      "stringId": 28,
-      "source": "Thou art a fool to waste thy life, twice so to pester me! ",
-      "proposedTranslation": "목숨을 헛되이 버리려 하다니 어리석군. 나를 두 번이나 귀찮게 하니 더욱 어리석소!"
-    },
-    {
-      "blockId": 3596,
-      "stringId": 40,
-      "source": "You take the cup.  Within it is a is a clear, odorless liquid.  You raise it to your lips and . . .  ",
-      "proposedTranslation": "잔을 집어 듭니다. 안에는 맑고 냄새 없는 액체가 담겨 있습니다. 잔을 입술로 가져가자..."
-    },
-    {
-      "blockId": 3596,
-      "stringId": 47,
-      "source": "The taste of it is like pure water.  You wait for several moments, and nothing happens.  Then a voice cries out in mourning and a funeral dirge plays. ",
-      "proposedTranslation": "맑은 물과 같은 맛입니다. 잠시 기다려도 아무 일도 일어나지 않습니다. 그때 애도하는 외침이 울리고 장송곡이 흐르기 시작합니다."
-    },
-    {
-      "blockId": 3599,
-      "stringId": 12,
-      "source": "Dost \"'click\" mean \"no?\" ",
-      "proposedTranslation": "‘클릭’이 ‘아니다’라는 뜻인가?"
-    },
-    {
-      "blockId": 3606,
-      "stringId": 12,
-      "source": "Hold!  Thou hast fought well, mortal.  Better than any in many a year.  I would give thee a chance to live, that valor such as yours should not die.  Flee now and I grant thee thy life. ",
-      "proposedTranslation": "멈춰라! 잘 싸웠다, 필멸자여. 여러 해 동안 너만큼 훌륭한 상대는 없었다. 이토록 큰 용기가 사라지지 않도록 살 기회를 주마. 지금 달아나면 목숨을 보전해 주겠다. "
-    },
-    {
-      "blockId": 3607,
-      "stringId": 50,
-      "source": "Excuse me, I must be going. ",
-      "proposedTranslation": "실례하오. 이만 가보겠소."
-    },
-    {
-      "blockId": 3608,
-      "stringId": 11,
-      "source": "I have it.  Thy name is ... ",
-      "proposedTranslation": "알겠네. 자네 이름은..."
-    },
-    {
-      "blockId": 3696,
-      "stringId": 12,
-      "source": "Of this I know nothing.  ",
-      "proposedTranslation": "그 일은 아는 바 없다."
-    },
-    {
-      "blockId": 3696,
-      "stringId": 14,
-      "source": "I have neither.  ",
-      "proposedTranslation": "둘 다 없다."
-    },
-    {
-      "blockId": 3697,
-      "stringId": 1,
-      "source": "What art thou doing here?  ",
-      "proposedTranslation": "여기서 뭘 하고 있지?"
-    },
-    {
-      "blockId": 3697,
-      "stringId": 2,
-      "source": "What art thou doing here again?  ",
-      "proposedTranslation": "또 여기서 뭘 하는 거지?"
-    },
-    {
-      "blockId": 3697,
-      "stringId": 29,
-      "source": "What about ... ",
-      "proposedTranslation": "…에 대해서는 무엇을 아시오?"
-    },
-    {
-      "blockId": 3697,
-      "stringId": 42,
-      "source": "A great one, was Sir Cabirus.  After he died, things all went haywire. The races of the Abyss split off into many small groups like our own.  Dealing with the others can be a touchy task. ",
-      "proposedTranslation": "카비루스 경은 위대한 분이셨소. 그분이 돌아가신 뒤 모든 것이 엉망이 되었지. 심연의 종족들은 우리처럼 여러 작은 무리로 갈라졌고, 다른 무리들을 상대하는 일도 까다로워졌소."
-    },
-    {
-      "blockId": 3793,
-      "stringId": 17,
-      "source": "Sorry, here it is. ",
-      "proposedTranslation": "미안하오, 여기 있소. "
-    },
-    {
-      "blockId": 3803,
-      "stringId": 17,
-      "source": "Sorry, here it is. ",
-      "proposedTranslation": "미안하오. 여기 있소. "
-    },
-    {
-      "blockId": 3804,
-      "stringId": 16,
-      "source": "Sorry, here it is. ",
-      "proposedTranslation": "미안하오. 여기 있소. "
-    },
-    {
-      "blockId": 3806,
-      "stringId": 14,
-      "source": "I beg your pardon. Here it is. ",
-      "proposedTranslation": "실례했소. 여기 있소. "
     }
   ],
   "unresolvedCount": 0,
   "unresolved": [],
-  "duplicateSourceConflictCount": 113,
+  "duplicateSourceConflictCount": 117,
   "duplicateSourceConflicts": [
     {
       "source": "'click.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "클릭",
       "candidateCounts": {
         "클릭": 3,
@@ -1341,7 +561,7 @@
     },
     {
       "source": "Are ye joking with me?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "나를 놀리는 것이오?",
       "candidateCounts": {
         "나를 놀리는 것이오?": 2,
@@ -1367,7 +587,7 @@
     },
     {
       "source": "Certainly.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "좋소.",
       "candidateCounts": {
         "좋소.": 4,
@@ -1403,7 +623,7 @@
     },
     {
       "source": "Do ye intend to rob me?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "나를 강탈하려는 거요?",
       "candidateCounts": {
         "나를 강탈하려는 거요?": 2,
@@ -1429,7 +649,7 @@
     },
     {
       "source": "Do ye take me for a fool?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "나를 바보로 아시오?",
       "candidateCounts": {
         "나를 바보로 아시오?": 2,
@@ -1455,7 +675,7 @@
     },
     {
       "source": "Don't tell ME what to do, goblin, or I'll remove your head.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "내게 명령하지 마라, 고블린. 안 그러면 네 목을 날려버리겠다.",
       "candidateCounts": {
         "내게 명령하지 마라, 고블린. 안 그러면 네 목을 날려버리겠다.": 1,
@@ -1476,7 +696,7 @@
     },
     {
       "source": "Dost thou intend to rob me?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "나를 강탈하려는 거요?",
       "candidateCounts": {
         "나를 강탈하려는 거요?": 27,
@@ -1698,7 +918,7 @@
     },
     {
       "source": "Dost thou take me for a fool?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "나를 바보로 아시오?",
       "candidateCounts": {
         "나를 바보로 아시오?": 33,
@@ -1917,7 +1137,7 @@
     },
     {
       "source": "Excuse me, I did not mean to intrude upon thee.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "실례했소. 방해할 생각은 아니었소.",
       "candidateCounts": {
         "실례했소. 끼어들 생각은 아니었소.": 4,
@@ -1968,11 +1188,12 @@
     },
     {
       "source": "Excuse me, I must be going.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "실례하오. 이제 가봐야겠소.",
       "candidateCounts": {
         "실례하오. 이제 가봐야겠소.": 4,
         "실례지만, 이만 가보겠소.": 1,
+        "실례하오. 이만 가보겠소.": 1,
         "실례하오. 이만 가봐야겠소.": 1
       },
       "locations": [
@@ -2002,6 +1223,11 @@
           "translation": "실례하오. 이제 가봐야겠소."
         },
         {
+          "blockId": 3607,
+          "stringId": 50,
+          "translation": "실례하오. 이만 가보겠소."
+        },
+        {
           "blockId": 3612,
           "stringId": 28,
           "translation": "실례하오. 이만 가봐야겠소."
@@ -2010,7 +1236,7 @@
     },
     {
       "source": "Excuse me, I must think about this deal.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소.",
       "candidateCounts": {
         "실례하지만, 이 거래는 좀 더 생각해 봐야겠소.": 38,
@@ -2266,7 +1492,7 @@
     },
     {
       "source": "Farewell then.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그럼 잘 가시오.",
       "candidateCounts": {
         "그럼 잘 가시오.": 5,
@@ -2718,7 +1944,7 @@
     },
     {
       "source": "GRRAAARRRGGH!!!",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "크르아아아악!!!",
       "candidateCounts": {
         "크르아아아악!!!": 1,
@@ -2751,7 +1977,7 @@
     },
     {
       "source": "Ghouls live below us.  They disgusting.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "구울들은 우리 아래에 산다. 역겨운 놈들이다.",
       "candidateCounts": {
         "구울들은 우리 아래에 산다. 역겨운 놈들이다.": 1,
@@ -2772,7 +1998,7 @@
     },
     {
       "source": "Good luck!",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "행운을 비오!",
       "candidateCounts": {
         "행운을 비네!": 1,
@@ -2793,7 +2019,7 @@
     },
     {
       "source": "Good riddance!",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "잘 가시게!",
       "candidateCounts": {
         "썩 가라!": 1,
@@ -2820,7 +2046,7 @@
     },
     {
       "source": "Goodbye, then.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그렇다면 잘 있소.",
       "candidateCounts": {
         "그러면 잘 가시오.": 1,
@@ -2841,7 +2067,7 @@
     },
     {
       "source": "Goodbye.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "잘 가시오.",
       "candidateCounts": {
         "잘 가시오.": 10,
@@ -3236,7 +2462,7 @@
     },
     {
       "source": "I accept your offer.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그대의 제안을 받아들이겠소.",
       "candidateCounts": {
         "그대의 제안을 받아들이겠소.": 2,
@@ -3262,7 +2488,7 @@
     },
     {
       "source": "I am @GS8.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "나는 @GS8이오.",
       "candidateCounts": {
         "나는 @GS8이다.": 2,
@@ -3320,7 +2546,7 @@
     },
     {
       "source": "I am in search of adventure.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "모험을 찾고 있소.",
       "candidateCounts": {
         "모험을 찾고 있소.": 2,
@@ -3346,7 +2572,7 @@
     },
     {
       "source": "I am merely exploring.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그저 탐험 중이다.",
       "candidateCounts": {
         "그저 탐험 중이다.": 1,
@@ -3367,7 +2593,7 @@
     },
     {
       "source": "I am weary of this haggling.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "이런 흥정에는 이제 지쳤소.",
       "candidateCounts": {
         "이런 흥정에는 이제 지쳤소.": 30,
@@ -3603,7 +2829,7 @@
     },
     {
       "source": "I beg thy pardon, I must think about this deal.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "실례하지만, 이 거래는 좀 더 생각해 봐야겠소.",
       "candidateCounts": {
         "실례하지만, 이 거래는 좀 더 생각해 봐야겠소.": 2,
@@ -3629,7 +2855,7 @@
     },
     {
       "source": "I demand that thou givest me these items.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "이 물건들을 내게 넘기시오.",
       "candidateCounts": {
         "이 물건들을 내게 넘기시오.": 6,
@@ -3928,7 +3154,7 @@
     },
     {
       "source": "I do not wish to barter any further.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "더는 흥정하고 싶지 않소.",
       "candidateCounts": {
         "더는 흥정하고 싶지 않소.": 52,
@@ -4215,7 +3441,7 @@
     },
     {
       "source": "I have no new news for you.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "새로 들려줄 소식은 없다.",
       "candidateCounts": {
         "너에게 알려줄 새 소식 없다.": 1,
@@ -4236,7 +3462,7 @@
     },
     {
       "source": "I make thee this offer.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "이렇게 제안하겠소.",
       "candidateCounts": {
         "이렇게 제안하겠소.": 53,
@@ -4522,7 +3748,7 @@
     },
     {
       "source": "I need thy help.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그대의 도움이 필요하오.",
       "candidateCounts": {
         "그대의 도움이 필요하오.": 1,
@@ -4543,7 +3769,7 @@
     },
     {
       "source": "I thank thee for thy help.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "도와주어 고맙소.",
       "candidateCounts": {
         "도와주어 고맙소.": 4,
@@ -4579,7 +3805,7 @@
     },
     {
       "source": "I thank thee kindly.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "친절에 감사하오.",
       "candidateCounts": {
         "정말 고맙소.": 2,
@@ -4610,7 +3836,7 @@
     },
     {
       "source": "I thank thee, but I must be going.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "고맙지만 이제 가봐야겠소.",
       "candidateCounts": {
         "고맙지만 이제 가봐야겠소.": 2,
@@ -4636,7 +3862,7 @@
     },
     {
       "source": "I thank thee.  Farewell.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "고맙소. 잘 있으시오.",
       "candidateCounts": {
         "고맙소. 잘 있으시오.": 3,
@@ -4673,7 +3899,7 @@
     },
     {
       "source": "I was just leaving.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "마침 떠나려던 참이오.",
       "candidateCounts": {
         "마침 떠나려던 참이오.": 2,
@@ -4699,7 +3925,7 @@
     },
     {
       "source": "I will seek him out.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그를 찾아가겠소.",
       "candidateCounts": {
         "그를 찾아가겠소.": 1,
@@ -4720,7 +3946,7 @@
     },
     {
       "source": "I'm afraid not.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "유감이지만 아니오.",
       "candidateCounts": {
         "유감이지만 아니오.": 2,
@@ -4772,7 +3998,7 @@
     },
     {
       "source": "If thou dost insist, thou canst have them.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그대가 고집한다면 가져가시오.",
       "candidateCounts": {
         "그대가 고집한다면 가져가시오.": 31,
@@ -4991,7 +4217,7 @@
     },
     {
       "source": "If ye insist, ye can have them.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그대가 고집한다면 가져가시오.",
       "candidateCounts": {
         "그대가 고집한다면 가져가시오.": 2,
@@ -5017,7 +4243,7 @@
     },
     {
       "source": "Is this it?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "이것이 그 방패요?",
       "candidateCounts": {
         "이것이 그 방패요?": 1,
@@ -5038,7 +4264,7 @@
     },
     {
       "source": "It is a pleasure to meet thee.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "만나서 반갑소.",
       "candidateCounts": {
         "그대를 만나 영광이오.": 1,
@@ -5059,7 +4285,7 @@
     },
     {
       "source": "Me hear one Troll got caught by Wizard, made slave.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "트롤 하나가 마법사에게 붙잡혀 노예가 됐다고 들었다.",
       "candidateCounts": {
         "마법사에게 잡혀 노예가 된 트롤이 있다는 소문 들었다.": 1,
@@ -5080,7 +4306,7 @@
     },
     {
       "source": "Me hear somebody killing Trolls!  Me catch, me eat!",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "누군가 트롤들을 죽이고 있다고 들었다! 내가 잡으면 먹어버린다!",
       "candidateCounts": {
         "누가 트롤들을 죽이고 다닌다는 소문 들었다! 잡으면 먹는다!": 1,
@@ -5148,7 +4374,7 @@
     },
     {
       "source": "No! Thou shalt not take them!",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "안 돼! 절대로 가져갈 수 없소!",
       "candidateCounts": {
         "안 돼! 절대로 가져갈 수 없소!": 27,
@@ -5370,7 +4596,7 @@
     },
     {
       "source": "No! Ye shall not take them!",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "안 돼! 절대로 가져갈 수 없소!",
       "candidateCounts": {
         "안 돼! 절대로 가져갈 수 없소!": 2,
@@ -5396,7 +4622,7 @@
     },
     {
       "source": "No, I cannot.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "아니오, 지금은 어렵소.",
       "candidateCounts": {
         "아니오, 지금은 어렵소.": 1,
@@ -5417,7 +4643,7 @@
     },
     {
       "source": "No, I do not like this deal.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "아니오, 이 거래는 마음에 들지 않소.",
       "candidateCounts": {
         "아니오, 이 거래는 마음에 들지 않소.": 35,
@@ -5650,7 +4876,7 @@
     },
     {
       "source": "No, I do not.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "아니오, 없소.",
       "candidateCounts": {
         "아니오, 없소.": 2,
@@ -5687,7 +4913,7 @@
     },
     {
       "source": "No, I have not.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "아니오. 아직 찾지 못했소.",
       "candidateCounts": {
         "아니오, 얻지 못했소.": 1,
@@ -5714,7 +4940,7 @@
     },
     {
       "source": "No, I'm not.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "아니오, 나는 그렇지 않소.",
       "candidateCounts": {
         "아니오, 나는 그렇지 않소.": 2,
@@ -5740,7 +4966,7 @@
     },
     {
       "source": "No, but thank thee.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "아니오, 고맙소.",
       "candidateCounts": {
         "아니오, 고맙소.": 3,
@@ -5776,7 +5002,7 @@
     },
     {
       "source": "No, let's not fight.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "아니오, 싸우지 맙시다.",
       "candidateCounts": {
         "아니, 싸우지는 맙시다.": 1,
@@ -5797,7 +5023,7 @@
     },
     {
       "source": "No, not yet.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "아니오. 아직이오.",
       "candidateCounts": {
         "아니오. 아직이오.": 2,
@@ -5823,7 +5049,7 @@
     },
     {
       "source": "No, please wait!",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "아니, 잠깐 기다려!",
       "candidateCounts": {
         "아니, 잠깐 기다려!": 2,
@@ -5855,7 +5081,7 @@
     },
     {
       "source": "No, thank you.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "아니오, 고맙소.",
       "candidateCounts": {
         "아니오, 고맙소.": 2,
@@ -5881,7 +5107,7 @@
     },
     {
       "source": "No, thou dost misunderstand me.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "아니오. 내 뜻을 오해했소.",
       "candidateCounts": {
         "아니오. 내 뜻을 오해했소.": 36,
@@ -6296,7 +5522,7 @@
     },
     {
       "source": "No.  Should I?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "아니오. 꼭 그래야 하오?",
       "candidateCounts": {
         "아니오. 그래야 하오?": 1,
@@ -6317,7 +5543,7 @@
     },
     {
       "source": "None of thy business!",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그대가 알 바 아니오!",
       "candidateCounts": {
         "그대가 알 바 아니오!": 4,
@@ -6353,7 +5579,7 @@
     },
     {
       "source": "One Knight real mean, he live up north.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "아주 못된 기사 하나가 북쪽에 산다.",
       "candidateCounts": {
         "북쪽에 아주 못된 기사 하나 산다.": 1,
@@ -6374,7 +5600,7 @@
     },
     {
       "source": "Other...",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그 밖에는...",
       "candidateCounts": {
         "그 밖에는...": 5,
@@ -6437,7 +5663,7 @@
     },
     {
       "source": "Pardon, I must be going.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "미안하지만 나는 이만 가봐야겠소.",
       "candidateCounts": {
         "미안하지만 나는 이만 가봐야겠소.": 1,
@@ -6458,7 +5684,7 @@
     },
     {
       "source": "Perhaps this is it.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "이것인지 봐주시오.",
       "candidateCounts": {
         "어쩌면 이것일지도 모르오.": 1,
@@ -6479,7 +5705,7 @@
     },
     {
       "source": "Perhaps.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그럴지도.",
       "candidateCounts": {
         "그럴지도.": 1,
@@ -6506,7 +5732,7 @@
     },
     {
       "source": "Sethar and his friend live near the big pit.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "세타르와 그의 친구는 큰 구덩이 근처에 산다.",
       "candidateCounts": {
         "세타르와 그의 친구는 큰 구덩이 근처에 산다.": 1,
@@ -6527,7 +5753,7 @@
     },
     {
       "source": "Show medallion to pass.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "지나가려면 메달 보여라.",
       "candidateCounts": {
         "지나가려면 메달 보여라.": 1,
@@ -6548,7 +5774,7 @@
     },
     {
       "source": "Sneak snuck on Sethar, but he tossed him in pit.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "스니크라는 녀석이 세타르에게 몰래 다가갔지만, 세타르는 그를 구덩이에 던졌다.",
       "candidateCounts": {
         "스니크가 세타르를 몰래 덮쳤지만, 세타르가 구덩이에 던졌다.": 1,
@@ -6568,8 +5794,40 @@
       ]
     },
     {
-      "source": "Sseth.",
+      "source": "Sorry, here it is.",
       "rule": "top-frequency-earliest-location",
+      "chosen": "미안하오. 여기 있소. ",
+      "candidateCounts": {
+        "미안하오. 여기 있소. ": 2,
+        "미안하오, 여기 있소. ": 1,
+        "미안하오. 여기 있소.": 1
+      },
+      "locations": [
+        {
+          "blockId": 3793,
+          "stringId": 17,
+          "translation": "미안하오, 여기 있소. "
+        },
+        {
+          "blockId": 3803,
+          "stringId": 17,
+          "translation": "미안하오. 여기 있소. "
+        },
+        {
+          "blockId": 3804,
+          "stringId": 11,
+          "translation": "미안하오. 여기 있소."
+        },
+        {
+          "blockId": 3804,
+          "stringId": 16,
+          "translation": "미안하오. 여기 있소. "
+        }
+      ]
+    },
+    {
+      "source": "Sseth.",
+      "rule": "top-frequency-preserve-current",
       "chosen": "세스.",
       "candidateCounts": {
         "세스.": 5,
@@ -6620,7 +5878,7 @@
     },
     {
       "source": "Such as?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "어떤 문제요?",
       "candidateCounts": {
         "어떤 문제요?": 1,
@@ -6641,7 +5899,7 @@
     },
     {
       "source": "Surely thou art joking.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "분명 농담이겠지.",
       "candidateCounts": {
         "분명 농담이겠지.": 26,
@@ -6846,7 +6104,7 @@
     },
     {
       "source": "Tell me of this wizard.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그 마법사에 대해 말해주시오.",
       "candidateCounts": {
         "그 마법사에 관해 말해주시오.": 1,
@@ -6893,7 +6151,7 @@
     },
     {
       "source": "Thank thee, and farewell.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "고맙소. 잘 있으시오.",
       "candidateCounts": {
         "고맙소. 잘 있으시오.": 4,
@@ -6929,7 +6187,7 @@
     },
     {
       "source": "Thank you, kind goblin.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "고맙소, 친절한 고블린.",
       "candidateCounts": {
         "고맙소, 친절한 고블린.": 3,
@@ -6960,7 +6218,7 @@
     },
     {
       "source": "That no medallion... show me medallion or die!",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그건 메달 아니다... 메달 보여주거나 죽어라!",
       "candidateCounts": {
         "그건 메달 아니다... 메달 보여주거나 죽어라!": 2,
@@ -6986,7 +6244,7 @@
     },
     {
       "source": "Thou art welcome.  Farewell.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "별말씀을. 잘 가시오.",
       "candidateCounts": {
         "별말씀을. 잘 가시오.": 1,
@@ -7006,8 +6264,29 @@
       ]
     },
     {
+      "source": "Tyball",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "타이볼",
+      "candidateCounts": {
+        " 타이볼": 1,
+        "타이볼": 1
+      },
+      "locations": [
+        {
+          "blockId": 1,
+          "stringId": 395,
+          "translation": " 타이볼"
+        },
+        {
+          "blockId": 7,
+          "stringId": 247,
+          "translation": "타이볼"
+        }
+      ]
+    },
+    {
       "source": "We shall see.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "두고 보면 알겠지.",
       "candidateCounts": {
         "두고 보면 알겠지.": 3,
@@ -7050,7 +6329,7 @@
     },
     {
       "source": "What dost thou mean?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "무슨 뜻이오?",
       "candidateCounts": {
         "무슨 뜻이오?": 3,
@@ -7081,7 +6360,7 @@
     },
     {
       "source": "What dost thou want?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "무엇을 원하오?",
       "candidateCounts": {
         "무엇을 원하오?": 3,
@@ -7112,7 +6391,7 @@
     },
     {
       "source": "What?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "뭐라고 했소?",
       "candidateCounts": {
         "뭐라고 했소?": 4,
@@ -7148,7 +6427,7 @@
     },
     {
       "source": "What?... you think me stupid. I see no medallion.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "뭐?... 나 바보라고 생각하나. 메달 안 보인다.",
       "candidateCounts": {
         "뭐?... 나 바보라고 생각하나. 메달 안 보인다.": 1,
@@ -7169,7 +6448,7 @@
     },
     {
       "source": "Where is thy leader?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그대들의 지도자는 어디 있소?",
       "candidateCounts": {
         "그대들의 지도자는 어디 있소?": 4,
@@ -7205,7 +6484,7 @@
     },
     {
       "source": "Who art thou?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그대는 누구요?",
       "candidateCounts": {
         "그대는 누구요?": 4,
@@ -7251,7 +6530,7 @@
     },
     {
       "source": "Why you here?  You got medallion, eh?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "왜 여기 있어? 메달 있나?",
       "candidateCounts": {
         "왜 여기 있냐? 메달 가졌냐?": 1,
@@ -7272,7 +6551,7 @@
     },
     {
       "source": "Wouldst thou care to exchange items?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "물건을 서로 교환하겠소?",
       "candidateCounts": {
         "물건을 서로 교환하겠소?": 4,
@@ -7334,7 +6613,7 @@
     },
     {
       "source": "Yes, I do think thou'rt stupid!",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그래, 네가 멍청하다고 생각한다!",
       "candidateCounts": {
         "그래, 네가 멍청하다고 생각한다!": 2,
@@ -7366,7 +6645,7 @@
     },
     {
       "source": "Yes, I have.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그렇소. 가보았소.",
       "candidateCounts": {
         "그렇소, 얻었소.": 1,
@@ -7399,7 +6678,7 @@
     },
     {
       "source": "Yes, I must.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그렇소. 그래야만 하오.",
       "candidateCounts": {
         "그렇소. 그래야만 하오.": 33,
@@ -7658,7 +6937,7 @@
     },
     {
       "source": "Yes, I'm sorry, here it is...",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그렇소. 미안하오, 여기 있소...",
       "candidateCounts": {
         "그렇소. 미안하오, 여기 있소...": 2,
@@ -7684,7 +6963,7 @@
     },
     {
       "source": "Yes, come and get it...",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그래, 와서 먹어봐라...",
       "candidateCounts": {
         "그래, 와서 먹어봐라...": 1,
@@ -7705,7 +6984,7 @@
     },
     {
       "source": "Yes, here it is.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그렇소. 여기 있소.",
       "candidateCounts": {
         "그렇소. 여기 있소.": 4,
@@ -7746,7 +7025,7 @@
     },
     {
       "source": "Yes, please do.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그렇소, 부탁하오.",
       "candidateCounts": {
         "그래, 부디 열어다오.": 1,
@@ -7767,7 +7046,7 @@
     },
     {
       "source": "Yes, please.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그렇네. 부탁하겠네.",
       "candidateCounts": {
         "그렇네. 부탁하겠네.": 1,
@@ -7981,7 +7260,7 @@
     },
     {
       "source": "You confuse me, first want fight and then not want fight.",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "처음에는 싸운다더니 이제 안 싸운다니, 너는 사람을 헷갈리게 한다.",
       "candidateCounts": {
         "너 혼란스럽게 한다. 싸운다고 했다가 안 싸운다고 한다.": 1,
@@ -8002,7 +7281,7 @@
     },
     {
       "source": "You food, puny human?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "네가 먹을거리냐, 약한 인간?",
       "candidateCounts": {
         "너 먹을 것이냐, 보잘것없는 인간?": 1,
@@ -8022,8 +7301,29 @@
       ]
     },
     {
+      "source": "You found a trap!  Do you wish to try to disarm it?",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "함정을 발견했습니다! 해체를 시도하시겠습니까?\n",
+      "candidateCounts": {
+        "함정을 발견했습니다! 해제하시겠습니까?": 1,
+        "함정을 발견했습니다! 해체를 시도하시겠습니까?\n": 1
+      },
+      "locations": [
+        {
+          "blockId": 1,
+          "stringId": 98,
+          "translation": "함정을 발견했습니다! 해체를 시도하시겠습니까?\n"
+        },
+        {
+          "blockId": 1,
+          "stringId": 244,
+          "translation": "함정을 발견했습니다! 해제하시겠습니까?"
+        }
+      ]
+    },
+    {
       "source": "You think me stupid?",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "나를 멍청이로 아나?",
       "candidateCounts": {
         "나를 멍청이로 아나?": 4,
@@ -8101,7 +7401,7 @@
     },
     {
       "source": "full",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "가득 찬",
       "candidateCounts": {
         "가득 찬": 2,
@@ -8127,7 +7427,7 @@
     },
     {
       "source": "her",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그녀",
       "candidateCounts": {
         "그녀": 2,
@@ -8153,7 +7453,7 @@
     },
     {
       "source": "herself",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "그 자신",
       "candidateCounts": {
         "그 자신": 1,
@@ -8174,7 +7474,7 @@
     },
     {
       "source": "man",
-      "rule": "top-frequency-earliest-location",
+      "rule": "top-frequency-preserve-current",
       "chosen": "남자",
       "candidateCounts": {
         "남자": 2,
@@ -8226,6 +7526,27 @@
           "blockId": 3865,
           "stringId": 12,
           "translation": "무르고"
+        }
+      ]
+    },
+    {
+      "source": "the Slasher of Veils",
+      "rule": "top-frequency-preserve-current",
+      "chosen": "장막을 가르는 자",
+      "candidateCounts": {
+        " 장막을 가르는 자": 1,
+        "장막을 가르는 자": 1
+      },
+      "locations": [
+        {
+          "blockId": 1,
+          "stringId": 396,
+          "translation": " 장막을 가르는 자"
+        },
+        {
+          "blockId": 7,
+          "stringId": 264,
+          "translation": "장막을 가르는 자"
         }
       ]
     }

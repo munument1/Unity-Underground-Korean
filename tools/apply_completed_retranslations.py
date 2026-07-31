@@ -28,7 +28,8 @@ DYNAMIC_SOURCES = {
     " is nearly done", " is unstable", " is stable", "You destroyed the ",
     "You damaged the ", "Your attempt has no effect on the ",
     "You have partially repaired the ", "You have fully repaired the ",
-    "You have attained experience level ", " tasted putrid.",
+    "You have attained experience level ", "Restoring Game ", "Saving Game ",
+    " tasted putrid.",
     " tasted a little rancid.", " tasted kind of bland.",
     " tasted pretty good.", " tasted great.", "A level ", "after ",
     " days in the Abyss", "You think it will be ", " to repair the ",
@@ -69,7 +70,6 @@ def is_dynamic_source(source: str) -> bool:
         source in DYNAMIC_SOURCES
         or "%s" in source
         or "{0}" in source
-        or source != source.strip()
     )
 
 
